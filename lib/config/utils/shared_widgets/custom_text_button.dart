@@ -25,7 +25,7 @@ class CustomTextButton extends StatelessWidget {
         text,
         style: AppTextStyle.internal().textStyle16.copyWith(
               color: onPressed == null
-                  ? Colors.white.withOpacity(0.5)
+                  ? Colors.white
                   : (textColor ?? Colors.black),
               fontWeight: FontWeight.w600,
             ),

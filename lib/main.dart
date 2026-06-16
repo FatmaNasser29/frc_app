@@ -12,7 +12,8 @@ class FrcApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'FRC App',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         ),
       home: SplashScreenUi(),

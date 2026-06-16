@@ -1,18 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:frc_app/config/utils/shared_widgets/custom_text_button.dart';
-import 'package:frc_app/config/utils/shared_widgets/custom_text_form_field.dart';
 
-class SplashScreenUi extends StatelessWidget {
+class SplashScreenUi extends StatefulWidget {
   const SplashScreenUi({super.key});
 
   @override
+  State<SplashScreenUi> createState() => _SplashScreenUiState();
+}
+
+class _SplashScreenUiState extends State<SplashScreenUi> {
+  // timer() {
+  //   Future.delayed(const Duration(seconds: 3), () {
+  //     // Navigate to the next screen after the splash screen duration
+  //     // You can replace this with your desired navigation logic
+  //     Navigator.pushReplacement(
+  //       context,
+  //       MaterialPageRoute(builder: (context) => const onBoardingScreen()),
+  //     );
+  //   });
+  // }
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Splash Screen'),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/images/splash_screen.png',
+            fit: BoxFit.cover,
+          ),
+        ],
       ),
-      body: 
-        Center(child: CustomTextButton(text: 'Click Me', onPressed: () {})),
     );
   }
 }
