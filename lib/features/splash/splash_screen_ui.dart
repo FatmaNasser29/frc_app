@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frc_app/config/utils/shared_widgets/custom_text_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_text_form_field.dart';
 
 class SplashScreenUi extends StatelessWidget {
@@ -11,7 +12,7 @@ class SplashScreenUi extends StatelessWidget {
         title: const Text('Splash Screen'),
       ),
       body: 
-        Center(child: CustomTextFormField(hintText: 'Enter your text here',prefixIcon: Icons.text_fields, )),
+        Center(child: CustomTextButton(text: 'Click Me', onPressed: () {})),
     );
   }
 }
