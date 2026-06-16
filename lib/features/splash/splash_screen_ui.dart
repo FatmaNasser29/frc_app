@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
+import 'package:frc_app/config/utils/shared_widgets/custom_text_form_field.dart';
 
 class SplashScreenUi extends StatelessWidget {
   const SplashScreenUi({super.key});
@@ -11,13 +11,7 @@ class SplashScreenUi extends StatelessWidget {
         title: const Text('Splash Screen'),
       ),
       body: 
-        CustomElevetedButton(
-          text: 'Get Started',
-          onPressed: () {
-          },
-          icon: Icons.arrow_forward,
-        backgroundColor: Colors.white,
-        ), 
+        Center(child: CustomTextFormField(hintText: 'Enter your text here',prefixIcon: Icons.text_fields, )),
     );
   }
 }
