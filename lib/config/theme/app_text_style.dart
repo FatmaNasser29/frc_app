@@ -9,7 +9,7 @@ class AppTextStyle {
     fontFamily: GoogleFonts.funnelDisplay().fontFamily,
   );
 
- final textStyle124 = TextStyle(
+ final textStyle24 = TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w500,
     fontFamily: GoogleFonts.funnelDisplay().fontFamily,
