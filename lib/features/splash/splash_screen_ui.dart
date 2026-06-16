@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frc_app/config/utils/widgets/custom_eleveted_button.dart';
+import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 
 class SplashScreenUi extends StatelessWidget {
   const SplashScreenUi({super.key});
