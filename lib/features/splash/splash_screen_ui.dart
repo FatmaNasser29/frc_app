@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frc_app/config/routes/routes_name.dart';
 
 class SplashScreenUi extends StatefulWidget {
   const SplashScreenUi({super.key});
@@ -8,16 +9,23 @@ class SplashScreenUi extends StatefulWidget {
 }
 
 class _SplashScreenUiState extends State<SplashScreenUi> {
-  // timer() {
-  //   Future.delayed(const Duration(seconds: 3), () {
-  //     // Navigate to the next screen after the splash screen duration
-  //     // You can replace this with your desired navigation logic
-  //     Navigator.pushReplacement(
-  //       context,
-  //       MaterialPageRoute(builder: (context) => const onBoardingScreen()),
-  //     );
-  //   });
-  // }
+  @override
+  void initState() {
+    super.initState();
+    timer();
+  }
+
+  void timer() {
+    Future.delayed(const Duration(seconds: 3), () {
+      if (mounted) {
+        Navigator.pushReplacementNamed(
+          context,
+          RoutesName.onBoarding,
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

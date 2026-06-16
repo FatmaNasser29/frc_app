@@ -5,6 +5,7 @@ import 'package:frc_app/features/auth/sign_in/sign_in_ui.dart';
 import 'package:frc_app/features/auth/sign_up/sign_up_ui.dart';
 import 'package:frc_app/features/home/home_ui.dart';
 import 'package:frc_app/features/lay_out/lay_out_ui.dart';
+import 'package:frc_app/features/onboarding/on_boarding_ui.dart';
 import 'package:frc_app/features/setting/setting_ui.dart';
 import 'package:frc_app/features/splash/splash_screen_ui.dart';
 
@@ -39,6 +40,9 @@ class RoutesGenerator {
         return MaterialPageRoute(
             builder: (context) => SettingUi(), settings: settings);
 
+case RoutesName.onBoarding:
+        return MaterialPageRoute(
+            builder: (context) => OnBoardingUi(), settings: settings);
 
       default:
         return MaterialPageRoute(
