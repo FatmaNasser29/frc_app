@@ -1,8 +1,6 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:frc_app/config/routes/routes_generator.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
-import 'package:frc_app/features/splash/splash_screen_ui.dart';
 
 void main() {
   runApp(const FrcApp());
