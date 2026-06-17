@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SignInUi extends StatelessWidget {
-  const SignInUi({super.key});
+class LayOutView extends StatelessWidget {
+  const LayOutView({super.key});
 
   @override
   Widget build(BuildContext context) {

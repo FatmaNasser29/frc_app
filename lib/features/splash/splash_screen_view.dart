@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 
-class SplashScreenUi extends StatefulWidget {
-  const SplashScreenUi({super.key});
+class SplashScreenView extends StatefulWidget {
+  const SplashScreenView({super.key});
 
   @override
-  State<SplashScreenUi> createState() => _SplashScreenUiState();
+  State<SplashScreenView> createState() => _SplashScreenViewState();
 }
 
-class _SplashScreenUiState extends State<SplashScreenUi> {
+class _SplashScreenViewState extends State<SplashScreenView> {
   @override
   void initState() {
     super.initState();

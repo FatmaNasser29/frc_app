@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class SettingUi extends StatelessWidget {
-  const SettingUi({super.key});
+class SignUpView extends StatelessWidget {
+  const SignUpView({super.key});
 
   @override
   Widget build(BuildContext context) {

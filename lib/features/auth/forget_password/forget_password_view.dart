@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class LayOutUi extends StatelessWidget {
-  const LayOutUi({super.key});
+class ForgetPasswordView extends StatelessWidget {
+  const ForgetPasswordView({super.key});
 
   @override
   Widget build(BuildContext context) {

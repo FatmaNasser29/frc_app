@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class OnBoardingUi extends StatelessWidget {
-  const OnBoardingUi({super.key});
+class SettingView extends StatelessWidget {
+  const SettingView({super.key});
 
   @override
   Widget build(BuildContext context) {
