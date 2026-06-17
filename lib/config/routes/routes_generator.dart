@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/features/auth/forget_password/forget_password_view.dart';
 import 'package:frc_app/features/auth/sign_in/sign_in_view.dart';
+import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_options_view.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_view.dart';
 import 'package:frc_app/features/home/home_view.dart';
 import 'package:frc_app/features/lay_out/lay_out_view.dart';
@@ -26,7 +27,7 @@ class RoutesGenerator {
 
       case RoutesName.signUp:
         return MaterialPageRoute(
-            builder: (context) => SignUpView(), settings: settings);
+            builder: (context) => SignupView(), settings: settings);
 
       case RoutesName.forgetPassword:
         return MaterialPageRoute(
@@ -43,6 +44,10 @@ class RoutesGenerator {
 case RoutesName.onBoarding:
         return MaterialPageRoute(
             builder: (context) => OnboardingView(), settings: settings);
+
+case RoutesName.signUpOptions:
+        return MaterialPageRoute(
+            builder: (context) => SignUpOptionView(), settings: settings);
 
       default:
         return MaterialPageRoute(

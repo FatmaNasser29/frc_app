@@ -9,5 +9,6 @@ class RoutesName {
   static const String forgetPassword = "forgetPassword";
   static const String layOut = 'layOut';
   static const String home = 'home';
-    static const String setting = 'setting';
+  static const String setting = 'setting';
+  static const String signUpOptions = 'signUpOptions';
 }

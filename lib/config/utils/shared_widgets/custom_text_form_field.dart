@@ -4,73 +4,108 @@ import 'package:frc_app/config/theme/app_text_style.dart';
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController? controller;
   final String hintText;
-  final IconData? prefixIcon;
+  final String? label;
+  final Widget? prefixIcon;
   final TextInputType keyboardType;
   final bool obscureText;
   final String? Function(String?)? validator;
-  final Color? backgroundColor;
+  final Color backgroundColor;
+  final Color borderColor;
+  final Color textColor;
 
   const CustomTextFormField({
     super.key,
     this.controller,
     required this.hintText,
+    this.label,
     this.prefixIcon,
     this.keyboardType = TextInputType.text,
     this.obscureText = false,
     this.validator,
-    this.backgroundColor,
+    this.backgroundColor = Colors.white24,
+    this.borderColor = Colors.white,
+    this.textColor = Colors.white,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: SizedBox(
-        height: 50,
-        width: 359,
-        child: TextFormField(
-          controller: controller,
-          keyboardType: keyboardType,
-          obscureText: obscureText,
-          validator: validator,
-          style: const TextStyle(color: Colors.white),
-          decoration: InputDecoration(
-            filled: backgroundColor != null,
-            fillColor: backgroundColor,
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (label != null) ...[
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Text(
+              label!,
+              style: AppTextStyle.internal().textStyle16.copyWith(
+                    color: Colors.white,
+                  ),
+            ),
+          ),
+          const SizedBox(height: 7),
+        ],
 
-            hintText: hintText,
-            hintStyle: AppTextStyle.internal().textStyle16.copyWith(
-                  color: Colors.white,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: SizedBox(
+            height: 50,
+            width:double.infinity ,
+            child: TextFormField(
+              controller: controller,
+              keyboardType: keyboardType,
+              obscureText: obscureText,
+              validator: validator,
+              style: TextStyle(
+                color: textColor,
+                fontSize: 16,
+              ),
+              decoration: InputDecoration(
+  filled: true,
+  fillColor: backgroundColor,
+  hintText: hintText,
+  hintStyle: AppTextStyle.internal()
+      .textStyle16
+      .copyWith(color: textColor),
+  prefixIcon: prefixIcon == null
+    ? null
+    : Padding(
+        padding: const EdgeInsets.all(14),
+        child: prefixIcon,
+      ),
+prefixIconConstraints: const BoxConstraints(
+  minWidth: 24,
+  minHeight: 24,
+),
+  contentPadding: const EdgeInsets.symmetric(
+    vertical: 16,
+  ),
+  
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide: BorderSide(
+                    color: borderColor,
+                  ),
                 ),
 
-            prefixIcon: prefixIcon != null
-                ? Icon(
-                    prefixIcon,
-                    color: Colors.white,
-                  )
-                : null,
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide: BorderSide(
+                    color: borderColor,
+                  ),
+                ),
 
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(
-                color: Colors.white,
-              ),
-            ),
-
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(16),
-              borderSide: const BorderSide(
-                color: Colors.white,
-                width: 2,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(14),
+                  borderSide: BorderSide(
+                    color: borderColor,
+                    width: 2,
+                  ),
+                ),
               ),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
