@@ -18,7 +18,7 @@ class FrcApp extends StatelessWidget {
       theme: ThemeData(
         ),
       // home: SplashScreenUi(),
-      initialRoute: RoutesName.splash,
+      initialRoute: RoutesName.onBoarding,
       onGenerateRoute: RoutesGenerator.onGenerator
    
     );

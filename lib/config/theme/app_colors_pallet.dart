@@ -9,5 +9,7 @@ class AppColorsPallet {
   static const Color assentsBlack = Color(0xFF101828);
   static const Color assentsBlue = Color(0xFF3686FF);
   static const Color babyBlue = Color(0xFF00C4DA);
-       
+  static const Color assentsGray = Color(0xFF4B5563);
+  static const Color assentsPurple = Color(0xFF6A38F5);
+  static const Color assentsDark = Color(0xFF27364B);
 }

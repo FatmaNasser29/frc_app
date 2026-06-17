@@ -1,25 +1,27 @@
 
-import 'package:frc_app/features/onboarding/data/models/on_boarding_models.dart';
+import 'package:frc_app/features/onboarding/data/models/on_boarding_model.dart';
 
 class OnboardingData {
   static const List<OnboardingModel> pages = [
     OnboardingModel(
       image: 'assets/images/on_boarding_one.png',
-      title: 'Join Your Professional Network',
+      title: 'Join Your \nProfessional Network',
       description:
           'Connect with professionals and companies in your industry.Build your profile, grow your network, and discover real opportunities.',
     ),
     OnboardingModel(
       image: 'assets/images/on_boarding_two.png',
-      title: 'Grow Your Career or Your Business',
+      title: 'Grow Your Career\n or Your Business',
+      descriptionHeader: 'For Professionals.',
       description:
-          'For Professionals.\nFind the right job, develop your skills, and grow your professional network.',
+          'Find the right job, develop your skills, and grow your professional network.',
     ),
     OnboardingModel(
       image: 'assets/images/on_boarding_three.png',
-      title: 'Grow Your Career or Your Business',
+      title: 'Grow Your Career\n or Your Business',
+      descriptionHeader: 'For Businesses.',
       description:
-          'For Businesses.\nHire talent, expand your market, and connect with suppliers and industry services.',
+          'Hire talent, expand your market, and connect with suppliers and industry services.',
     ),
     OnboardingModel(
       image: 'assets/images/on_boarding_four.png',

@@ -42,7 +42,7 @@ class RoutesGenerator {
 
 case RoutesName.onBoarding:
         return MaterialPageRoute(
-            builder: (context) => OnBoardingView(), settings: settings);
+            builder: (context) => OnboardingView(), settings: settings);
 
       default:
         return MaterialPageRoute(
