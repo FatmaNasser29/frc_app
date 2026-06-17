@@ -5,7 +5,7 @@ import 'package:frc_app/features/auth/sign_in/sign_in_view.dart';
 import 'package:frc_app/features/auth/sign_up/sign_up_view.dart';
 import 'package:frc_app/features/home/home_view.dart';
 import 'package:frc_app/features/lay_out/lay_out_view.dart';
-import 'package:frc_app/features/onboarding/on_boarding_view.dart';
+import 'package:frc_app/features/onboarding/presentation/pages/on_boarding_view.dart';
 import 'package:frc_app/features/setting/setting_view.dart';
 import 'package:frc_app/features/splash/splash_screen_view.dart';
 
