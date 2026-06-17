@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/features/auth/forget_password/forget_password_view.dart';
 import 'package:frc_app/features/auth/sign_in/sign_in_view.dart';
-import 'package:frc_app/features/auth/sign_up/sign_up_view.dart';
+import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_view.dart';
 import 'package:frc_app/features/home/home_view.dart';
 import 'package:frc_app/features/lay_out/lay_out_view.dart';
 import 'package:frc_app/features/onboarding/presentation/pages/on_boarding_view.dart';
