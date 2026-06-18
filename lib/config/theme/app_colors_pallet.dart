@@ -1,6 +1,9 @@
 import 'dart:ui';
 
+import 'package:flutter/material.dart';
+
 class AppColorsPallet {
+  static const Color white = Colors.white;
   static const Color assentsRed = Color(0xFFE11D48);
   static const Color assentsOrange = Color(0xFFCF7800);
   static const Color assentsgreen = Color(0xFF1B8A48);

@@ -1,34 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:frc_app/config/theme/app_colors_pallet.dart';
 import 'package:frc_app/config/theme/app_text_style.dart';
 
 class CustomTextButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
-  final Color? textColor;
+  final TextStyle? textStyle;
+  final FontWeight fontWeight;
 
   const CustomTextButton({
     super.key,
     required this.text,
     this.onPressed,
-    this.textColor,
+    this.textStyle,
+    this.fontWeight = FontWeight.w400, // Regular
   });
 
   @override
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed,
-      style: TextButton.styleFrom(
-        overlayColor: Colors.transparent,
-        splashFactory: NoSplash.splashFactory,
-      ),
       child: Text(
         text,
-        style: AppTextStyle.internal().textStyle16.copyWith(
-              color: onPressed == null
-                  ? Colors.white
-                  : (textColor ?? Colors.black),
-              fontWeight: FontWeight.w600,
-            ),
+        style: (textStyle ?? AppTextStyle.internal().textStyle16).copyWith(
+          fontWeight: fontWeight,
+          color: AppColorsPallet.white,
+        ),
       ),
     );
   }

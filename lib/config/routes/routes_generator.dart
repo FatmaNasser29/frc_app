@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/core/di/injection.dart';
 import 'package:frc_app/features/auth/forget_password/forget_password_view.dart';
+import 'package:frc_app/features/auth/set_new_password_screen/set_new_password_view.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_otp_view.dart';
 import 'package:frc_app/features/auth/sign_in/sign_in_view.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_cubit.dart';
@@ -48,6 +49,11 @@ class RoutesGenerator {
           builder: (context) => ForgetPasswordView(),
           settings: settings,
         );
+      case RoutesName.setNewPassword:
+        return MaterialPageRoute(
+          builder: (context) => SetNewPasswordView(),
+          settings: settings,
+        );
 
       case RoutesName.home:
         return MaterialPageRoute(
@@ -72,9 +78,10 @@ class RoutesGenerator {
           builder: (context) => SignUpOptionView(),
           settings: settings,
         );
+
       case RoutesName.signUpOtpView:
         return MaterialPageRoute(
-          builder: (context) => OtpView(),
+          builder: (context) => SignUpOtpView(),
           settings: settings,
         );
 

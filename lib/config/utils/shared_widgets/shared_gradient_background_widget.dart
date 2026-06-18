@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frc_app/config/theme/app_colors_pallet.dart';
 import 'package:frc_app/config/theme/app_gradients.dart';
 import 'package:frc_app/config/theme/app_text_style.dart';
 
@@ -7,12 +8,14 @@ class AuthGradientBackground extends StatelessWidget {
   final String? title;
   final String? description;
   final String footerText;
+  final TextStyle? descriptionStyle;
 
   const AuthGradientBackground({
     super.key,
     required this.child,
     this.title,
     this.description,
+    this.descriptionStyle,
     this.footerText = 'Connect with top professionals locally',
   });
 
@@ -47,7 +50,7 @@ class AuthGradientBackground extends StatelessWidget {
                         Text(
                           'The Fashion Industry Network',
                           style: AppTextStyle.internal().textStyle16.copyWith(
-                            color: Colors.white,
+                            color: AppColorsPallet.white,
                           ),
                         ),
 
@@ -58,7 +61,7 @@ class AuthGradientBackground extends StatelessWidget {
                             title!,
                             textAlign: TextAlign.center,
                             style: AppTextStyle.internal().textStyle24.copyWith(
-                              color: Colors.white,
+                              color: AppColorsPallet.white,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -72,9 +75,10 @@ class AuthGradientBackground extends StatelessWidget {
                             child: Text(
                               description!,
                               textAlign: TextAlign.center,
-                              style: AppTextStyle.internal().textStyle16
-                                  .copyWith(
-                                    color: Colors.white.withValues(alpha: 0.9),
+                              style:
+                                  descriptionStyle ??
+                                  AppTextStyle.internal().textStyle16.copyWith(
+                                    color: AppColorsPallet.white,
                                   ),
                             ),
                           ),
@@ -90,7 +94,7 @@ class AuthGradientBackground extends StatelessWidget {
                           footerText,
                           textAlign: TextAlign.center,
                           style: AppTextStyle.internal().textStyle16.copyWith(
-                            color: Colors.white,
+                            color: AppColorsPallet.white,
                           ),
                         ),
 
