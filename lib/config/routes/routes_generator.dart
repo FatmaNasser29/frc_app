@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/core/di/injection.dart';
 import 'package:frc_app/features/auth/forget_password/forget_password_view.dart';
+import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_otp_view.dart';
 import 'package:frc_app/features/auth/sign_in/sign_in_view.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_cubit.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_options_view.dart';
@@ -18,49 +19,67 @@ class RoutesGenerator {
     switch (settings.name) {
       case RoutesName.splash:
         return MaterialPageRoute(
-            builder: (context) => SplashScreenView(), settings: settings);
+          builder: (context) => SplashScreenView(),
+          settings: settings,
+        );
 
       case RoutesName.layOut:
         return MaterialPageRoute(
-            builder: (context) => LayOutView(), settings: settings);
+          builder: (context) => LayOutView(),
+          settings: settings,
+        );
 
       case RoutesName.signIn:
         return MaterialPageRoute(
-            builder: (context) => SignInView(), settings: settings);
+          builder: (context) => SignInView(),
+          settings: settings,
+        );
 
       case RoutesName.signUp:
-  return MaterialPageRoute(
-    builder: (_) => BlocProvider(
-      create: (_) => getIt<SignupCubit>(),
-      child: const SignupView(),
-    ),
-  );
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<SignupCubit>(),
+            child: const SignupView(),
+          ),
+        );
 
       case RoutesName.forgetPassword:
         return MaterialPageRoute(
-            builder: (context) => ForgetPasswordView(), settings: settings);
+          builder: (context) => ForgetPasswordView(),
+          settings: settings,
+        );
 
       case RoutesName.home:
         return MaterialPageRoute(
-            builder: (context) => HomeView(), settings: settings);
+          builder: (context) => HomeView(),
+          settings: settings,
+        );
 
       case RoutesName.setting:
         return MaterialPageRoute(
-            builder: (context) => SettingView(), settings: settings);
+          builder: (context) => SettingView(),
+          settings: settings,
+        );
 
-case RoutesName.onBoarding:
+      case RoutesName.onBoarding:
         return MaterialPageRoute(
-            builder: (context) => OnboardingView(), settings: settings);
+          builder: (context) => OnboardingView(),
+          settings: settings,
+        );
 
-case RoutesName.signUpOptions:
+      case RoutesName.signUpOptions:
         return MaterialPageRoute(
-            builder: (context) => SignUpOptionView(), settings: settings);
+          builder: (context) => SignUpOptionView(),
+          settings: settings,
+        );
+      case RoutesName.signUpOtpView:
+        return MaterialPageRoute(
+          builder: (context) => OtpView(),
+          settings: settings,
+        );
 
       default:
-        return MaterialPageRoute(
-          builder: (context) => SplashScreenView(),
-        );
-    
-    
-    
-    }}}
+        return MaterialPageRoute(builder: (context) => SplashScreenView());
+    }
+  }
+}

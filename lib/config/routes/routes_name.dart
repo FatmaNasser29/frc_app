@@ -11,4 +11,5 @@ class RoutesName {
   static const String home = 'home';
   static const String setting = 'setting';
   static const String signUpOptions = 'signUpOptions';
+  static const String signUpOtpView = 'signUpOtpView';
 }

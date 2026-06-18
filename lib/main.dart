@@ -8,9 +8,7 @@ void main() async {
 
   await configureDependencies();
 
-  runApp(
-    const FrcApp(),
-  );
+  runApp(const FrcApp());
 }
 
 class FrcApp extends StatelessWidget {
@@ -22,16 +20,10 @@ class FrcApp extends StatelessWidget {
     return MaterialApp(
       title: 'FRC App',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        ),
+      theme: ThemeData(),
       // home: SplashScreenUi(),
-      initialRoute: RoutesName.signUpOptions,
-      onGenerateRoute: RoutesGenerator.onGenerator
-   
+      initialRoute: RoutesName.signUpOtpView,
+      onGenerateRoute: RoutesGenerator.onGenerator,
     );
   }
 }
-
-
-  
-  
