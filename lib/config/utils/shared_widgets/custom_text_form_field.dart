@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frc_app/config/theme/app_colors_pallet.dart';
 import 'package:frc_app/config/theme/app_text_style.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -38,8 +39,8 @@ class CustomTextFormField extends StatelessWidget {
             child: Text(
               label!,
               style: AppTextStyle.internal().textStyle16.copyWith(
-                    color: Colors.white,
-                  ),
+                color: AppColorsPallet.white,
+              ),
             ),
           ),
           const SizedBox(height: 7),
@@ -47,59 +48,67 @@ class CustomTextFormField extends StatelessWidget {
 
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: SizedBox(
-            height: 50,
-            width:double.infinity ,
-            child: TextFormField(
-              controller: controller,
-              keyboardType: keyboardType,
-              obscureText: obscureText,
-              validator: validator,
-              style: TextStyle(
-                color: textColor,
-                fontSize: 16,
+          child: TextFormField(
+            controller: controller,
+            keyboardType: keyboardType,
+            obscureText: obscureText,
+            validator: validator,
+            style: TextStyle(color: textColor, fontSize: 16),
+            decoration: InputDecoration(
+              filled: true,
+              fillColor: backgroundColor,
+
+              hintText: hintText,
+              hintStyle: AppTextStyle.internal().textStyle16.copyWith(
+                color: textColor.withOpacity(.7),
               ),
-              decoration: InputDecoration(
-  filled: true,
-  fillColor: backgroundColor,
-  hintText: hintText,
-  hintStyle: AppTextStyle.internal()
-      .textStyle16
-      .copyWith(color: textColor),
-  prefixIcon: prefixIcon == null
-    ? null
-    : Padding(
-        padding: const EdgeInsets.all(14),
-        child: prefixIcon,
-      ),
-prefixIconConstraints: const BoxConstraints(
-  minWidth: 24,
-  minHeight: 24,
-),
-  contentPadding: const EdgeInsets.symmetric(
-    vertical: 16,
-  ),
-  
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide(
-                    color: borderColor,
-                  ),
-                ),
 
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide(
-                    color: borderColor,
-                  ),
-                ),
+              prefixIcon: prefixIcon == null
+                  ? null
+                  : Padding(
+                      padding: const EdgeInsets.all(14),
+                      child: prefixIcon,
+                    ),
 
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(14),
-                  borderSide: BorderSide(
-                    color: borderColor,
-                    width: 2,
-                  ),
+              prefixIconConstraints: const BoxConstraints(
+                minWidth: 24,
+                minHeight: 24,
+              ),
+
+              contentPadding: const EdgeInsets.symmetric(
+                vertical: 16,
+                horizontal: 16,
+              ),
+
+              errorStyle: AppTextStyle.internal().textStyle14.copyWith(
+                color: AppColorsPallet.assentsRed,
+              ),
+
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: borderColor),
+              ),
+
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: borderColor),
+              ),
+
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: BorderSide(color: borderColor, width: 2),
+              ),
+
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: AppColorsPallet.assentsRed),
+              ),
+
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(14),
+                borderSide: const BorderSide(
+                  color: AppColorsPallet.assentsRed,
+                  width: 2,
                 ),
               ),
             ),

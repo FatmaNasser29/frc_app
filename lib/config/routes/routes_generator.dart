@@ -80,8 +80,10 @@ class RoutesGenerator {
         );
 
       case RoutesName.signUpOtpView:
+        final phoneNumber = settings.arguments as String? ?? '';
+
         return MaterialPageRoute(
-          builder: (context) => SignUpOtpView(),
+          builder: (context) => SignUpOtpView(phoneNumber: phoneNumber),
           settings: settings,
         );
 
