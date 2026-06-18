@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_text_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_text_form_field.dart';
@@ -46,7 +47,12 @@ class SignInView extends StatelessWidget {
                   CustomTextButton(text: 'Remember me'),
                   const Spacer(),
                   CustomTextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        RoutesName.forgetPassword,
+                      );
+                    },
                     text: 'Forgot password?',
                     fontWeight: FontWeight.bold,
                   ),
@@ -63,7 +69,12 @@ class SignInView extends StatelessWidget {
                   CustomTextButton(text: "Don't have an account?"),
                   const Spacer(),
                   CustomTextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        RoutesName.signUp,
+                      );
+                    },
                     text: 'Sign Up',
                     fontWeight: FontWeight.bold,
                   ),

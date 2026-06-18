@@ -130,7 +130,7 @@ class _SignupViewState extends State<SignupView> {
               ),
 
               Padding(
-                padding: const EdgeInsets.only(left: 40, right: 40),
+                padding: const EdgeInsets.only(left: 44, right: 44),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -139,7 +139,12 @@ class _SignupViewState extends State<SignupView> {
                       style: TextStyle(color: Colors.white, fontSize: 18),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacementNamed(
+                          context,
+                          RoutesName.signIn,
+                        );
+                      },
                       child: const Text(
                         'Sign In',
                         style: TextStyle(

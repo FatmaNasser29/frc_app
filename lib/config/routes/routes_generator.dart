@@ -5,7 +5,7 @@ import 'package:frc_app/core/di/injection.dart';
 import 'package:frc_app/features/auth/forget_password/forget_password_view.dart';
 import 'package:frc_app/features/auth/set_new_password_screen/set_new_password_view.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_otp_view.dart';
-import 'package:frc_app/features/auth/sign_in/sign_in_view.dart';
+import 'package:frc_app/features/auth/sign_in/presentation/screens/sign_in_view.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_cubit.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_options_view.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_view.dart';
