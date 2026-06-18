@@ -20,48 +20,50 @@ const CustomElevatedButton({
   });
 
   @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
-      child: SizedBox(
-        width: 359,
-        height: 76,
-        child: ElevatedButton(
-          onPressed: onPressed,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: backgroundColor,
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(borderRadius),
-            ),
-          ),
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              if (icon != null)
-  Row(
-    children: [
-      Positioned(
-        left: 24,
-        child: SizedBox(
-          width: 24,
-          height: 24,
-          child: icon,
-      ),
-    ),
-    ]
-  ),
-              Text(
-                text,
-                style: AppTextStyle.internal().textStyle24.copyWith(
-                      color: textColor,
-                      fontWeight: FontWeight.bold,
-                    ),
-              ),
-            ],
+Widget build(BuildContext context) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 20),
+    child: SizedBox(
+      width: double.infinity,
+      height: 76,
+      child: ElevatedButton(
+        onPressed: onPressed,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: backgroundColor,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
         ),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Row(
+  mainAxisSize: MainAxisSize.min,
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    if (icon != null) ...[
+      SizedBox(
+        width: 24,
+        height: 24,
+        child: icon,
       ),
-    );
-  }
+      const SizedBox(width: 12),
+    ],
+SizedBox(width: 26,),
+    Text(
+      text,
+      style: AppTextStyle.internal().textStyle24.copyWith(
+            color: textColor,
+            fontWeight: FontWeight.bold,
+          ),
+    ),
+  ],
+),
+          ],
+        ),
+      ),
+    ),
+  );
+}
 }

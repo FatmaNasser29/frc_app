@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
+import 'package:frc_app/core/di/injection.dart';
 import 'package:frc_app/features/auth/forget_password/forget_password_view.dart';
 import 'package:frc_app/features/auth/sign_in/sign_in_view.dart';
+import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_cubit.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_options_view.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_view.dart';
 import 'package:frc_app/features/home/home_view.dart';
@@ -26,8 +29,12 @@ class RoutesGenerator {
             builder: (context) => SignInView(), settings: settings);
 
       case RoutesName.signUp:
-        return MaterialPageRoute(
-            builder: (context) => SignupView(), settings: settings);
+  return MaterialPageRoute(
+    builder: (_) => BlocProvider(
+      create: (_) => getIt<SignupCubit>(),
+      child: const SignupView(),
+    ),
+  );
 
       case RoutesName.forgetPassword:
         return MaterialPageRoute(

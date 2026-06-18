@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:frc_app/config/routes/routes_generator.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
+import 'package:frc_app/core/di/injection.dart';
 
-void main() {
-  runApp(const FrcApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await configureDependencies();
+
+  runApp(
+    const FrcApp(),
+  );
 }
 
 class FrcApp extends StatelessWidget {

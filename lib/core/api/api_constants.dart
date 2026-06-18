@@ -1,0 +1,13 @@
+class ApiConstants {
+  static const String baseUrl =
+      'https://api.fashionretailclub.com/api/v1/';
+
+  static const String register ='auth/phone/register';
+  static const String resendOtp ='auth/phone/resend-otp';
+  static const String verifyOtp ='auth/phone/verify-registration';
+  static const String signInWithPhoneAndPassword ='auth/phone/login';
+  static const String verifyPhoneOtp= 'phone/verify-login';
+  static const String sendForgetPasswordOtpViaWhatsApp = 'auth/phone/password/forgot';
+  static const String verifyOtpAndResetPasswordViaMobile = 'auth/phone/password/reset';
+
+}
