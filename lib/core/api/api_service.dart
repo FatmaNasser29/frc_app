@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:frc_app/core/api/api_constants.dart';
+import 'package:frc_app/features/auth/sign_in/data/models/signin_request.dart';
+import 'package:frc_app/features/auth/sign_in/data/models/signin_response.dart';
 import 'package:frc_app/features/auth/sign_up/data/models/signup_request.dart';
 import 'package:frc_app/features/auth/sign_up/data/models/signup_response.dart';
 import 'package:retrofit/retrofit.dart';
-
 
 part 'api_service.g.dart';
 
@@ -12,9 +13,8 @@ abstract class ApiService {
   factory ApiService(Dio dio) = _ApiService;
 
   @POST(ApiConstants.register)
-  Future<SignupResponse> register(
-    @Body() SignupRequest request,
-  );
+  Future<SignupResponse> register(@Body() SignupRequest request);
 
-
+  @POST(ApiConstants.signInWithPhoneAndPassword)
+  Future<SigninResponse> signIn(@Body() SigninRequest request);
 }
