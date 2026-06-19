@@ -6,6 +6,8 @@ import 'package:frc_app/features/auth/sign_in/data/models/signin_request.dart';
 import 'package:frc_app/features/auth/sign_in/data/models/signin_response.dart';
 import 'package:frc_app/features/auth/sign_up/data/models/signup_request.dart';
 import 'package:frc_app/features/auth/sign_up/data/models/signup_response.dart';
+import 'package:frc_app/features/auth/sign_up/data/models/verify_registration_request.dart';
+import 'package:frc_app/features/auth/sign_up/data/models/verify_registration_response.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_service.g.dart';
@@ -23,5 +25,9 @@ abstract class ApiService {
   @POST(ApiConstants.sendForgetPasswordOtpViaWhatsApp)
   Future<ForgetPasswordResponse> forgetPassword(
     @Body() ForgetPasswordRequest request,
+  );
+  @POST(ApiConstants.verifyPhoneOtpToCompleteRegesteration)
+  Future<VerifyRegistrationResponse> verifyRegistration(
+    @Body() VerifyRegistrationRequest request,
   );
 }

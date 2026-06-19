@@ -10,4 +10,6 @@ class ApiConstants {
       'auth/phone/password/forgot';
   static const String verifyOtpAndResetPasswordViaMobile =
       'auth/phone/password/reset';
+  static const String verifyPhoneOtpToCompleteRegesteration =
+      'auth/phone/verify-registration';
 }

@@ -1,10 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_colors_pallet.dart';
 import 'package:frc_app/config/theme/app_text_style.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/shared_gradient_background_widget.dart';
+import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_cubit.dart';
+import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_states.dart';
 
 class SignUpOtpView extends StatefulWidget {
   final String phoneNumber;
@@ -150,23 +154,41 @@ class _SignUpOtpViewState extends State<SignUpOtpView> {
 
             const SizedBox(height: 32),
 
-            CustomElevatedButton(
-              text: 'Verify',
-              onPressed: () {
-                final otp = otpCode;
-
-                if (otp.length != 6) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Please enter the 6-digit OTP'),
-                    ),
-                  );
-                  return;
+            BlocConsumer<SignupCubit, SignupState>(
+              listener: (context, state) {
+                if (state.status == SignupStatus.success) {
+                  Navigator.pushReplacementNamed(context, RoutesName.home);
                 }
 
-                debugPrint('OTP => $otp');
+                if (state.status == SignupStatus.error) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text(state.errorMessage ?? '')),
+                  );
+                }
+              },
+              builder: (context, state) {
+                return CustomElevatedButton(
+                  text: state.status == SignupStatus.loading
+                      ? 'Loading...'
+                      : 'Verify',
+                  onPressed: () {
+                    final otp = otpCode;
 
-                // TODO: Call Verify OTP API
+                    if (otp.length != 6) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Please enter the 6-digit OTP'),
+                        ),
+                      );
+                      return;
+                    }
+
+                    context.read<SignupCubit>().verifyOtp(
+                      phoneNumber: widget.phoneNumber,
+                      otp: otpCode,
+                    );
+                  },
+                );
               },
             ),
 

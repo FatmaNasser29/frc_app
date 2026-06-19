@@ -3,6 +3,10 @@ enum SignupStatus {
   loading,
   success,
   error,
+
+  verifyLoading,
+  verifySuccess,
+  verifyError,
 }
 
 class SignupState {
@@ -28,7 +32,3 @@ class SignupState {
     );
   }
 }
-
-
-
-  

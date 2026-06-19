@@ -26,6 +26,7 @@ class ServerFailure extends Failure {
         return const ServerFailure('No internet connection');
 
       case DioExceptionType.badResponse:
+        debugPrint('Status Code => ${exception.response?.statusCode}');
         debugPrint('Error Response => ${exception.response?.data}');
 
         return ServerFailure.fromResponse(
@@ -81,7 +82,13 @@ class ServerFailure extends Failure {
 
       case 404:
         return ServerFailure(errorMessage);
-
+      case 429:
+        return ServerFailure(
+          _extractMessage(
+            response,
+            'Too many requests. Please try again later.',
+          ),
+        );
       case 500:
         return const ServerFailure('Internal server error');
 

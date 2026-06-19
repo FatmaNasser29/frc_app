@@ -95,7 +95,10 @@ class RoutesGenerator {
         final phoneNumber = settings.arguments as String? ?? '';
 
         return MaterialPageRoute(
-          builder: (context) => SignUpOtpView(phoneNumber: phoneNumber),
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<SignupCubit>(),
+            child: SignUpOtpView(phoneNumber: phoneNumber),
+          ),
           settings: settings,
         );
 
