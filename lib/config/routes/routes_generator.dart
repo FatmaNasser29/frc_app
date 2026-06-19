@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/core/di/injection.dart';
-import 'package:frc_app/features/auth/forget_password/forget_password_view.dart';
+import 'package:frc_app/features/auth/forget_password/presentation/screens/forget_password_view.dart';
 import 'package:frc_app/features/auth/set_new_password_screen/set_new_password_view.dart';
 import 'package:frc_app/features/auth/sign_in/presentation/cubit/signin_cubit.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_otp_view.dart';

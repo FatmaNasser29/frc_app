@@ -88,7 +88,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
               hintText: widget.hintText,
               hintStyle: AppTextStyle.internal().textStyle16.copyWith(
-                color: widget.textColor.withOpacity(.7),
+                color: widget.textColor.withValues(alpha: .7),
               ),
 
               prefixIcon: widget.prefixIcon == null
