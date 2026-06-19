@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
@@ -20,8 +21,8 @@ class _SignupViewState extends State<SignupView> {
   final nameController = TextEditingController();
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
+  String selectedCountryCode = '+20';
 
   @override
   void dispose() {
@@ -60,12 +61,20 @@ class _SignupViewState extends State<SignupView> {
               CustomTextFormField(
                 controller: phoneController,
                 label: 'Phone',
-                hintText: '+20 11 5555 6600',
+                hintText: '11 5555 6600',
                 validator: AppValidators.validatePhone,
-                prefixIcon: Image.asset(
-                  'assets/icons/envelope_icon.png',
-                  width: 20,
-                  height: 20,
+
+                prefixIcon: CountryCodePicker(
+                  onChanged: (country) {
+                    selectedCountryCode = country.dialCode ?? '+20';
+                  },
+                  initialSelection: 'EG',
+                  favorite: const ['+20', 'EG'],
+                  showCountryOnly: false,
+                  showOnlyCountryWhenClosed: false,
+                  alignLeft: false,
+                  padding: EdgeInsets.zero,
+                  textStyle: const TextStyle(color: Colors.white, fontSize: 14),
                 ),
               ),
 
@@ -96,7 +105,8 @@ class _SignupViewState extends State<SignupView> {
                     Navigator.pushNamed(
                       context,
                       RoutesName.signUpOtpView,
-                      arguments: phoneController.text.trim(),
+                      arguments:
+                          '$selectedCountryCode${phoneController.text.trim()}',
                     );
                   }
 
@@ -121,7 +131,8 @@ class _SignupViewState extends State<SignupView> {
 
                             context.read<SignupCubit>().register(
                               fullName: nameController.text.trim(),
-                              phone: phoneController.text.trim(),
+                              phone:
+                                  '$selectedCountryCode${phoneController.text.trim()}',
                               password: passwordController.text.trim(),
                             );
                           },

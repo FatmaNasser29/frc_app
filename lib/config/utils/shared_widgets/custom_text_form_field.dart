@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frc_app/config/theme/app_colors_pallet.dart';
 import 'package:frc_app/config/theme/app_text_style.dart';
 
-class CustomTextFormField extends StatelessWidget {
+class CustomTextFormField extends StatefulWidget {
   final TextEditingController? controller;
   final String hintText;
   final String? label;
@@ -13,6 +13,7 @@ class CustomTextFormField extends StatelessWidget {
   final Color backgroundColor;
   final Color borderColor;
   final Color textColor;
+  final BoxConstraints? prefixIconConstraints;
 
   const CustomTextFormField({
     super.key,
@@ -26,18 +27,32 @@ class CustomTextFormField extends StatelessWidget {
     this.backgroundColor = Colors.white24,
     this.borderColor = Colors.white,
     this.textColor = Colors.white,
+    this.prefixIconConstraints,
   });
+
+  @override
+  State<CustomTextFormField> createState() => _CustomTextFormFieldState();
+}
+
+class _CustomTextFormFieldState extends State<CustomTextFormField> {
+  bool isObscure = true;
+
+  @override
+  void initState() {
+    super.initState();
+    isObscure = widget.obscureText;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (label != null) ...[
+        if (widget.label != null) ...[
           Padding(
             padding: const EdgeInsets.only(left: 20),
             child: Text(
-              label!,
+              widget.label!,
               style: AppTextStyle.internal().textStyle16.copyWith(
                 color: AppColorsPallet.white,
               ),
@@ -49,25 +64,38 @@ class CustomTextFormField extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: TextFormField(
-            controller: controller,
-            keyboardType: keyboardType,
-            obscureText: obscureText,
-            validator: validator,
-            style: TextStyle(color: textColor, fontSize: 16),
+            controller: widget.controller,
+            keyboardType: widget.keyboardType,
+            obscureText: isObscure,
+            validator: widget.validator,
+            style: TextStyle(color: widget.textColor, fontSize: 16),
             decoration: InputDecoration(
+              suffixIcon: widget.obscureText
+                  ? IconButton(
+                      icon: Icon(
+                        isObscure ? Icons.visibility_off : Icons.visibility,
+                        color: widget.textColor,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          isObscure = !isObscure;
+                        });
+                      },
+                    )
+                  : null,
               filled: true,
-              fillColor: backgroundColor,
+              fillColor: widget.backgroundColor,
 
-              hintText: hintText,
+              hintText: widget.hintText,
               hintStyle: AppTextStyle.internal().textStyle16.copyWith(
-                color: textColor.withOpacity(.7),
+                color: widget.textColor.withOpacity(.7),
               ),
 
-              prefixIcon: prefixIcon == null
+              prefixIcon: widget.prefixIcon == null
                   ? null
                   : Padding(
-                      padding: const EdgeInsets.all(14),
-                      child: prefixIcon,
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: widget.prefixIcon,
                     ),
 
               prefixIconConstraints: const BoxConstraints(
@@ -75,10 +103,7 @@ class CustomTextFormField extends StatelessWidget {
                 minHeight: 24,
               ),
 
-              contentPadding: const EdgeInsets.symmetric(
-                vertical: 16,
-                horizontal: 16,
-              ),
+              contentPadding: const EdgeInsets.symmetric(vertical: 16),
 
               errorStyle: AppTextStyle.internal().textStyle14.copyWith(
                 color: AppColorsPallet.assentsRed,
@@ -86,17 +111,17 @@ class CustomTextFormField extends StatelessWidget {
 
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: borderColor),
+                borderSide: BorderSide(color: widget.borderColor),
               ),
 
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: borderColor),
+                borderSide: BorderSide(color: widget.borderColor),
               ),
 
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: borderColor, width: 2),
+                borderSide: BorderSide(color: widget.borderColor, width: 2),
               ),
 
               errorBorder: OutlineInputBorder(
