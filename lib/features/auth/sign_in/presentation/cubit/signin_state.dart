@@ -1,4 +1,13 @@
-enum SigninStatus { initial, loading, success, error }
+enum SigninStatus {
+  initial,
+  loading,
+  success,
+  error,
+
+  verifyLoading,
+  verifySuccess,
+  verifyError,
+}
 
 class SigninState {
   final SigninStatus status;

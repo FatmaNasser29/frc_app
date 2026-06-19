@@ -5,6 +5,8 @@ class RoutesName {
   static const String onBoardingThree = 'onBoardingThree';
   static const String onBoardingFour = 'onBoardingFour';
   static const String signIn = 'signIn';
+  static const String signInOtpView = 'signInOtpView';
+
   static const String signUp = 'signUp';
   static const String forgetPassword = "forgetPassword";
   static const String forgetPasswordOtpView = 'forgetPasswordOtpView';

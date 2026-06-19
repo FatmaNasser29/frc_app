@@ -41,6 +41,8 @@ import 'package:frc_app/features/auth/sign_in/domain/repositories/signin_repo.da
     as _i993;
 import 'package:frc_app/features/auth/sign_in/domain/use_cases/signin_use_case.dart'
     as _i489;
+import 'package:frc_app/features/auth/sign_in/domain/use_cases/verify_signin_use_case.dart'
+    as _i474;
 import 'package:frc_app/features/auth/sign_in/presentation/cubit/signin_cubit.dart'
     as _i111;
 import 'package:frc_app/features/auth/sign_up/data/data_sources/signup_remote_data_source.dart'
@@ -111,8 +113,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i489.SigninUseCase>(
       () => _i489.SigninUseCase(gh<_i993.SigninRepo>()),
     );
+    gh.factory<_i474.VerifySigninUseCase>(
+      () => _i474.VerifySigninUseCase(gh<_i993.SigninRepo>()),
+    );
     gh.factory<_i111.SigninCubit>(
-      () => _i111.SigninCubit(gh<_i489.SigninUseCase>()),
+      () => _i111.SigninCubit(
+        gh<_i489.SigninUseCase>(),
+        gh<_i474.VerifySigninUseCase>(),
+      ),
     );
     gh.factory<_i300.ForgetPasswordCubit>(
       () => _i300.ForgetPasswordCubit(gh<_i84.ForgetPasswordUseCase>()),

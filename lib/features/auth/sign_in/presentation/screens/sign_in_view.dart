@@ -115,7 +115,12 @@ class _SignInViewState extends State<SignInView> {
                       state.message ?? 'Login Successful',
                     );
 
-                    Navigator.pushReplacementNamed(context, RoutesName.home);
+                    Navigator.pushNamed(
+                      context,
+                      RoutesName.signInOtpView,
+                      arguments:
+                          '$selectedCountryCode${phoneController.text.trim()}',
+                    );
                   }
 
                   if (state.status == SigninStatus.error) {

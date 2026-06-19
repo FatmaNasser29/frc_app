@@ -7,7 +7,7 @@ import 'package:frc_app/features/auth/forget_password/presentation/screens/forge
 import 'package:frc_app/features/auth/forget_password/presentation/screens/forget_password_view.dart';
 import 'package:frc_app/features/auth/set_new_password_screen/set_new_password_view.dart';
 import 'package:frc_app/features/auth/sign_in/presentation/cubit/signin_cubit.dart';
-import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_otp_view.dart';
+import 'package:frc_app/features/auth/sign_in/presentation/screens/sign_in_otp_view.dart';
 import 'package:frc_app/features/auth/sign_in/presentation/screens/sign_in_view.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_cubit.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_options_view.dart';
@@ -91,13 +91,22 @@ class RoutesGenerator {
           settings: settings,
         );
 
-      case RoutesName.signUpOtpView:
+      case RoutesName.signInOtpView:
         final phoneNumber = settings.arguments as String? ?? '';
 
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
-            create: (_) => getIt<SignupCubit>(),
-            child: SignUpOtpView(phoneNumber: phoneNumber),
+            create: (_) => getIt<SigninCubit>(),
+            child: SignInOtpView(phoneNumber: phoneNumber),
+          ),
+        );
+      case RoutesName.signInOtpView:
+        final phoneNumber = settings.arguments as String? ?? '';
+
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<SigninCubit>(),
+            child: SignInOtpView(phoneNumber: phoneNumber),
           ),
           settings: settings,
         );

@@ -4,6 +4,8 @@ import 'package:frc_app/features/auth/forget_password/data/models/forget_passwor
 import 'package:frc_app/features/auth/forget_password/data/models/forget_password_response.dart';
 import 'package:frc_app/features/auth/sign_in/data/models/signin_request.dart';
 import 'package:frc_app/features/auth/sign_in/data/models/signin_response.dart';
+import 'package:frc_app/features/auth/sign_in/data/models/verify_signin_request.dart';
+import 'package:frc_app/features/auth/sign_in/data/models/verify_signin_response.dart';
 import 'package:frc_app/features/auth/sign_up/data/models/signup_request.dart';
 import 'package:frc_app/features/auth/sign_up/data/models/signup_response.dart';
 import 'package:frc_app/features/auth/sign_up/data/models/verify_registration_request.dart';
@@ -29,5 +31,10 @@ abstract class ApiService {
   @POST(ApiConstants.verifyPhoneOtpToCompleteRegesteration)
   Future<VerifyRegistrationResponse> verifyRegistration(
     @Body() VerifyRegistrationRequest request,
+  );
+
+  @POST(ApiConstants.verifyPhoneOtpToCompleteSignIn)
+  Future<VerifySigninResponse> verifySignin(
+    @Body() VerifySigninRequest request,
   );
 }
