@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/core/di/injection.dart';
+import 'package:frc_app/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
+import 'package:frc_app/features/auth/forget_password/presentation/screens/forget_password_otp_view.dart';
 import 'package:frc_app/features/auth/forget_password/presentation/screens/forget_password_view.dart';
 import 'package:frc_app/features/auth/set_new_password_screen/set_new_password_view.dart';
 import 'package:frc_app/features/auth/sign_in/presentation/cubit/signin_cubit.dart';
@@ -49,7 +51,14 @@ class RoutesGenerator {
 
       case RoutesName.forgetPassword:
         return MaterialPageRoute(
-          builder: (context) => ForgetPasswordView(),
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<ForgetPasswordCubit>(),
+            child: const ForgetPasswordView(),
+          ),
+        );
+      case RoutesName.forgetPasswordOtpView:
+        return MaterialPageRoute(
+          builder: (context) => ForgetPasswordOtpView(),
           settings: settings,
         );
       case RoutesName.setNewPassword:

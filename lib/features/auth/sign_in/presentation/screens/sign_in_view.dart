@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
@@ -21,6 +22,7 @@ class _SignInViewState extends State<SignInView> {
   final phoneController = TextEditingController();
   final passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  String selectedCountryCode = '+20';
 
   @override
   void dispose() {
@@ -41,12 +43,30 @@ class _SignInViewState extends State<SignInView> {
               CustomTextFormField(
                 controller: phoneController,
                 label: 'Phone',
-                hintText: '+20 11 5555 6600',
+                hintText: '11 5555 6600',
+                keyboardType: TextInputType.phone,
                 validator: AppValidators.validatePhone,
-                prefixIcon: Image.asset(
-                  'assets/icons/envelope_icon.png',
-                  width: 20,
-                  height: 20,
+                prefixIconConstraints: const BoxConstraints(
+                  minWidth: 95,
+                  minHeight: 24,
+                ),
+                prefixIcon: SizedBox(
+                  width: 90,
+                  child: CountryCodePicker(
+                    onChanged: (country) {
+                      selectedCountryCode = country.dialCode ?? '+20';
+                    },
+                    initialSelection: 'EG',
+                    favorite: const ['+20', 'EG'],
+                    showCountryOnly: false,
+                    showOnlyCountryWhenClosed: false,
+                    alignLeft: false,
+                    padding: EdgeInsets.zero,
+                    textStyle: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 14,
+                    ),
+                  ),
                 ),
               ),
 
@@ -116,7 +136,8 @@ class _SignInViewState extends State<SignInView> {
                       }
 
                       context.read<SigninCubit>().signIn(
-                        phone: phoneController.text.trim(),
+                        phone:
+                            '$selectedCountryCode${phoneController.text.trim()}',
                         password: passwordController.text.trim(),
                       );
                     },

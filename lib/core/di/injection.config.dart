@@ -15,6 +15,18 @@ import 'package:frc_app/core/api/dio_module.dart' as _i606;
 import 'package:frc_app/core/di/app_module.dart' as _i788;
 import 'package:frc_app/core/di/network_module.dart' as _i347;
 import 'package:frc_app/core/local_storage/shared_prefs_service.dart' as _i658;
+import 'package:frc_app/features/auth/forget_password/data/data_sources/forget_password_remote_data_source.dart'
+    as _i162;
+import 'package:frc_app/features/auth/forget_password/data/data_sources/forget_password_remote_data_source_impl.dart'
+    as _i400;
+import 'package:frc_app/features/auth/forget_password/data/repositories/forget_password_repo_impl.dart'
+    as _i983;
+import 'package:frc_app/features/auth/forget_password/domain/repositories/forget_password_repo.dart'
+    as _i284;
+import 'package:frc_app/features/auth/forget_password/domain/use_cases/forget_password_use_case.dart'
+    as _i84;
+import 'package:frc_app/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart'
+    as _i300;
 import 'package:frc_app/features/auth/sign_in/data/data_sources/signin_local_data_source.dart'
     as _i729;
 import 'package:frc_app/features/auth/sign_in/data/data_sources/signin_local_data_source_iml.dart'
@@ -68,8 +80,16 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i925.SigninRemoteDataSource>(
       () => _i240.SigninRemoteDataSourceImpl(gh<_i14.ApiService>()),
     );
+    gh.factory<_i162.ForgetPasswordRemoteDataSource>(
+      () => _i400.ForgetPasswordRemoteDataSourceImpl(gh<_i14.ApiService>()),
+    );
     gh.factory<_i729.SigninLocalDataSource>(
       () => _i328.SigninLocalDataSourceImpl(gh<_i460.SharedPreferences>()),
+    );
+    gh.factory<_i284.ForgetPasswordRepo>(
+      () => _i983.ForgetPasswordRepoImpl(
+        gh<_i162.ForgetPasswordRemoteDataSource>(),
+      ),
     );
     gh.singleton<_i658.SharedPrefsService>(
       () => _i658.SharedPrefsService(gh<_i460.SharedPreferences>()),
@@ -80,6 +100,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i729.SigninLocalDataSource>(),
       ),
     );
+    gh.factory<_i84.ForgetPasswordUseCase>(
+      () => _i84.ForgetPasswordUseCase(gh<_i284.ForgetPasswordRepo>()),
+    );
     gh.factory<_i328.SignupRemoteDataSource>(
       () => _i535.SignupRemoteDataSourceImpl(gh<_i14.ApiService>()),
     );
@@ -88,6 +111,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i111.SigninCubit>(
       () => _i111.SigninCubit(gh<_i489.SigninUseCase>()),
+    );
+    gh.factory<_i300.ForgetPasswordCubit>(
+      () => _i300.ForgetPasswordCubit(gh<_i84.ForgetPasswordUseCase>()),
     );
     gh.factory<_i597.SignupRepository>(
       () => _i714.SignupRepositoryImpl(gh<_i328.SignupRemoteDataSource>()),
