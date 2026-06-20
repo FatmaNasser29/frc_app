@@ -22,7 +22,7 @@ class FrcApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(),
       // home: SplashScreenUi(),
-      initialRoute: RoutesName.forgetPassword,
+      initialRoute: RoutesName.signUpOptions,
       onGenerateRoute: RoutesGenerator.onGenerator,
     );
   }

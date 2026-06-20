@@ -3,6 +3,7 @@ import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_text_style.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/shared_gradient_background_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SignUpOptionView extends StatelessWidget {
   const SignUpOptionView({super.key});
@@ -23,7 +24,7 @@ class SignUpOptionView extends StatelessWidget {
                 height: 24,
               ),
               backgroundColor: Colors.black,
-              onPressed: () {},
+              onPressed: loginWithGoogle,
             ),
 
             CustomElevatedButton(
@@ -55,5 +56,13 @@ class SignUpOptionView extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> loginWithGoogle() async {
+    final url = Uri.parse(
+      'https://api.fashionretailclub.com/api/v1/auth/google',
+    );
+
+    await launchUrl(url, mode: LaunchMode.externalApplication);
   }
 }
