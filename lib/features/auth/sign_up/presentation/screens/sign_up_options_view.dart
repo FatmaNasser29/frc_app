@@ -36,7 +36,7 @@ class SignUpOptionView extends StatelessWidget {
                 height: 24,
               ),
               backgroundColor: const Color(0xff0066D9),
-              onPressed: () {},
+              onPressed: loginWithLinkedin,
             ),
             SizedBox(height: 20),
             Text(
@@ -61,6 +61,17 @@ class SignUpOptionView extends StatelessWidget {
   Future<void> loginWithGoogle() async {
     final url = Uri.parse(
       'https://api.fashionretailclub.com/api/v1/auth/google',
+    );
+
+    await launchUrl(url, mode: LaunchMode.externalApplication);
+  }
+
+  Future<void> loginWithLinkedin() async {
+    final redirectUrl = Uri.encodeComponent('https://fashionretailclub.com');
+
+    final url = Uri.parse(
+      'https://api.fashionretailclub.com/api/v1/auth/linkedin'
+      '?redirectUrl=$redirectUrl',
     );
 
     await launchUrl(url, mode: LaunchMode.externalApplication);
