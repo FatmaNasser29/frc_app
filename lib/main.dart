@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:frc_app/config/routes/routes_generator.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
+import 'package:frc_app/config/theme/app_theme.dart';
 import 'package:frc_app/core/di/injection.dart';
+import 'package:frc_app/l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,15 +16,15 @@ void main() async {
 class FrcApp extends StatelessWidget {
   const FrcApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FRC App',
+      onGenerateTitle: (context) => AppLocalizations.of(context).appTitle,
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(),
-      // home: SplashScreenUi(),
-      initialRoute: RoutesName.signUpOptions,
+      theme: AppTheme.appTheme,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      initialRoute: RoutesName.onBoarding,
       onGenerateRoute: RoutesGenerator.onGenerator,
     );
   }

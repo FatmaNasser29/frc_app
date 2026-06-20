@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/theme/app_colors_pallet.dart';
 import 'package:frc_app/config/theme/app_gradients.dart';
 import 'package:frc_app/config/theme/app_text_style.dart';
@@ -7,7 +8,7 @@ class AuthGradientBackground extends StatelessWidget {
   final Widget child;
   final String? title;
   final String? description;
-  final String footerText;
+  final String? footerText;
   final TextStyle? descriptionStyle;
 
   const AuthGradientBackground({
@@ -16,11 +17,13 @@ class AuthGradientBackground extends StatelessWidget {
     this.title,
     this.description,
     this.descriptionStyle,
-    this.footerText = 'Connect with top professionals locally',
+    this.footerText,
   });
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -48,7 +51,7 @@ class AuthGradientBackground extends StatelessWidget {
                         const SizedBox(height: 22),
 
                         Text(
-                          'The Fashion Industry Network',
+                          l10n.fashionIndustryNetwork,
                           style: AppTextStyle.internal().textStyle16.copyWith(
                             color: AppColorsPallet.white,
                           ),
@@ -91,7 +94,7 @@ class AuthGradientBackground extends StatelessWidget {
                         const Spacer(),
 
                         Text(
-                          footerText,
+                          footerText ?? l10n.connectWithProfessionalsLocally,
                           textAlign: TextAlign.center,
                           style: AppTextStyle.internal().textStyle16.copyWith(
                             color: AppColorsPallet.white,

@@ -1,6 +1,8 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frc_app/config/l10n/failure_localizer.dart';
+import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_snack_bar.dart';
@@ -33,19 +35,21 @@ class _SignInViewState extends State<SignInView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Scaffold(
       body: AuthGradientBackground(
-        title: 'Login to Your Account',
+        title: l10n.loginToYourAccount,
         child: Form(
           key: formKey,
           child: Column(
             children: [
               CustomTextFormField(
                 controller: phoneController,
-                label: 'Phone',
-                hintText: '11 5555 6600',
+                label: l10n.phone,
+                hintText: l10n.phoneHint,
                 keyboardType: TextInputType.phone,
-                validator: AppValidators.validatePhone,
+                validator: (value) => AppValidators.validatePhone(value, l10n),
                 prefixIconConstraints: const BoxConstraints(
                   minWidth: 95,
                   minHeight: 24,
@@ -74,10 +78,11 @@ class _SignInViewState extends State<SignInView> {
 
               CustomTextFormField(
                 controller: passwordController,
-                label: 'Password',
-                hintText: 'Password123',
+                label: l10n.password,
+                hintText: l10n.passwordHint,
                 obscureText: true,
-                validator: AppValidators.validatePassword,
+                validator: (value) =>
+                    AppValidators.validatePassword(value, l10n),
                 prefixIcon: Image.asset(
                   'assets/icons/lock_icon.png',
                   width: 20,
@@ -91,7 +96,7 @@ class _SignInViewState extends State<SignInView> {
                 padding: const EdgeInsets.symmetric(horizontal: 46.5),
                 child: Row(
                   children: [
-                    const CustomTextButton(text: 'Remember me'),
+                    CustomTextButton(text: l10n.rememberMe),
                     const Spacer(),
                     CustomTextButton(
                       onPressed: () {
@@ -100,7 +105,7 @@ class _SignInViewState extends State<SignInView> {
                           RoutesName.forgetPassword,
                         );
                       },
-                      text: 'Forget password?',
+                      text: l10n.forgetPasswordQuestion,
                       fontWeight: FontWeight.bold,
                     ),
                   ],
@@ -112,7 +117,7 @@ class _SignInViewState extends State<SignInView> {
                   if (state.status == SigninStatus.success) {
                     CustomSnackBar.showSuccess(
                       context,
-                      state.message ?? 'Login Successful',
+                      state.message ?? l10n.loginSuccessful,
                     );
 
                     Navigator.pushNamed(
@@ -126,15 +131,15 @@ class _SignInViewState extends State<SignInView> {
                   if (state.status == SigninStatus.error) {
                     CustomSnackBar.showError(
                       context,
-                      state.errorMessage ?? 'Something went wrong',
+                      FailureLocalizer.localize(l10n, state.errorMessage),
                     );
                   }
                 },
                 builder: (context, state) {
                   return CustomElevatedButton(
                     text: state.status == SigninStatus.loading
-                        ? 'Loading...'
-                        : 'Sign In',
+                        ? l10n.loading
+                        : l10n.signIn,
                     onPressed: () {
                       if (!formKey.currentState!.validate()) {
                         return;
@@ -154,7 +159,7 @@ class _SignInViewState extends State<SignInView> {
                 padding: const EdgeInsets.symmetric(horizontal: 44),
                 child: Row(
                   children: [
-                    const CustomTextButton(text: "Don't have an account?"),
+                    CustomTextButton(text: l10n.dontHaveAccount),
                     const Spacer(),
                     CustomTextButton(
                       onPressed: () {
@@ -163,7 +168,7 @@ class _SignInViewState extends State<SignInView> {
                           RoutesName.signUp,
                         );
                       },
-                      text: 'Sign Up',
+                      text: l10n.signUp,
                       fontWeight: FontWeight.bold,
                     ),
                   ],

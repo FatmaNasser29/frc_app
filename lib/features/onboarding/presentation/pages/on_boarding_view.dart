@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_colors_pallet.dart';
 import 'package:frc_app/config/theme/app_gradients.dart';
@@ -20,6 +21,9 @@ class _OnboardingViewState extends State<OnboardingView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+    final pages = OnboardingData.pages(l10n);
+
     return Scaffold(
       backgroundColor: const Color(0xffF5F5F8),
       body: SafeArea(
@@ -39,27 +43,25 @@ class _OnboardingViewState extends State<OnboardingView> {
                       Navigator.pushReplacementNamed(context, RoutesName.signIn);
                     },
                     child: Container(
-                      
                       width: 124,
                       height: 48,
                       decoration: BoxDecoration(
                         gradient: AppGradients.primaryGradient,
-                        
                         borderRadius: BorderRadius.circular(40),
                       ),
-                      child: const Row(
+                      child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'Login',
-                            style: TextStyle(
+                            l10n.login,
+                            style: const TextStyle(
                               color: Colors.white,
                               fontSize: 22,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          SizedBox(width: 10),
-                          Icon(
+                          const SizedBox(width: 10),
+                          const Icon(
                             Icons.arrow_forward,
                             color: Colors.white,
                             size: 20,
@@ -73,58 +75,54 @@ class _OnboardingViewState extends State<OnboardingView> {
             ),
 
             Expanded(
-  child: PageView.builder(
-    controller: _controller,
-    itemCount: OnboardingData.pages.length,
-    onPageChanged: (index) {
-      setState(() {
-        currentIndex = index;
-      });
-    },
-    itemBuilder: (_, index) {
-      final item = OnboardingData.pages[index];
+              child: PageView.builder(
+                controller: _controller,
+                itemCount: pages.length,
+                onPageChanged: (index) {
+                  setState(() {
+                    currentIndex = index;
+                  });
+                },
+                itemBuilder: (_, index) {
+                  final item = pages[index];
 
-      return OnboardingCard(
-        image: item.image,
-        title: item.title,
-        description: item.description,
-        descriptionHeader: item.descriptionHeader,
-        currentPage: index + 1,
-        totalPages: OnboardingData.pages.length,
-        controller: _controller,
-        currentIndex: currentIndex,
+                  return OnboardingCard(
+                    image: item.image,
+                    title: item.title,
+                    description: item.description,
+                    descriptionHeader: item.descriptionHeader,
+                    currentPage: index + 1,
+                    totalPages: pages.length,
+                    controller: _controller,
+                    currentIndex: currentIndex,
+                    onBack: () {
+                      if (currentIndex > 0) {
+                        _controller.previousPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      }
+                    },
+                    onNext: () {
+                      if (currentIndex < pages.length - 1) {
+                        _controller.nextPage(
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeInOut,
+                        );
+                      }
+                    },
+                  );
+                },
+              ),
+            ),
 
-        onBack: () {
-    if (currentIndex > 0) {
-      _controller.previousPage(
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeInOut,
-      );
-    }
-  },
-        onNext: () {
-          if (currentIndex < OnboardingData.pages.length - 1) {
-            _controller.nextPage(
-              duration: const Duration(milliseconds: 300),
-              curve: Curves.easeInOut,
-            );
-          } else {
-            // Navigate to Login
-          }
-        },
-      );
-    },
-  ),
-),
-            
-
-             Padding(
-              padding: EdgeInsets.all(23),
+            Padding(
+              padding: const EdgeInsets.all(23),
               child: Text(
-                'Connect with top professionals locally',
+                l10n.connectWithProfessionalsLocally,
                 style: AppTextStyle.internal().textStyle16.copyWith(
-                      color: AppColorsPallet.assentsGray,
-                    ),
+                  color: AppColorsPallet.assentsGray,
+                ),
               ),
             ),
           ],

@@ -1,6 +1,8 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frc_app/config/l10n/failure_localizer.dart';
+import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_snack_bar.dart';
@@ -34,18 +36,21 @@ class _SignupViewState extends State<SignupView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Scaffold(
       body: AuthGradientBackground(
-        title: 'Create Your Account',
+        title: l10n.createYourAccount,
         child: Form(
           key: _formKey,
           child: Column(
             children: [
               CustomTextFormField(
                 controller: nameController,
-                label: 'Full Name',
-                hintText: 'Ahmed Aly Najiub',
-                validator: AppValidators.validateFullName,
+                label: l10n.fullName,
+                hintText: l10n.fullNameHint,
+                validator: (value) =>
+                    AppValidators.validateFullName(value, l10n),
                 prefixIcon: Image.asset(
                   'assets/icons/person_icon.png',
                   width: 20,
@@ -60,9 +65,9 @@ class _SignupViewState extends State<SignupView> {
 
               CustomTextFormField(
                 controller: phoneController,
-                label: 'Phone',
-                hintText: '11 5555 6600',
-                validator: AppValidators.validatePhone,
+                label: l10n.phone,
+                hintText: l10n.phoneHint,
+                validator: (value) => AppValidators.validatePhone(value, l10n),
 
                 prefixIcon: CountryCodePicker(
                   onChanged: (country) {
@@ -82,10 +87,11 @@ class _SignupViewState extends State<SignupView> {
 
               CustomTextFormField(
                 controller: passwordController,
-                label: 'Password',
-                hintText: 'Password123',
+                label: l10n.password,
+                hintText: l10n.passwordHint,
                 obscureText: true,
-                validator: AppValidators.validatePassword,
+                validator: (value) =>
+                    AppValidators.validatePassword(value, l10n),
                 prefixIcon: Image.asset(
                   'assets/icons/lock_icon.png',
                   width: 20,
@@ -99,7 +105,7 @@ class _SignupViewState extends State<SignupView> {
                   if (state.status == SignupStatus.success) {
                     CustomSnackBar.showSuccess(
                       context,
-                      state.message ?? 'OTP sent to your WhatsApp',
+                      state.message ?? l10n.otpSentToWhatsApp,
                     );
 
                     Navigator.pushNamed(
@@ -113,15 +119,15 @@ class _SignupViewState extends State<SignupView> {
                   if (state.status == SignupStatus.error) {
                     CustomSnackBar.showError(
                       context,
-                      state.errorMessage ?? 'Something went wrong',
+                      FailureLocalizer.localize(l10n, state.errorMessage),
                     );
                   }
                 },
                 builder: (context, state) {
                   return CustomElevatedButton(
                     text: state.status == SignupStatus.loading
-                        ? 'Loading...'
-                        : 'Sign Up',
+                        ? l10n.loading
+                        : l10n.signUp,
                     onPressed: state.status == SignupStatus.loading
                         ? () {}
                         : () {
@@ -145,9 +151,9 @@ class _SignupViewState extends State<SignupView> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
-                      'Have an account?',
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                    Text(
+                      l10n.haveAccount,
+                      style: const TextStyle(color: Colors.white, fontSize: 18),
                     ),
                     TextButton(
                       onPressed: () {
@@ -156,9 +162,9 @@ class _SignupViewState extends State<SignupView> {
                           RoutesName.signIn,
                         );
                       },
-                      child: const Text(
-                        'Sign In',
-                        style: TextStyle(
+                      child: Text(
+                        l10n.signIn,
+                        style: const TextStyle(
                           color: Colors.white,
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

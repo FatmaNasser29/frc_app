@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frc_app/config/l10n/failure_localizer.dart';
+import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_snack_bar.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_text_form_field.dart';
 import 'package:frc_app/config/utils/shared_widgets/shared_gradient_background_widget.dart';
+import 'package:frc_app/config/validator/app_validator.dart';
 import 'package:frc_app/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart';
 import 'package:frc_app/features/auth/reset_password/presentation/cubit/reset_password_state.dart';
 
@@ -31,6 +34,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     final args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
 
@@ -39,24 +43,19 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
     final String otp = args['otp'];
     return Scaffold(
       body: AuthGradientBackground(
-        title: 'Set New Password',
-        description:
-            'Enter your new password and confirm to set the new password to your account',
+        title: l10n.setNewPassword,
+        description: l10n.setNewPasswordDescription,
         child: Form(
           key: formKey,
           child: Column(
             children: [
               CustomTextFormField(
                 controller: passwordController,
-                label: 'New Password',
-                hintText: 'Password123',
+                label: l10n.newPassword,
+                hintText: l10n.passwordHint,
                 obscureText: true,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Password is required';
-                  }
-                  return null;
-                },
+                validator: (value) =>
+                    AppValidators.validatePassword(value, l10n),
                 prefixIcon: Image.asset(
                   'assets/icons/lock_icon.png',
                   width: 20,
@@ -68,15 +67,14 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
 
               CustomTextFormField(
                 controller: confirmPasswordController,
-                label: 'Confirm New Password',
-                hintText: 'Password123',
+                label: l10n.confirmNewPassword,
+                hintText: l10n.passwordHint,
                 obscureText: true,
-                validator: (value) {
-                  if (value != passwordController.text) {
-                    return 'Passwords do not match';
-                  }
-                  return null;
-                },
+                validator: (value) => AppValidators.validateConfirmPassword(
+                  value,
+                  passwordController.text,
+                  l10n,
+                ),
                 prefixIcon: Image.asset(
                   'assets/icons/lock_icon.png',
                   width: 20,
@@ -91,7 +89,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   if (state.status == ResetPasswordStatus.success) {
                     CustomSnackBar.showSuccess(
                       context,
-                      state.message ?? 'Password reset successfully',
+                      state.message ?? l10n.passwordResetSuccessfully,
                     );
 
                     Navigator.pushNamedAndRemoveUntil(
@@ -104,15 +102,15 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
                   if (state.status == ResetPasswordStatus.error) {
                     CustomSnackBar.showError(
                       context,
-                      state.errorMessage ?? 'Something went wrong',
+                      FailureLocalizer.localize(l10n, state.errorMessage),
                     );
                   }
                 },
                 builder: (context, state) {
                   return CustomElevatedButton(
                     text: state.status == ResetPasswordStatus.loading
-                        ? 'Loading...'
-                        : 'Submit',
+                        ? l10n.loading
+                        : l10n.submit,
                     onPressed: () {
                       if (!formKey.currentState!.validate()) {
                         return;

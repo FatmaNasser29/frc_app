@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frc_app/config/l10n/failure_localizer.dart';
+import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_colors_pallet.dart';
 import 'package:frc_app/config/theme/app_text_style.dart';
@@ -16,10 +18,10 @@ class ForgetPasswordOtpView extends StatefulWidget {
   const ForgetPasswordOtpView({super.key, required this.phoneNumber});
 
   @override
-  State<ForgetPasswordOtpView> createState() => _SignUpOtpViewState();
+  State<ForgetPasswordOtpView> createState() => _ForgetPasswordOtpViewState();
 }
 
-class _SignUpOtpViewState extends State<ForgetPasswordOtpView> {
+class _ForgetPasswordOtpViewState extends State<ForgetPasswordOtpView> {
   final List<TextEditingController> otpControllers = List.generate(
     6,
     (_) => TextEditingController(),
@@ -78,27 +80,32 @@ class _SignUpOtpViewState extends State<ForgetPasswordOtpView> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return BlocListener<ResendOtpCubit, ResendOtpState>(
       listener: (context, state) {
         if (state.resendStatus == ResendOtpStatus.success) {
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message ?? 'OTP resent successfully')),
+            SnackBar(
+              content: Text(state.message ?? l10n.otpResentSuccessfully),
+            ),
           );
         }
 
         if (state.resendStatus == ResendOtpStatus.error) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text(state.errorMessage ?? 'Failed to resend OTP'),
+              content: Text(
+                FailureLocalizer.localize(l10n, state.errorMessage),
+              ),
             ),
           );
         }
       },
       child: Scaffold(
         body: AuthGradientBackground(
-          title: 'Verify OTP',
-          description:
-              'Enter the verification code sent to your WhatsApp number',
+          title: l10n.verifyOtp,
+          description: l10n.verifyOtpDescription,
           child: Column(
             children: [
               const SizedBox(height: 32),
@@ -165,14 +172,14 @@ class _SignUpOtpViewState extends State<ForgetPasswordOtpView> {
               const SizedBox(height: 32),
 
               CustomElevatedButton(
-                text: 'Verify',
+                text: l10n.verify,
                 onPressed: () {
                   final otp = otpCode.trim();
 
                   if (otp.length != 6) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Please enter the 6-digit OTP'),
+                      SnackBar(
+                        content: Text(l10n.pleaseEnterSixDigitOtp),
                       ),
                     );
                     return;
@@ -193,8 +200,6 @@ class _SignUpOtpViewState extends State<ForgetPasswordOtpView> {
                     ? () {
                         startTimer();
 
-                        // debugPrint('Resend OTP to ${widget.phoneNumber}');
-
                         context.read<ResendOtpCubit>().resendOtp(
                           widget.phoneNumber,
                         );
@@ -202,8 +207,8 @@ class _SignUpOtpViewState extends State<ForgetPasswordOtpView> {
                     : null,
                 child: Text(
                   secondsRemaining == 0
-                      ? 'Resend'
-                      : '00:${secondsRemaining.toString().padLeft(2, '0')}',
+                      ? l10n.resend
+                      : l10n.resendCountdownText(secondsRemaining),
                   style: AppTextStyle.internal().textStyle16.copyWith(
                     color: AppColorsPallet.white,
                     fontWeight: FontWeight.w600,

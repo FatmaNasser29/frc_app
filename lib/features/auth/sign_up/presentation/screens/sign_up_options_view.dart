@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_text_style.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
@@ -10,13 +11,15 @@ class SignUpOptionView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Scaffold(
       body: AuthGradientBackground(
-        title: 'Choose Your Best\n Sign in Option',
+        title: l10n.chooseSignInOptionTitle,
         child: Column(
           children: [
             CustomElevatedButton(
-              text: 'Sign With Google',
+              text: l10n.signWithGoogle,
               textColor: Colors.white,
               icon: Image.asset(
                 'assets/icons/google_icon.png',
@@ -28,7 +31,7 @@ class SignUpOptionView extends StatelessWidget {
             ),
 
             CustomElevatedButton(
-              text: 'Sign With Linkedin',
+              text: l10n.signWithLinkedin,
               textColor: Colors.white,
               icon: Image.asset(
                 'assets/icons/linkedin_icon.png',
@@ -38,16 +41,16 @@ class SignUpOptionView extends StatelessWidget {
               backgroundColor: const Color(0xff0066D9),
               onPressed: loginWithLinkedin,
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
-              'Or Continue With',
+              l10n.orContinueWith,
               style: AppTextStyle.internal().textStyle16.copyWith(
                 color: Colors.white,
               ),
             ),
 
             CustomElevatedButton(
-              text: 'Your Phone Number',
+              text: l10n.yourPhoneNumber,
               onPressed: () {
                 Navigator.pushNamed(context, RoutesName.signUp);
               },

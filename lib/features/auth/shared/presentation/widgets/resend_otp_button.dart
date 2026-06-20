@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:frc_app/config/l10n/l10n_extension.dart';
 
 class ResendOtpButton extends StatefulWidget {
   final VoidCallback onResend;
@@ -51,6 +52,8 @@ class _ResendOtpButtonState extends State<ResendOtpButton> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return TextButton(
       onPressed: secondsRemaining == 0
           ? () {
@@ -60,8 +63,8 @@ class _ResendOtpButtonState extends State<ResendOtpButton> {
           : null,
       child: Text(
         secondsRemaining == 0
-            ? 'Resend'
-            : '00:${secondsRemaining.toString().padLeft(2, '0')}',
+            ? l10n.resend
+            : l10n.resendCountdownText(secondsRemaining),
       ),
     );
   }

@@ -1,65 +1,71 @@
+import 'package:frc_app/l10n/app_localizations.dart';
+
 class AppValidators {
-  static String? validateFullName(String? value) {
+  static String? validateFullName(String? value, AppLocalizations l10n) {
     if (value == null || value.trim().isEmpty) {
-      return 'Full name is required';
+      return l10n.fullNameRequired;
     }
 
     if (value.trim().length < 3) {
-      return 'Enter a valid full name';
+      return l10n.validFullName;
     }
 
     return null;
   }
 
-  static String? validatePhone(String? value) {
+  static String? validatePhone(String? value, AppLocalizations l10n) {
     if (value == null || value.trim().isEmpty) {
-      return 'Phone number is required';
+      return l10n.phoneRequired;
     }
 
     final phoneRegex = RegExp(r'^\+?[0-9]{10,15}$');
 
     if (!phoneRegex.hasMatch(value.trim())) {
-      return 'Enter a valid phone number';
+      return l10n.validPhone;
     }
 
     return null;
   }
 
-  static String? validatePassword(String? value) {
+  static String? validatePassword(String? value, AppLocalizations l10n) {
     if (value == null || value.isEmpty) {
-      return 'Password is required';
+      return l10n.passwordRequired;
     }
 
     if (value.length < 8) {
-      return 'Password must be at least 8 characters';
+      return l10n.passwordMinLength;
     }
 
     return null;
   }
 
-  static String? validateConfirmPassword(String? value, String password) {
+  static String? validateConfirmPassword(
+    String? value,
+    String password,
+    AppLocalizations l10n,
+  ) {
     if (value == null || value.isEmpty) {
-      return 'Confirm password is required';
+      return l10n.confirmPasswordRequired;
     }
 
     if (value != password) {
-      return 'Passwords do not match';
+      return l10n.passwordsDoNotMatch;
     }
 
     return null;
   }
 
-  static String? validateOtp(String? value) {
+  static String? validateOtp(String? value, AppLocalizations l10n) {
     if (value == null || value.trim().isEmpty) {
-      return 'OTP is required';
+      return l10n.otpRequired;
     }
 
     if (value.trim().length != 6) {
-      return 'OTP must be 6 digits';
+      return l10n.otpSixDigits;
     }
 
     if (!RegExp(r'^[0-9]{6}$').hasMatch(value.trim())) {
-      return 'OTP must contain numbers only';
+      return l10n.otpNumbersOnly;
     }
 
     return null;

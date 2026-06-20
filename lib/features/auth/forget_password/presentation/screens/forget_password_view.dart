@@ -1,6 +1,8 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:frc_app/config/l10n/failure_localizer.dart';
+import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_colors_pallet.dart';
 import 'package:frc_app/config/theme/app_text_style.dart';
@@ -8,6 +10,7 @@ import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart'
 import 'package:frc_app/config/utils/shared_widgets/custom_snack_bar.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_text_form_field.dart';
 import 'package:frc_app/config/utils/shared_widgets/shared_gradient_background_widget.dart';
+import 'package:frc_app/config/validator/app_validator.dart';
 import 'package:frc_app/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
 import 'package:frc_app/features/auth/forget_password/presentation/cubit/forget_password_state.dart';
 
@@ -22,13 +25,15 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
   final phoneController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   String selectedCountryCode = '+20';
+
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
+
     return Scaffold(
       body: AuthGradientBackground(
-        title: 'Forget Password',
-        description:
-            'Enter your phone number and a message will be sent to your WhatsApp account that include a link to change your password',
+        title: l10n.forgetPassword,
+        description: l10n.forgetPasswordDescription,
         descriptionStyle: AppTextStyle.internal().textStyle14.copyWith(
           color: AppColorsPallet.white,
         ),
@@ -38,22 +43,10 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
             children: [
               CustomTextFormField(
                 controller: phoneController,
-                label: 'Phone',
-                hintText: '11 5555 6600',
+                label: l10n.phone,
+                hintText: l10n.phoneHint,
                 keyboardType: TextInputType.phone,
-                validator: (value) {
-                  if (value == null || value.trim().isEmpty) {
-                    return 'Phone number is required';
-                  }
-
-                  final phoneRegex = RegExp(r'^\+?[0-9]{10,15}$');
-
-                  if (!phoneRegex.hasMatch(value.trim())) {
-                    return 'Enter a valid phone number';
-                  }
-
-                  return null;
-                },
+                validator: (value) => AppValidators.validatePhone(value, l10n),
                 prefixIconConstraints: const BoxConstraints(
                   minWidth: 95,
                   minHeight: 24,
@@ -85,7 +78,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                   if (state.status == ForgetPasswordStatus.success) {
                     CustomSnackBar.showSuccess(
                       context,
-                      state.message ?? 'OTP Sent Successfully',
+                      state.message ?? l10n.otpSentSuccessfully,
                     );
 
                     Navigator.pushNamed(
@@ -99,15 +92,15 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                   if (state.status == ForgetPasswordStatus.error) {
                     CustomSnackBar.showError(
                       context,
-                      state.errorMessage ?? 'Something went wrong',
+                      FailureLocalizer.localize(l10n, state.errorMessage),
                     );
                   }
                 },
                 builder: (context, state) {
                   return CustomElevatedButton(
                     text: state.status == ForgetPasswordStatus.loading
-                        ? 'Loading...'
-                        : 'Send',
+                        ? l10n.loading
+                        : l10n.send,
                     onPressed: () {
                       if (!formKey.currentState!.validate()) {
                         return;
