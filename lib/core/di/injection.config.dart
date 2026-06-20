@@ -39,6 +39,18 @@ import 'package:frc_app/features/auth/reset_password/domain/use_cases/reset_pass
     as _i112;
 import 'package:frc_app/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart'
     as _i905;
+import 'package:frc_app/features/auth/shared/data/datasource/otp_remote_data_source.dart'
+    as _i228;
+import 'package:frc_app/features/auth/shared/data/datasource/otp_remote_data_source_impl.dart'
+    as _i769;
+import 'package:frc_app/features/auth/shared/data/repository/otp_repository_impl.dart'
+    as _i663;
+import 'package:frc_app/features/auth/shared/domain/repository/otp_repository.dart'
+    as _i285;
+import 'package:frc_app/features/auth/shared/domain/usecases/resend_otp_usecase.dart'
+    as _i874;
+import 'package:frc_app/features/auth/shared/presentation/cubit/resend_otp_cubit.dart'
+    as _i68;
 import 'package:frc_app/features/auth/sign_in/data/data_sources/signin_local_data_source.dart'
     as _i729;
 import 'package:frc_app/features/auth/sign_in/data/data_sources/signin_local_data_source_iml.dart'
@@ -93,6 +105,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i14.ApiService>(
       () => networkModule.provideApiService(gh<_i361.Dio>()),
     );
+    gh.factory<_i228.ResendOtpRemoteDatasource>(
+      () => _i769.ResendOtpRemoteDatasourceImpl(gh<_i14.ApiService>()),
+    );
     gh.factory<_i925.SigninRemoteDataSource>(
       () => _i240.SigninRemoteDataSourceImpl(gh<_i14.ApiService>()),
     );
@@ -109,6 +124,10 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.singleton<_i658.SharedPrefsService>(
       () => _i658.SharedPrefsService(gh<_i460.SharedPreferences>()),
+    );
+    gh.factory<_i285.ResendOtpRepository>(
+      () =>
+          _i663.ResendOtpRepositoryImpl(gh<_i228.ResendOtpRemoteDatasource>()),
     );
     gh.factory<_i993.SigninRepo>(
       () => _i865.SigninRepoImpl(
@@ -137,6 +156,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i474.VerifySigninUseCase>(),
       ),
     );
+    gh.factory<_i874.ResendOtpUseCase>(
+      () => _i874.ResendOtpUseCase(gh<_i285.ResendOtpRepository>()),
+    );
     gh.factory<_i300.ForgetPasswordCubit>(
       () => _i300.ForgetPasswordCubit(gh<_i84.ForgetPasswordUseCase>()),
     );
@@ -144,6 +166,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i256.ResetPasswordRepositoryImpl(
         gh<_i861.ResetPasswordRemoteDataSource>(),
       ),
+    );
+    gh.factory<_i68.ResendOtpCubit>(
+      () => _i68.ResendOtpCubit(gh<_i874.ResendOtpUseCase>()),
     );
     gh.factory<_i597.SignupRepository>(
       () => _i714.SignupRepositoryImpl(gh<_i328.SignupRemoteDataSource>()),

@@ -9,6 +9,8 @@ import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart'
 import 'package:frc_app/config/utils/shared_widgets/shared_gradient_background_widget.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_cubit.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_states.dart';
+import 'package:frc_app/features/auth/shared/presentation/cubit/resend_otp_cubit.dart';
+import 'package:frc_app/features/auth/shared/presentation/cubit/resend_otp_state.dart';
 
 class SignUpOtpView extends StatefulWidget {
   final String phoneNumber;
@@ -78,143 +80,165 @@ class _SignUpOtpViewState extends State<SignUpOtpView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AuthGradientBackground(
-        title: 'Verify OTP',
-        description: 'Enter the verification code sent to your WhatsApp number',
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Text(
-                widget.phoneNumber,
-                textAlign: TextAlign.center,
-                style: AppTextStyle.internal().textStyle16.copyWith(
-                  color: AppColorsPallet.white.withValues(alpha: 0.8),
+    return BlocListener<ResendOtpCubit, ResendOtpState>(
+      listener: (context, state) {
+        if (state.resendStatus == ResendOtpStatus.success) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.message ?? 'OTP resent successfully')),
+          );
+        }
+
+        if (state.resendStatus == ResendOtpStatus.error) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(state.errorMessage ?? 'Failed to resend OTP'),
+            ),
+          );
+        }
+      },
+      child: Scaffold(
+        body: AuthGradientBackground(
+          title: 'Verify OTP',
+          description:
+              'Enter the verification code sent to your WhatsApp number',
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Text(
+                  widget.phoneNumber,
+                  textAlign: TextAlign.center,
+                  style: AppTextStyle.internal().textStyle16.copyWith(
+                    color: AppColorsPallet.white.withValues(alpha: 0.8),
+                  ),
                 ),
               ),
-            ),
 
-            const SizedBox(height: 32),
+              const SizedBox(height: 32),
 
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: List.generate(
-                  6,
-                  (index) => SizedBox(
-                    width: 48,
-                    height: 56,
-                    child: TextFormField(
-                      controller: otpControllers[index],
-                      focusNode: focusNodes[index],
-                      keyboardType: TextInputType.number,
-                      textAlign: TextAlign.center,
-                      maxLength: 1,
-                      style: AppTextStyle.internal().textStyle24.copyWith(
-                        color: AppColorsPallet.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      decoration: InputDecoration(
-                        counterText: '',
-                        filled: true,
-                        fillColor: Colors.white24,
-                        contentPadding: EdgeInsets.zero,
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          borderSide: BorderSide(color: AppColorsPallet.white),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: List.generate(
+                    6,
+                    (index) => SizedBox(
+                      width: 48,
+                      height: 56,
+                      child: TextFormField(
+                        controller: otpControllers[index],
+                        focusNode: focusNodes[index],
+                        keyboardType: TextInputType.number,
+                        textAlign: TextAlign.center,
+                        maxLength: 1,
+                        style: AppTextStyle.internal().textStyle24.copyWith(
+                          color: AppColorsPallet.white,
+                          fontWeight: FontWeight.bold,
                         ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          borderSide: BorderSide(color: AppColorsPallet.white),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(14),
-                          borderSide: BorderSide(
-                            color: AppColorsPallet.white,
-                            width: 2,
+                        decoration: InputDecoration(
+                          counterText: '',
+                          filled: true,
+                          fillColor: Colors.white24,
+                          contentPadding: EdgeInsets.zero,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14),
+                            borderSide: BorderSide(
+                              color: AppColorsPallet.white,
+                            ),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14),
+                            borderSide: BorderSide(
+                              color: AppColorsPallet.white,
+                            ),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(14),
+                            borderSide: BorderSide(
+                              color: AppColorsPallet.white,
+                              width: 2,
+                            ),
                           ),
                         ),
-                      ),
-                      onChanged: (value) {
-                        if (value.isNotEmpty && index < 5) {
-                          focusNodes[index + 1].requestFocus();
-                        }
+                        onChanged: (value) {
+                          if (value.isNotEmpty && index < 5) {
+                            focusNodes[index + 1].requestFocus();
+                          }
 
-                        if (value.isEmpty && index > 0) {
-                          focusNodes[index - 1].requestFocus();
-                        }
-                      },
+                          if (value.isEmpty && index > 0) {
+                            focusNodes[index - 1].requestFocus();
+                          }
+                        },
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
 
-            const SizedBox(height: 32),
+              const SizedBox(height: 32),
 
-            BlocConsumer<SignupCubit, SignupState>(
-              listener: (context, state) {
-                if (state.status == SignupStatus.success) {
-                  Navigator.pushReplacementNamed(context, RoutesName.home);
-                }
+              BlocConsumer<SignupCubit, SignupState>(
+                listener: (context, state) {
+                  if (state.status == SignupStatus.success) {
+                    Navigator.pushReplacementNamed(context, RoutesName.home);
+                  }
 
-                if (state.status == SignupStatus.error) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text(state.errorMessage ?? '')),
-                  );
-                }
-              },
-              builder: (context, state) {
-                return CustomElevatedButton(
-                  text: state.status == SignupStatus.loading
-                      ? 'Loading...'
-                      : 'Verify',
-                  onPressed: () {
-                    final otp = otpCode;
-
-                    if (otp.length != 6) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Please enter the 6-digit OTP'),
-                        ),
-                      );
-                      return;
-                    }
-
-                    context.read<SignupCubit>().verifyOtp(
-                      phoneNumber: widget.phoneNumber,
-                      otp: otpCode,
+                  if (state.status == SignupStatus.error) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(state.errorMessage ?? '')),
                     );
-                  },
-                );
-              },
-            ),
+                  }
+                },
+                builder: (context, state) {
+                  return CustomElevatedButton(
+                    text: state.status == SignupStatus.loading
+                        ? 'Loading...'
+                        : 'Verify',
+                    onPressed: () {
+                      final otp = otpCode;
 
-            const SizedBox(height: 12),
+                      if (otp.length != 6) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Please enter the 6-digit OTP'),
+                          ),
+                        );
+                        return;
+                      }
 
-            TextButton(
-              onPressed: secondsRemaining == 0
-                  ? () {
-                      startTimer();
+                      context.read<SignupCubit>().verifyOtp(
+                        phoneNumber: widget.phoneNumber,
+                        otp: otpCode,
+                      );
+                    },
+                  );
+                },
+              ),
 
-                      debugPrint('Resend OTP to ${widget.phoneNumber}');
+              const SizedBox(height: 12),
 
-                      // TODO: Call Resend OTP API
-                    }
-                  : null,
-              child: Text(
-                secondsRemaining == 0
-                    ? 'Resend'
-                    : '00:${secondsRemaining.toString().padLeft(2, '0')}',
-                style: AppTextStyle.internal().textStyle16.copyWith(
-                  color: AppColorsPallet.white,
-                  fontWeight: FontWeight.w600,
+              TextButton(
+                onPressed: secondsRemaining == 0
+                    ? () {
+                        startTimer();
+
+                        context.read<ResendOtpCubit>().resendOtp(
+                          widget.phoneNumber,
+                        );
+                      }
+                    : null,
+                child: Text(
+                  secondsRemaining == 0
+                      ? 'Resend'
+                      : '00:${secondsRemaining.toString().padLeft(2, '0')}',
+                  style: AppTextStyle.internal().textStyle16.copyWith(
+                    color: AppColorsPallet.white,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

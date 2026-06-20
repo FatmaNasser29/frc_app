@@ -11,5 +11,5 @@ class ApiConstants {
       'auth/phone/verify-registration';
   static const String verifyPhoneOtpToCompleteSignIn =
       'auth/phone/verify-login';
-  // static const String resendOtp = 'auth/phone/resend-otp';
+  static const String resendPhoneOtpViaWhatsApp = 'auth/phone/resend-otp';
 }
