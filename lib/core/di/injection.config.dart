@@ -27,6 +27,18 @@ import 'package:frc_app/features/auth/forget_password/domain/use_cases/forget_pa
     as _i84;
 import 'package:frc_app/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart'
     as _i300;
+import 'package:frc_app/features/auth/reset_password/data/data_sources/reset_password_remote_data_source.dart'
+    as _i861;
+import 'package:frc_app/features/auth/reset_password/data/data_sources/reset_password_remote_data_source_impl.dart'
+    as _i58;
+import 'package:frc_app/features/auth/reset_password/data/repositories/reset_password_repository.dart'
+    as _i42;
+import 'package:frc_app/features/auth/reset_password/domain/repositories/reset_password_repository_impl.dart'
+    as _i256;
+import 'package:frc_app/features/auth/reset_password/domain/use_cases/reset_password_use_case.dart'
+    as _i112;
+import 'package:frc_app/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart'
+    as _i905;
 import 'package:frc_app/features/auth/sign_in/data/data_sources/signin_local_data_source.dart'
     as _i729;
 import 'package:frc_app/features/auth/sign_in/data/data_sources/signin_local_data_source_iml.dart'
@@ -104,6 +116,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i729.SigninLocalDataSource>(),
       ),
     );
+    gh.factory<_i861.ResetPasswordRemoteDataSource>(
+      () => _i58.ResetPasswordRemoteDataSourceImpl(gh<_i14.ApiService>()),
+    );
     gh.factory<_i84.ForgetPasswordUseCase>(
       () => _i84.ForgetPasswordUseCase(gh<_i284.ForgetPasswordRepo>()),
     );
@@ -125,6 +140,11 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i300.ForgetPasswordCubit>(
       () => _i300.ForgetPasswordCubit(gh<_i84.ForgetPasswordUseCase>()),
     );
+    gh.factory<_i42.ResetPasswordRepository>(
+      () => _i256.ResetPasswordRepositoryImpl(
+        gh<_i861.ResetPasswordRemoteDataSource>(),
+      ),
+    );
     gh.factory<_i597.SignupRepository>(
       () => _i714.SignupRepositoryImpl(gh<_i328.SignupRemoteDataSource>()),
     );
@@ -140,6 +160,12 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i895.VerifyRegistrationUseCase>(),
         gh<_i729.SigninLocalDataSource>(),
       ),
+    );
+    gh.factory<_i112.ResetPasswordUseCase>(
+      () => _i112.ResetPasswordUseCase(gh<_i42.ResetPasswordRepository>()),
+    );
+    gh.factory<_i905.ResetPasswordCubit>(
+      () => _i905.ResetPasswordCubit(gh<_i112.ResetPasswordUseCase>()),
     );
     return this;
   }

@@ -16,5 +16,5 @@ class RoutesName {
   static const String setting = 'setting';
   static const String signUpOptions = 'signUpOptions';
   static const String signUpOtpView = 'signUpOtpView';
-  static const String setNewPassword = 'setNewPassword';
+  static const String resetPassword = 'resetPassword';
 }

@@ -5,7 +5,8 @@ import 'package:frc_app/core/di/injection.dart';
 import 'package:frc_app/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
 import 'package:frc_app/features/auth/forget_password/presentation/screens/forget_password_otp_view.dart';
 import 'package:frc_app/features/auth/forget_password/presentation/screens/forget_password_view.dart';
-import 'package:frc_app/features/auth/set_new_password_screen/set_new_password_view.dart';
+import 'package:frc_app/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart';
+import 'package:frc_app/features/auth/reset_password/presentation/screens/reset_password_view.dart';
 import 'package:frc_app/features/auth/sign_in/presentation/cubit/signin_cubit.dart';
 import 'package:frc_app/features/auth/sign_in/presentation/screens/sign_in_otp_view.dart';
 import 'package:frc_app/features/auth/sign_in/presentation/screens/sign_in_view.dart';
@@ -57,13 +58,18 @@ class RoutesGenerator {
           ),
         );
       case RoutesName.forgetPasswordOtpView:
+        final phoneNumber = settings.arguments as String? ?? '';
+
         return MaterialPageRoute(
-          builder: (context) => ForgetPasswordOtpView(),
+          builder: (_) => ForgetPasswordOtpView(phoneNumber: phoneNumber),
           settings: settings,
         );
-      case RoutesName.setNewPassword:
+      case RoutesName.resetPassword:
         return MaterialPageRoute(
-          builder: (context) => SetNewPasswordView(),
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<ResetPasswordCubit>(),
+            child: const ResetPasswordView(),
+          ),
           settings: settings,
         );
 
@@ -99,16 +105,6 @@ class RoutesGenerator {
             create: (_) => getIt<SigninCubit>(),
             child: SignInOtpView(phoneNumber: phoneNumber),
           ),
-        );
-      case RoutesName.signInOtpView:
-        final phoneNumber = settings.arguments as String? ?? '';
-
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (_) => getIt<SigninCubit>(),
-            child: SignInOtpView(phoneNumber: phoneNumber),
-          ),
-          settings: settings,
         );
 
       default:

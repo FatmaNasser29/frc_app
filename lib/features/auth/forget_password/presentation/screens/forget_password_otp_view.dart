@@ -1,13 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_colors_pallet.dart';
 import 'package:frc_app/config/theme/app_text_style.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/shared_gradient_background_widget.dart';
 
 class ForgetPasswordOtpView extends StatefulWidget {
-  const ForgetPasswordOtpView({super.key});
+  final String phoneNumber;
+
+  const ForgetPasswordOtpView({super.key, required this.phoneNumber});
 
   @override
   State<ForgetPasswordOtpView> createState() => _SignUpOtpViewState();
@@ -140,7 +143,7 @@ class _SignUpOtpViewState extends State<ForgetPasswordOtpView> {
             CustomElevatedButton(
               text: 'Verify',
               onPressed: () {
-                final otp = otpCode;
+                final otp = otpCode.trim();
 
                 if (otp.length != 6) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -151,9 +154,11 @@ class _SignUpOtpViewState extends State<ForgetPasswordOtpView> {
                   return;
                 }
 
-                debugPrint('OTP => $otp');
-
-                // TODO: Call Verify OTP API
+                Navigator.pushNamed(
+                  context,
+                  RoutesName.resetPassword,
+                  arguments: {'phoneNumber': widget.phoneNumber, 'otp': otp},
+                );
               },
             ),
 

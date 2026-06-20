@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:frc_app/core/api/api_constants.dart';
 import 'package:frc_app/features/auth/forget_password/data/models/forget_password_request.dart';
 import 'package:frc_app/features/auth/forget_password/data/models/forget_password_response.dart';
+import 'package:frc_app/features/auth/reset_password/data/models/reset_password_request.dart';
+import 'package:frc_app/features/auth/reset_password/data/models/reset_password_response.dart';
 import 'package:frc_app/features/auth/sign_in/data/models/signin_request.dart';
 import 'package:frc_app/features/auth/sign_in/data/models/signin_response.dart';
 import 'package:frc_app/features/auth/sign_in/data/models/verify_signin_request.dart';
@@ -36,5 +38,9 @@ abstract class ApiService {
   @POST(ApiConstants.verifyPhoneOtpToCompleteSignIn)
   Future<VerifySigninResponse> verifySignin(
     @Body() VerifySigninRequest request,
+  );
+  @POST(ApiConstants.verifyOtpAndResetPasswordViaMobile)
+  Future<ResetPasswordResponse> resetPassword(
+    @Body() ResetPasswordRequest request,
   );
 }

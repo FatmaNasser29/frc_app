@@ -88,9 +88,11 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                       state.message ?? 'OTP Sent Successfully',
                     );
 
-                    Navigator.pushReplacementNamed(
+                    Navigator.pushNamed(
                       context,
                       RoutesName.forgetPasswordOtpView,
+                      arguments:
+                          '$selectedCountryCode${phoneController.text.trim()}',
                     );
                   }
 

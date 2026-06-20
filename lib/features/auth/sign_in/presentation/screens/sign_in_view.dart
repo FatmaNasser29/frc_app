@@ -100,7 +100,7 @@ class _SignInViewState extends State<SignInView> {
                           RoutesName.forgetPassword,
                         );
                       },
-                      text: 'Forgot password?',
+                      text: 'Forget password?',
                       fontWeight: FontWeight.bold,
                     ),
                   ],
