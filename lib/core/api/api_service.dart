@@ -39,7 +39,7 @@ abstract class ApiService {
   Future<VerifySigninResponse> verifySignin(
     @Body() VerifySigninRequest request,
   );
-  @POST(ApiConstants.verifyOtpAndResetPasswordViaMobile)
+  @PATCH(ApiConstants.verifyOtpAndResetPasswordViaMobile)
   Future<ResetPasswordResponse> resetPassword(
     @Body() ResetPasswordRequest request,
   );
