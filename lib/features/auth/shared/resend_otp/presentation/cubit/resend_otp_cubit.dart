@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frc_app/features/auth/shared/domain/usecases/resend_otp_usecase.dart';
-import 'package:frc_app/features/auth/shared/presentation/cubit/resend_otp_state.dart';
+import 'package:frc_app/features/auth/shared/resend_otp/domain/usecases/resend_otp_usecase.dart';
+import 'package:frc_app/features/auth/shared/resend_otp/presentation/cubit/resend_otp_state.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable

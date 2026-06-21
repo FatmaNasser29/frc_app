@@ -10,8 +10,8 @@ import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart'
 import 'package:frc_app/config/utils/shared_widgets/shared_gradient_background_widget.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_cubit.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_states.dart';
-import 'package:frc_app/features/auth/shared/presentation/cubit/resend_otp_cubit.dart';
-import 'package:frc_app/features/auth/shared/presentation/cubit/resend_otp_state.dart';
+import 'package:frc_app/features/auth/shared/resend_otp/presentation/cubit/resend_otp_cubit.dart';
+import 'package:frc_app/features/auth/shared/resend_otp/presentation/cubit/resend_otp_state.dart';
 
 class SignUpOtpView extends StatefulWidget {
   final String phoneNumber;

@@ -8,8 +8,8 @@ import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_theme.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/shared_gradient_background_widget.dart';
-import 'package:frc_app/features/auth/shared/presentation/cubit/resend_otp_cubit.dart';
-import 'package:frc_app/features/auth/shared/presentation/cubit/resend_otp_state.dart';
+import 'package:frc_app/features/auth/shared/resend_otp/presentation/cubit/resend_otp_cubit.dart';
+import 'package:frc_app/features/auth/shared/resend_otp/presentation/cubit/resend_otp_state.dart';
 
 class ForgetPasswordOtpView extends StatefulWidget {
   final String phoneNumber;

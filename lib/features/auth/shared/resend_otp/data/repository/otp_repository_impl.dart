@@ -1,6 +1,6 @@
-import 'package:frc_app/features/auth/shared/data/datasource/otp_remote_data_source.dart';
-import 'package:frc_app/features/auth/shared/data/models/resend_otp_response.dart';
-import 'package:frc_app/features/auth/shared/domain/repository/otp_repository.dart';
+import 'package:frc_app/features/auth/shared/resend_otp/data/datasource/resend_otp_remote_data_source.dart';
+import 'package:frc_app/features/auth/shared/resend_otp/data/models/resend_otp_response.dart';
+import 'package:frc_app/features/auth/shared/resend_otp/domain/repository/resend_otp_repository.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: ResendOtpRepository)

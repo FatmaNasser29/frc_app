@@ -7,7 +7,7 @@ import 'package:frc_app/features/auth/forget_password/presentation/screens/forge
 import 'package:frc_app/features/auth/forget_password/presentation/screens/forget_password_view.dart';
 import 'package:frc_app/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart';
 import 'package:frc_app/features/auth/reset_password/presentation/screens/reset_password_view.dart';
-import 'package:frc_app/features/auth/shared/presentation/cubit/resend_otp_cubit.dart';
+import 'package:frc_app/features/auth/shared/resend_otp/presentation/cubit/resend_otp_cubit.dart';
 import 'package:frc_app/features/auth/sign_in/presentation/cubit/signin_cubit.dart';
 import 'package:frc_app/features/auth/sign_in/presentation/screens/sign_in_otp_view.dart';
 import 'package:frc_app/features/auth/sign_in/presentation/screens/sign_in_view.dart';
@@ -18,6 +18,7 @@ import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_view.
 import 'package:frc_app/features/home/home_view.dart';
 import 'package:frc_app/features/lay_out/lay_out_view.dart';
 import 'package:frc_app/features/onboarding/presentation/pages/onboarding_view.dart';
+import 'package:frc_app/features/auth/shared/social_auth_webview.dart';
 import 'package:frc_app/features/setting/setting_view.dart';
 import 'package:frc_app/features/splash/splash_screen_view.dart';
 
@@ -125,6 +126,19 @@ class RoutesGenerator {
             ],
             child: SignInOtpView(phoneNumber: phoneNumber),
           ),
+        );
+
+      case RoutesName.socialAuthWebView:
+        final args = settings.arguments as Map<String, dynamic>? ?? {};
+        final authUrl = args['authUrl'] as String? ?? '';
+        final title = args['title'] as String? ?? '';
+
+        return MaterialPageRoute(
+          builder: (context) => SocialAuthWebViewPage(
+            authUrl: authUrl,
+            title: title,
+          ),
+          settings: settings,
         );
 
       default:

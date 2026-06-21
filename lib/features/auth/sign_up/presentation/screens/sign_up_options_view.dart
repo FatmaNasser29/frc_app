@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
@@ -27,7 +28,7 @@ class SignUpOptionView extends StatelessWidget {
                 height: 24,
               ),
               backgroundColor: Colors.black,
-              onPressed: loginWithGoogle,
+              onPressed: () => loginWithGoogle(context),
             ),
 
             CustomElevatedButton(
@@ -39,7 +40,7 @@ class SignUpOptionView extends StatelessWidget {
                 height: 24,
               ),
               backgroundColor: const Color(0xff0066D9),
-              onPressed: loginWithLinkedin,
+              onPressed: () => loginWithLinkedin(context),
             ),
             const SizedBox(height: 20),
             Text(
@@ -61,22 +62,49 @@ class SignUpOptionView extends StatelessWidget {
     );
   }
 
-  Future<void> loginWithGoogle() async {
-    final url = Uri.parse(
-      'https://api.fashionretailclub.com/api/v1/auth/google',
-    );
+  Future<void> loginWithGoogle(BuildContext context) async {
+    final redirectUrl = Uri.encodeComponent('https://fashionretailclub.com');
+    final url = 'https://api.fashionretailclub.com/api/v1/auth/google?redirectUrl=$redirectUrl';
 
-    await launchUrl(url, mode: LaunchMode.externalApplication);
+    final isMobile = !kIsWeb && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android);
+
+    if (isMobile) {
+      Navigator.pushNamed(
+        context,
+        RoutesName.socialAuthWebView,
+        arguments: {
+          'authUrl': url,
+          'title': context.l10n.signWithGoogle,
+        },
+      );
+    } else {
+      final uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    }
   }
 
-  Future<void> loginWithLinkedin() async {
+  Future<void> loginWithLinkedin(BuildContext context) async {
     final redirectUrl = Uri.encodeComponent('https://fashionretailclub.com');
+    final url = 'https://api.fashionretailclub.com/api/v1/auth/linkedin?redirectUrl=$redirectUrl';
 
-    final url = Uri.parse(
-      'https://api.fashionretailclub.com/api/v1/auth/linkedin'
-      '?redirectUrl=$redirectUrl',
-    );
+    final isMobile = !kIsWeb && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android);
 
-    await launchUrl(url, mode: LaunchMode.externalApplication);
+    if (isMobile) {
+      Navigator.pushNamed(
+        context,
+        RoutesName.socialAuthWebView,
+        arguments: {
+          'authUrl': url,
+          'title': context.l10n.signWithLinkedin,
+        },
+      );
+    } else {
+      final uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri, mode: LaunchMode.externalApplication);
+      }
+    }
   }
 }
