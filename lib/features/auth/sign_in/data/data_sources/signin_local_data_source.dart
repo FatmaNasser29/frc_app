@@ -8,4 +8,8 @@ abstract class SigninLocalDataSource {
   String? getRefreshToken();
 
   Future<void> clearTokens();
+
+  Future<void> saveLastUsedEmail(String email);
+
+  String? getLastUsedEmail();
 }

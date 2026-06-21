@@ -5,6 +5,8 @@ import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_theme.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/shared_gradient_background_widget.dart';
+import 'package:frc_app/core/di/injection.dart';
+import 'package:frc_app/features/auth/sign_in/data/data_sources/signin_local_data_source.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SignUpOptionView extends StatelessWidget {
@@ -64,7 +66,10 @@ class SignUpOptionView extends StatelessWidget {
 
   Future<void> loginWithGoogle(BuildContext context) async {
     final redirectUrl = Uri.encodeComponent('https://fashionretailclub.com');
-    final url = 'https://api.fashionretailclub.com/api/v1/auth/google?redirectUrl=$redirectUrl';
+    
+    final savedEmail = getIt<SigninLocalDataSource>().getLastUsedEmail();
+    final loginHint = savedEmail != null ? '&login_hint=${Uri.encodeComponent(savedEmail)}' : '';
+    final url = 'https://api.fashionretailclub.com/api/v1/auth/google?redirectUrl=$redirectUrl&prompt=select_account$loginHint';
 
     final isMobile = !kIsWeb && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android);
 
@@ -87,7 +92,10 @@ class SignUpOptionView extends StatelessWidget {
 
   Future<void> loginWithLinkedin(BuildContext context) async {
     final redirectUrl = Uri.encodeComponent('https://fashionretailclub.com');
-    final url = 'https://api.fashionretailclub.com/api/v1/auth/linkedin?redirectUrl=$redirectUrl';
+    
+    final savedEmail = getIt<SigninLocalDataSource>().getLastUsedEmail();
+    final loginHint = savedEmail != null ? '&login_hint=${Uri.encodeComponent(savedEmail)}&username=${Uri.encodeComponent(savedEmail)}' : '';
+    final url = 'https://api.fashionretailclub.com/api/v1/auth/linkedin?redirectUrl=$redirectUrl$loginHint';
 
     final isMobile = !kIsWeb && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android);
 

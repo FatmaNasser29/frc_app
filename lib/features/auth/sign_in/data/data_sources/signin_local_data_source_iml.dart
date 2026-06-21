@@ -8,6 +8,8 @@ class SigninLocalDataSourceImpl implements SigninLocalDataSource {
 
   static const _refreshTokenKey = 'refresh_token';
 
+  static const _lastUsedEmailKey = 'last_used_email';
+
   final SharedPreferences prefs;
 
   SigninLocalDataSourceImpl(this.prefs);
@@ -37,5 +39,15 @@ class SigninLocalDataSourceImpl implements SigninLocalDataSource {
     await prefs.remove(_accessTokenKey);
 
     await prefs.remove(_refreshTokenKey);
+  }
+
+  @override
+  Future<void> saveLastUsedEmail(String email) async {
+    await prefs.setString(_lastUsedEmailKey, email);
+  }
+
+  @override
+  String? getLastUsedEmail() {
+    return prefs.getString(_lastUsedEmailKey);
   }
 }

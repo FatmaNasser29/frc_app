@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_theme.dart';
@@ -27,9 +28,24 @@ class _SocialAuthWebViewPageState extends State<SocialAuthWebViewPage> {
   @override
   void initState() {
     super.initState();
+    
+    final String customUserAgent = defaultTargetPlatform == TargetPlatform.iOS
+        ? 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1'
+        : 'Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36';
+
     _controller = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
+      ..setUserAgent(customUserAgent)
       ..setBackgroundColor(const Color(0x00000000))
+      ..addJavaScriptChannel(
+        'EmailCaptureChannel',
+        onMessageReceived: (JavaScriptMessage message) {
+          final email = message.message.trim();
+          if (email.contains('@') && email.length > 3) {
+            getIt<SigninLocalDataSource>().saveLastUsedEmail(email);
+          }
+        },
+      )
       ..setNavigationDelegate(
         NavigationDelegate(
           onProgress: (int progress) {
@@ -46,6 +62,7 @@ class _SocialAuthWebViewPageState extends State<SocialAuthWebViewPage> {
               });
             }
             _checkAndExtractCookies(url);
+            _injectEmailCapturer();
           },
           onPageFinished: (String url) {
             if (mounted) {
@@ -54,16 +71,53 @@ class _SocialAuthWebViewPageState extends State<SocialAuthWebViewPage> {
               });
             }
             _checkAndExtractCookies(url);
+            _injectEmailCapturer();
           },
           onWebResourceError: (WebResourceError error) {
             debugPrint('Web resource error: ${error.description}');
           },
           onNavigationRequest: (NavigationRequest request) {
+            final url = request.url;
+            if (url.startsWith('https://accounts.google.com/o/oauth2/v2/auth') && !url.contains('prompt=')) {
+              final newUrl = '$url&prompt=select_account';
+              _controller.loadRequest(Uri.parse(newUrl));
+              return NavigationDecision.prevent;
+            }
             return NavigationDecision.navigate;
           },
         ),
       )
       ..loadRequest(Uri.parse(widget.authUrl));
+  }
+
+  void _injectEmailCapturer() {
+    _controller.runJavaScript(r'''
+      (function() {
+        function findAndListen() {
+          var inputs = document.querySelectorAll('input');
+          for (var i = 0; i < inputs.length; i++) {
+            var input = inputs[i];
+            if (input.type === 'email' || input.name === 'identifier' || input.name === 'session_key') {
+              if (!input.dataset.captureAdded) {
+                input.dataset.captureAdded = 'true';
+                var handler = function(e) {
+                  var val = e.target.value;
+                  if (val && val.indexOf('@') !== -1) {
+                    EmailCaptureChannel.postMessage(val);
+                  }
+                };
+                input.addEventListener('blur', handler);
+                input.addEventListener('change', handler);
+              }
+            }
+          }
+        }
+        findAndListen();
+        setInterval(findAndListen, 1000);
+      })();
+    ''').catchError((e) {
+      debugPrint('Error injecting script: $e');
+    });
   }
 
   Future<void> _checkAndExtractCookies(String url) async {
