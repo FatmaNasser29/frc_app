@@ -56,9 +56,6 @@ class _SignupViewState extends State<SignupView> {
                   width: 20,
                   height: 20,
                 ),
-                backgroundColor: Colors.white,
-                borderColor: Colors.transparent,
-                textColor: Colors.black54,
               ),
 
               const SizedBox(height: 12),

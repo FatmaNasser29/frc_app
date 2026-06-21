@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frc_app/config/theme/app_text_style.dart';
+import 'package:frc_app/config/theme/app_theme.dart';
 
 class CustomElevatedButton extends StatelessWidget {
   final String text;
@@ -49,7 +49,7 @@ class CustomElevatedButton extends StatelessWidget {
 
                   Text(
                     text,
-                    style: AppTextStyle.internal().textStyle24.copyWith(
+                    style: context.textStyle.textStyle24.copyWith(
                       color: textColor,
                       fontWeight: FontWeight.bold,
                     ),

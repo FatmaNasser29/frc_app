@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
-import 'package:frc_app/config/theme/app_colors_pallet.dart';
-import 'package:frc_app/config/theme/app_gradients.dart';
-import 'package:frc_app/config/theme/app_text_style.dart';
+import 'package:frc_app/config/theme/app_theme.dart';
 import 'package:frc_app/features/onboarding/data/data_sources/on_boarding_data.dart';
 import 'package:frc_app/features/onboarding/presentation/widgets/reusable_card_widget.dart';
 
@@ -25,7 +23,7 @@ class _OnboardingViewState extends State<OnboardingView> {
     final pages = OnboardingData.pages(l10n);
 
     return Scaffold(
-      backgroundColor: const Color(0xffF5F5F8),
+      backgroundColor: context.theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: Column(
           children: [
@@ -36,6 +34,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                   Image.asset(
                     'assets/images/frc_logo.png',
                     height: 40,
+                    color: context.isDarkMode ? Colors.white : null,
                   ),
                   const Spacer(),
                   InkWell(
@@ -46,7 +45,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                       width: 124,
                       height: 48,
                       decoration: BoxDecoration(
-                        gradient: AppGradients.primaryGradient,
+                        gradient: context.gradients.primaryGradient,
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: Row(
@@ -120,8 +119,8 @@ class _OnboardingViewState extends State<OnboardingView> {
               padding: const EdgeInsets.all(23),
               child: Text(
                 l10n.connectWithProfessionalsLocally,
-                style: AppTextStyle.internal().textStyle16.copyWith(
-                  color: AppColorsPallet.assentsGray,
+                style: context.textStyle.textStyle16.copyWith(
+                  color: context.colors.assentsGray,
                 ),
               ),
             ),

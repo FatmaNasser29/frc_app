@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frc_app/config/theme/app_colors_pallet.dart';
-import 'package:frc_app/config/theme/app_text_style.dart';
+import 'package:frc_app/config/theme/app_theme.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController? controller;
@@ -53,8 +52,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             padding: const EdgeInsets.only(left: 20),
             child: Text(
               widget.label!,
-              style: AppTextStyle.internal().textStyle16.copyWith(
-                color: AppColorsPallet.white,
+              style: context.textStyle.textStyle16.copyWith(
+                color: widget.textColor,
               ),
             ),
           ),
@@ -87,7 +86,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               fillColor: widget.backgroundColor,
 
               hintText: widget.hintText,
-              hintStyle: AppTextStyle.internal().textStyle16.copyWith(
+              hintStyle: context.textStyle.textStyle16.copyWith(
                 color: widget.textColor.withValues(alpha: .7),
               ),
 
@@ -105,8 +104,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
               contentPadding: const EdgeInsets.symmetric(vertical: 16),
 
-              errorStyle: AppTextStyle.internal().textStyle14.copyWith(
-                color: AppColorsPallet.assentsRed,
+              errorStyle: context.textStyle.textStyle14.copyWith(
+                color: context.colors.assentsRed,
               ),
 
               border: OutlineInputBorder(
@@ -126,13 +125,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: AppColorsPallet.assentsRed),
+                borderSide: BorderSide(color: context.colors.assentsRed),
               ),
 
               focusedErrorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(14),
-                borderSide: const BorderSide(
-                  color: AppColorsPallet.assentsRed,
+                borderSide: BorderSide(
+                  color: context.colors.assentsRed,
                   width: 2,
                 ),
               ),

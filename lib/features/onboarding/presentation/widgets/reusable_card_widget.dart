@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frc_app/config/l10n/l10n_extension.dart';
-import 'package:frc_app/config/theme/app_colors_pallet.dart';
-import 'package:frc_app/config/theme/app_gradients.dart';
-import 'package:frc_app/config/theme/app_text_style.dart';
+import 'package:frc_app/config/theme/app_theme.dart';
 
 class OnboardingCard extends StatelessWidget {
   final String image;
@@ -38,7 +36,7 @@ class OnboardingCard extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 20),
       padding: const EdgeInsets.all(13),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: context.colors.white,
         borderRadius: BorderRadius.circular(24),
       ),
       child: Column(
@@ -49,17 +47,17 @@ class OnboardingCard extends StatelessWidget {
                   ? const SizedBox(width: 48)
                   : IconButton(
                       onPressed: onBack,
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.arrow_back,
-                        color: AppColorsPallet.assentsPurple,
+                        color: context.colors.assentsPurple,
                       ),
                     ),
               const Spacer(),
               Text(
                 '$currentPage/$totalPages',
-                style: AppTextStyle.internal().textStyle16.copyWith(
+                style: context.textStyle.textStyle16.copyWith(
                   fontWeight: FontWeight.w700,
-                  color: AppColorsPallet.assentsPurple,
+                  color: context.colors.assentsPurple,
                 ),
               ),
             ],
@@ -86,7 +84,7 @@ class OnboardingCard extends StatelessWidget {
             child: Text(
               title,
               textAlign: TextAlign.left,
-              style: AppTextStyle.internal().textStyle24.copyWith(
+              style: context.textStyle.textStyle24.copyWith(
                 fontWeight: FontWeight.bold,
                 fontSize: 32,
                 height: 1.1,
@@ -104,16 +102,16 @@ class OnboardingCard extends StatelessWidget {
                       children: [
                         TextSpan(
                           text: '$descriptionHeader\n',
-                          style: AppTextStyle.internal().textStyle16.copyWith(
+                          style: context.textStyle.textStyle16.copyWith(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
-                            color: AppColorsPallet.assentsGray,
+                            color: context.colors.assentsGray,
                           ),
                         ),
                         TextSpan(
                           text: description,
-                          style: AppTextStyle.internal().textStyle16.copyWith(
-                            color: AppColorsPallet.assentsGray,
+                          style: context.textStyle.textStyle16.copyWith(
+                            color: context.colors.assentsGray,
                             height: 1.6,
                           ),
                         ),
@@ -124,8 +122,8 @@ class OnboardingCard extends StatelessWidget {
                 : Text(
                     description,
                     textAlign: TextAlign.left,
-                    style: AppTextStyle.internal().textStyle16.copyWith(
-                      color: AppColorsPallet.assentsGray,
+                    style: context.textStyle.textStyle16.copyWith(
+                      color: context.colors.assentsGray,
                       height: 1.6,
                     ),
                   ),
@@ -151,9 +149,9 @@ class OnboardingCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         color: currentIndex == index
                             ? null
-                            : Colors.grey.shade300,
+                            : context.colors.backgroundSecondary.withValues(alpha: .5),
                         gradient: currentIndex == index
-                            ? AppGradients.primaryGradient
+                            ? context.gradients.primaryGradient
                             : null,
                       ),
                     ),
@@ -174,16 +172,16 @@ class OnboardingCard extends StatelessWidget {
                         children: [
                           Text(
                             l10n.next,
-                            style: AppTextStyle.internal().textStyle16.copyWith(
+                            style: context.textStyle.textStyle16.copyWith(
                               fontWeight: FontWeight.w600,
-                              color: AppColorsPallet.assentsDark,
+                              color: context.colors.assentsDark,
                             ),
                           ),
                           const SizedBox(width: 4),
-                          const Icon(
+                          Icon(
                             Icons.arrow_forward,
                             size: 18,
-                            color: AppColorsPallet.assentsDark,
+                            color: context.colors.assentsDark,
                           ),
                         ],
                       ),

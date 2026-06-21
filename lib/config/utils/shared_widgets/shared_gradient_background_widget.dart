@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:frc_app/config/l10n/l10n_extension.dart';
-import 'package:frc_app/config/theme/app_colors_pallet.dart';
-import 'package:frc_app/config/theme/app_gradients.dart';
-import 'package:frc_app/config/theme/app_text_style.dart';
+import 'package:frc_app/config/theme/app_theme.dart';
 
 class AuthGradientBackground extends StatelessWidget {
   final Widget child;
@@ -27,7 +25,7 @@ class AuthGradientBackground extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: const BoxDecoration(gradient: AppGradients.reverseGradient),
+      decoration: BoxDecoration(gradient: context.gradients.reverseGradient),
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20),
@@ -52,8 +50,8 @@ class AuthGradientBackground extends StatelessWidget {
 
                         Text(
                           l10n.fashionIndustryNetwork,
-                          style: AppTextStyle.internal().textStyle16.copyWith(
-                            color: AppColorsPallet.white,
+                          style: context.textStyle.textStyle16.copyWith(
+                            color: Colors.white,
                           ),
                         ),
 
@@ -63,8 +61,8 @@ class AuthGradientBackground extends StatelessWidget {
                           Text(
                             title!,
                             textAlign: TextAlign.center,
-                            style: AppTextStyle.internal().textStyle24.copyWith(
-                              color: AppColorsPallet.white,
+                            style: context.textStyle.textStyle24.copyWith(
+                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -80,8 +78,8 @@ class AuthGradientBackground extends StatelessWidget {
                               textAlign: TextAlign.center,
                               style:
                                   descriptionStyle ??
-                                  AppTextStyle.internal().textStyle16.copyWith(
-                                    color: AppColorsPallet.white,
+                                  context.textStyle.textStyle16.copyWith(
+                                    color: Colors.white,
                                   ),
                             ),
                           ),
@@ -96,8 +94,8 @@ class AuthGradientBackground extends StatelessWidget {
                         Text(
                           footerText ?? l10n.connectWithProfessionalsLocally,
                           textAlign: TextAlign.center,
-                          style: AppTextStyle.internal().textStyle16.copyWith(
-                            color: AppColorsPallet.white,
+                          style: context.textStyle.textStyle16.copyWith(
+                            color: Colors.white,
                           ),
                         ),
 

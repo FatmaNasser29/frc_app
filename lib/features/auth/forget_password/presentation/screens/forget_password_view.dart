@@ -4,8 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frc_app/config/l10n/failure_localizer.dart';
 import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
-import 'package:frc_app/config/theme/app_colors_pallet.dart';
-import 'package:frc_app/config/theme/app_text_style.dart';
+import 'package:frc_app/config/theme/app_theme.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_snack_bar.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_text_form_field.dart';
@@ -34,8 +33,8 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
       body: AuthGradientBackground(
         title: l10n.forgetPassword,
         description: l10n.forgetPasswordDescription,
-        descriptionStyle: AppTextStyle.internal().textStyle14.copyWith(
-          color: AppColorsPallet.white,
+        descriptionStyle: context.textStyle.textStyle14.copyWith(
+          color: Colors.white,
         ),
         child: Form(
           key: formKey,

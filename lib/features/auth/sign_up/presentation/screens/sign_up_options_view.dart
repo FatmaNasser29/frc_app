@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
-import 'package:frc_app/config/theme/app_text_style.dart';
+import 'package:frc_app/config/theme/app_theme.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/shared_gradient_background_widget.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -44,7 +44,7 @@ class SignUpOptionView extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               l10n.orContinueWith,
-              style: AppTextStyle.internal().textStyle16.copyWith(
+              style: context.textStyle.textStyle16.copyWith(
                 color: Colors.white,
               ),
             ),

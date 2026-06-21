@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:frc_app/config/theme/app_colors_pallet.dart';
+import 'package:frc_app/config/theme/app_theme.dart';
 
 class CustomSnackBar {
   static void showSuccess(BuildContext context, String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: AppColorsPallet.assentsgreen,
+        backgroundColor: context.colors.assentsgreen,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         margin: const EdgeInsets.all(16),
@@ -18,7 +18,7 @@ class CustomSnackBar {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: AppColorsPallet.assentsRed,
+        backgroundColor: context.colors.assentsRed,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         margin: const EdgeInsets.all(16),

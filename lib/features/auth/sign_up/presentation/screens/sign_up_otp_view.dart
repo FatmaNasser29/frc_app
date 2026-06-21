@@ -5,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frc_app/config/l10n/failure_localizer.dart';
 import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
-import 'package:frc_app/config/theme/app_colors_pallet.dart';
-import 'package:frc_app/config/theme/app_text_style.dart';
+import 'package:frc_app/config/theme/app_theme.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/shared_gradient_background_widget.dart';
 import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_cubit.dart';
@@ -115,8 +114,8 @@ class _SignUpOtpViewState extends State<SignUpOtpView> {
                 child: Text(
                   widget.phoneNumber,
                   textAlign: TextAlign.center,
-                  style: AppTextStyle.internal().textStyle16.copyWith(
-                    color: AppColorsPallet.white.withValues(alpha: 0.8),
+                  style: context.textStyle.textStyle16.copyWith(
+                    color: Colors.white.withValues(alpha: 0.8),
                   ),
                 ),
               ),
@@ -138,8 +137,8 @@ class _SignUpOtpViewState extends State<SignUpOtpView> {
                         keyboardType: TextInputType.number,
                         textAlign: TextAlign.center,
                         maxLength: 1,
-                        style: AppTextStyle.internal().textStyle24.copyWith(
-                          color: AppColorsPallet.white,
+                        style: context.textStyle.textStyle24.copyWith(
+                          color: Colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                         decoration: InputDecoration(
@@ -149,20 +148,20 @@ class _SignUpOtpViewState extends State<SignUpOtpView> {
                           contentPadding: EdgeInsets.zero,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(14),
-                            borderSide: BorderSide(
-                              color: AppColorsPallet.white,
+                            borderSide: const BorderSide(
+                              color: Colors.white,
                             ),
                           ),
                           enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(14),
-                            borderSide: BorderSide(
-                              color: AppColorsPallet.white,
+                            borderSide: const BorderSide(
+                              color: Colors.white,
                             ),
                           ),
                           focusedBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(14),
-                            borderSide: BorderSide(
-                              color: AppColorsPallet.white,
+                            borderSide: const BorderSide(
+                              color: Colors.white,
                               width: 2,
                             ),
                           ),
@@ -242,8 +241,8 @@ class _SignUpOtpViewState extends State<SignUpOtpView> {
                   secondsRemaining == 0
                       ? l10n.resend
                       : l10n.resendCountdownText(secondsRemaining),
-                  style: AppTextStyle.internal().textStyle16.copyWith(
-                    color: AppColorsPallet.white,
+                  style: context.textStyle.textStyle16.copyWith(
+                    color: Colors.white,
                     fontWeight: FontWeight.w600,
                   ),
                 ),
