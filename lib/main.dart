@@ -24,14 +24,13 @@ class FrcApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.dark,
-      // locale: Locale("ar"),
+      themeMode: ThemeMode.system,
       localizationsDelegates: const [
         CountryLocalizations.delegate,
         ...AppLocalizations.localizationsDelegates,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: RoutesName.signUpOptions,
+      initialRoute: RoutesName.splash,
       onGenerateRoute: RoutesGenerator.onGenerator,
     );
   }

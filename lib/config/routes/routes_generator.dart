@@ -43,6 +43,7 @@ class RoutesGenerator {
             create: (_) => getIt<SigninCubit>(),
             child: const SignInView(),
           ),
+          settings: settings,
         );
 
       case RoutesName.signUp:
@@ -51,6 +52,7 @@ class RoutesGenerator {
             create: (_) => getIt<SignupCubit>(),
             child: const SignupView(),
           ),
+          settings: settings,
         );
 
       case RoutesName.forgetPassword:
@@ -59,6 +61,7 @@ class RoutesGenerator {
             create: (_) => getIt<ForgetPasswordCubit>(),
             child: const ForgetPasswordView(),
           ),
+          settings: settings,
         );
       case RoutesName.forgetPasswordOtpView:
         final phoneNumber = settings.arguments as String? ?? '';
@@ -68,6 +71,7 @@ class RoutesGenerator {
             create: (_) => getIt<ResendOtpCubit>(),
             child: ForgetPasswordOtpView(phoneNumber: phoneNumber),
           ),
+          settings: settings,
         );
 
       case RoutesName.signUpOtpView:
@@ -81,6 +85,7 @@ class RoutesGenerator {
             ],
             child: SignUpOtpView(phoneNumber: phoneNumber),
           ),
+          settings: settings,
         );
       case RoutesName.resetPassword:
         return MaterialPageRoute(
@@ -126,6 +131,7 @@ class RoutesGenerator {
             ],
             child: SignInOtpView(phoneNumber: phoneNumber),
           ),
+          settings: settings,
         );
 
       case RoutesName.socialAuthWebView:

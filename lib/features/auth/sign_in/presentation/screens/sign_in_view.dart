@@ -127,10 +127,10 @@ class _SignInViewState extends State<SignInView> {
                     const Spacer(),
                     CustomTextButton(
                       onPressed: () {
-                        Navigator.pushReplacementNamed(
-                          context,
-                          RoutesName.forgetPassword,
-                        );
+                    Navigator.pushNamed(
+                      context,
+                      RoutesName.forgetPassword,
+                    );
                       },
                       text: l10n.forgetPasswordQuestion,
                       fontWeight: FontWeight.bold,
@@ -147,11 +147,10 @@ class _SignInViewState extends State<SignInView> {
                       state.message ?? l10n.loginSuccessful,
                     );
 
-                    Navigator.pushNamed(
+                    Navigator.pushNamedAndRemoveUntil(
                       context,
-                      RoutesName.signInOtpView,
-                      arguments:
-                          '$selectedCountryCode${phoneController.text.trim()}',
+                      RoutesName.home,
+                      (route) => false,
                     );
                   }
 

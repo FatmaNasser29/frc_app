@@ -186,11 +186,11 @@ class _SignUpOtpViewState extends State<SignUpOtpView> {
 
               BlocConsumer<SignupCubit, SignupState>(
                 listener: (context, state) {
-                  if (state.status == SignupStatus.success) {
+                  if (state.status == SignupStatus.verifySuccess) {
                     Navigator.pushReplacementNamed(context, RoutesName.home);
                   }
 
-                  if (state.status == SignupStatus.error) {
+                  if (state.status == SignupStatus.verifyError) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text(
@@ -202,26 +202,28 @@ class _SignUpOtpViewState extends State<SignUpOtpView> {
                 },
                 builder: (context, state) {
                   return CustomElevatedButton(
-                    text: state.status == SignupStatus.loading
+                    text: state.status == SignupStatus.verifyLoading
                         ? l10n.loading
                         : l10n.verify,
-                    onPressed: () {
-                      final otp = otpCode;
+                    onPressed: state.status == SignupStatus.verifyLoading
+                        ? () {}
+                        : () {
+                            final otp = otpCode;
 
-                      if (otp.length != 6) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(l10n.pleaseEnterSixDigitOtp),
-                          ),
-                        );
-                        return;
-                      }
+                            if (otp.length != 6) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(l10n.pleaseEnterSixDigitOtp),
+                                ),
+                              );
+                              return;
+                            }
 
-                      context.read<SignupCubit>().verifyOtp(
-                        phoneNumber: widget.phoneNumber,
-                        otp: otpCode,
-                      );
-                    },
+                            context.read<SignupCubit>().verifyOtp(
+                              phoneNumber: widget.phoneNumber,
+                              otp: otpCode,
+                            );
+                          },
                   );
                 },
               ),

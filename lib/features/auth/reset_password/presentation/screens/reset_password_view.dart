@@ -41,11 +41,37 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
     final String phoneNumber = args['phoneNumber'];
 
     final String otp = args['otp'];
-    return Scaffold(
-      body: AuthGradientBackground(
-        title: l10n.setNewPassword,
-        description: l10n.setNewPasswordDescription,
-        child: Form(
+
+    void navigateToSignIn() {
+      bool hasSignIn = false;
+      Navigator.of(context).popUntil((route) {
+        if (route.settings.name == RoutesName.signIn) {
+          hasSignIn = true;
+          return true;
+        }
+        return false;
+      });
+      if (!hasSignIn) {
+        Navigator.pushNamedAndRemoveUntil(
+          context,
+          RoutesName.signIn,
+          (route) => false,
+        );
+      }
+    }
+
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) {
+        if (didPop) return;
+        navigateToSignIn();
+      },
+      child: Scaffold(
+        body: AuthGradientBackground(
+          title: l10n.setNewPassword,
+          description: l10n.setNewPasswordDescription,
+          onBackPressed: navigateToSignIn,
+          child: Form(
           key: formKey,
           child: Column(
             children: [
@@ -130,6 +156,7 @@ class _ResetPasswordViewState extends State<ResetPasswordView> {
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
 }

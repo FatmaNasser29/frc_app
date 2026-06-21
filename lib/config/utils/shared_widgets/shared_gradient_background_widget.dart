@@ -8,6 +8,7 @@ class AuthGradientBackground extends StatelessWidget {
   final String? description;
   final String? footerText;
   final TextStyle? descriptionStyle;
+  final VoidCallback? onBackPressed;
 
   const AuthGradientBackground({
     super.key,
@@ -16,6 +17,7 @@ class AuthGradientBackground extends StatelessWidget {
     this.description,
     this.descriptionStyle,
     this.footerText,
+    this.onBackPressed,
   });
 
   @override
@@ -39,10 +41,40 @@ class AuthGradientBackground extends StatelessWidget {
                       children: [
                         SizedBox(
                           height: 64,
-                          width: 166,
-                          child: Image.asset(
-                            'assets/images/frc_logo.png',
-                            color: Colors.white,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              if (Navigator.canPop(context))
+                                Align(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: Padding(
+                                    padding: const EdgeInsetsDirectional.only(
+                                      start: 16,
+                                    ),
+                                    child: IconButton(
+                                      icon: Icon(
+                                        Icons.arrow_back_ios_new,
+                                        color: Colors.white,
+                                        size: 24,
+                                        textDirection: Directionality.of(context),
+                                      ),
+                                      onPressed:
+                                          onBackPressed ??
+                                          () => Navigator.of(context).pop(),
+                                    ),
+                                  ),
+                                ),
+                              Center(
+                                child: SizedBox(
+                                  height: 64,
+                                  width: 166,
+                                  child: Image.asset(
+                                    'assets/images/frc_logo.png',
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
 
