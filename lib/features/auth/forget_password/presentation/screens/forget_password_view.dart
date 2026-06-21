@@ -67,6 +67,32 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                       color: Colors.white,
                       fontSize: 14,
                     ),
+                    dialogBackgroundColor: context.colors.white,
+                    dialogTextStyle: context.textStyle.textStyle14.copyWith(
+                      color: context.colors.assentsBlack,
+                    ),
+                    searchStyle: context.textStyle.textStyle14.copyWith(
+                      color: context.colors.assentsBlack,
+                    ),
+                    searchDecoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: context.colors.assentsGray,
+                      ),
+                      hintStyle: context.textStyle.textStyle14.copyWith(
+                        color: context.colors.assentsGray,
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: context.colors.backgroundSecondary,
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: context.colors.assentsPurple,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),

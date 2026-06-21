@@ -67,6 +67,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             keyboardType: widget.keyboardType,
             obscureText: isObscure,
             validator: widget.validator,
+            textDirection: widget.keyboardType == TextInputType.phone ? TextDirection.ltr : null,
             style: TextStyle(color: widget.textColor, fontSize: 16),
             decoration: InputDecoration(
               suffixIcon: widget.obscureText

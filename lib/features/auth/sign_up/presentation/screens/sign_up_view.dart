@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frc_app/config/l10n/failure_localizer.dart';
 import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
+import 'package:frc_app/config/theme/app_theme.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_snack_bar.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_text_form_field.dart';
@@ -83,6 +84,32 @@ class _SignupViewState extends State<SignupView> {
                     alignLeft: false,
                     padding: EdgeInsets.zero,
                     textStyle: const TextStyle(color: Colors.white, fontSize: 14),
+                    dialogBackgroundColor: context.colors.white,
+                    dialogTextStyle: context.textStyle.textStyle14.copyWith(
+                      color: context.colors.assentsBlack,
+                    ),
+                    searchStyle: context.textStyle.textStyle14.copyWith(
+                      color: context.colors.assentsBlack,
+                    ),
+                    searchDecoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.search,
+                        color: context.colors.assentsGray,
+                      ),
+                      hintStyle: context.textStyle.textStyle14.copyWith(
+                        color: context.colors.assentsGray,
+                      ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: context.colors.backgroundSecondary,
+                        ),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: context.colors.assentsPurple,
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),

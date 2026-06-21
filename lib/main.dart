@@ -1,3 +1,4 @@
+import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:frc_app/config/routes/routes_generator.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
@@ -23,9 +24,12 @@ class FrcApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      // locale: Locale("ar"),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      themeMode: ThemeMode.dark,
+      locale: Locale("ar"),
+      localizationsDelegates: const [
+        CountryLocalizations.delegate,
+        ...AppLocalizations.localizationsDelegates,
+      ],
       supportedLocales: AppLocalizations.supportedLocales,
       initialRoute: RoutesName.onBoarding,
       onGenerateRoute: RoutesGenerator.onGenerator,
