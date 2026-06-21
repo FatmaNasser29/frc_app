@@ -64,19 +64,26 @@ class _SignupViewState extends State<SignupView> {
                 controller: phoneController,
                 label: l10n.phone,
                 hintText: l10n.phoneHint,
+                keyboardType: TextInputType.phone,
                 validator: (value) => AppValidators.validatePhone(value, l10n),
-
-                prefixIcon: CountryCodePicker(
-                  onChanged: (country) {
-                    selectedCountryCode = country.dialCode ?? '+20';
-                  },
-                  initialSelection: 'EG',
-                  favorite: const ['+20', 'EG'],
-                  showCountryOnly: false,
-                  showOnlyCountryWhenClosed: false,
-                  alignLeft: false,
-                  padding: EdgeInsets.zero,
-                  textStyle: const TextStyle(color: Colors.white, fontSize: 14),
+                prefixIconConstraints: const BoxConstraints(
+                  minWidth: 95,
+                  minHeight: 24,
+                ),
+                prefixIcon: SizedBox(
+                  width: 90,
+                  child: CountryCodePicker(
+                    onChanged: (country) {
+                      selectedCountryCode = country.dialCode ?? '+20';
+                    },
+                    initialSelection: 'EG',
+                    favorite: const ['+20', 'EG'],
+                    showCountryOnly: false,
+                    showOnlyCountryWhenClosed: false,
+                    alignLeft: false,
+                    padding: EdgeInsets.zero,
+                    textStyle: const TextStyle(color: Colors.white, fontSize: 14),
+                  ),
                 ),
               ),
 
@@ -144,7 +151,7 @@ class _SignupViewState extends State<SignupView> {
               ),
 
               Padding(
-                padding: const EdgeInsets.only(left: 44, right: 44),
+                padding: const EdgeInsets.symmetric(horizontal: 44),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [

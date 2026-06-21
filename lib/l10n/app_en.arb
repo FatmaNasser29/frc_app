@@ -25,6 +25,7 @@
   "signIn": "Sign In",
   "signUp": "Sign Up",
   "login": "Login",
+  "skipToLogin": "Skip to Login",
   "loading": "Loading...",
   "loginSuccessful": "Login Successful",
   "somethingWentWrong": "Something went wrong",

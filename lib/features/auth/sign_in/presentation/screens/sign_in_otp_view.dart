@@ -127,6 +127,7 @@ class _SignInOtpViewState extends State<SignInOtpView> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
+                  textDirection: TextDirection.ltr,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(
                     6,

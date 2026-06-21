@@ -49,7 +49,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       children: [
         if (widget.label != null) ...[
           Padding(
-            padding: const EdgeInsets.only(left: 20),
+            padding: const EdgeInsetsDirectional.only(start: 20),
             child: Text(
               widget.label!,
               style: context.textStyle.textStyle16.copyWith(
@@ -97,7 +97,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                       child: widget.prefixIcon,
                     ),
 
-              prefixIconConstraints: const BoxConstraints(
+              prefixIconConstraints: widget.prefixIconConstraints ?? const BoxConstraints(
                 minWidth: 24,
                 minHeight: 24,
               ),

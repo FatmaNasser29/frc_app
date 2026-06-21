@@ -230,6 +230,12 @@ abstract class AppLocalizations {
   /// **'Login'**
   String get login;
 
+  /// No description provided for @skipToLogin.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip to Login'**
+  String get skipToLogin;
+
   /// No description provided for @loading.
   ///
   /// In en, this message translates to:

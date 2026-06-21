@@ -48,7 +48,9 @@ class OnboardingCard extends StatelessWidget {
                   : IconButton(
                       onPressed: onBack,
                       icon: Icon(
-                        Icons.arrow_back,
+                        Directionality.of(context) == TextDirection.rtl
+                            ? Icons.arrow_forward
+                            : Icons.arrow_back,
                         color: context.colors.assentsPurple,
                       ),
                     ),
@@ -80,10 +82,10 @@ class OnboardingCard extends StatelessWidget {
           const SizedBox(height: 24),
 
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: AlignmentDirectional.centerStart,
             child: Text(
               title,
-              textAlign: TextAlign.left,
+              textAlign: TextAlign.start,
               style: context.textStyle.textStyle24.copyWith(
                 fontWeight: FontWeight.bold,
                 fontSize: 32,
@@ -95,7 +97,7 @@ class OnboardingCard extends StatelessWidget {
           const SizedBox(height: 24),
 
           Align(
-            alignment: Alignment.centerLeft,
+            alignment: AlignmentDirectional.centerStart,
             child: descriptionHeader != null
                 ? Text.rich(
                     TextSpan(
@@ -117,11 +119,11 @@ class OnboardingCard extends StatelessWidget {
                         ),
                       ],
                     ),
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.start,
                   )
                 : Text(
                     description,
-                    textAlign: TextAlign.left,
+                    textAlign: TextAlign.start,
                     style: context.textStyle.textStyle16.copyWith(
                       color: context.colors.assentsGray,
                       height: 1.6,
@@ -158,9 +160,9 @@ class OnboardingCard extends StatelessWidget {
                   ),
                 ),
 
-                if (currentIndex == 0)
-                  Positioned(
-                    right: 0,
+                if (currentIndex < totalPages - 1)
+                  PositionedDirectional(
+                    end: 0,
                     child: TextButton(
                       onPressed: onNext,
                       style: TextButton.styleFrom(
@@ -179,7 +181,9 @@ class OnboardingCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Icon(
-                            Icons.arrow_forward,
+                            Directionality.of(context) == TextDirection.rtl
+                                ? Icons.arrow_back
+                                : Icons.arrow_forward,
                             size: 18,
                             color: context.colors.assentsDark,
                           ),

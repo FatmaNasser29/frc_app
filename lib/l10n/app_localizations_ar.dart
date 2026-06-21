@@ -76,6 +76,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get login => 'تسجيل الدخول';
 
   @override
+  String get skipToLogin => 'تخطي إلى تسجيل الدخول';
+
+  @override
   String get loading => 'جاري التحميل...';
 
   @override

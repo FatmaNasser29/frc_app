@@ -22,6 +22,7 @@
   "signIn": "تسجيل الدخول",
   "signUp": "إنشاء حساب",
   "login": "تسجيل الدخول",
+  "skipToLogin": "تخطي إلى تسجيل الدخول",
   "loading": "جاري التحميل...",
   "loginSuccessful": "تم تسجيل الدخول بنجاح",
   "somethingWentWrong": "حدث خطأ ما",

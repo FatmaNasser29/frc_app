@@ -42,28 +42,30 @@ class _OnboardingViewState extends State<OnboardingView> {
                       Navigator.pushReplacementNamed(context, RoutesName.signIn);
                     },
                     child: Container(
-                      width: 124,
-                      height: 48,
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                       decoration: BoxDecoration(
                         gradient: context.gradients.primaryGradient,
                         borderRadius: BorderRadius.circular(40),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            l10n.login,
+                            currentIndex == 3 ? l10n.login : l10n.skipToLogin,
                             style: const TextStyle(
                               color: Colors.white,
-                              fontSize: 22,
+                              fontSize: 16,
                               fontWeight: FontWeight.w600,
                             ),
                           ),
-                          const SizedBox(width: 10),
-                          const Icon(
-                            Icons.arrow_forward,
+                          const SizedBox(width: 8),
+                          Icon(
+                            Directionality.of(context) == TextDirection.rtl
+                                ? Icons.arrow_back
+                                : Icons.arrow_forward,
                             color: Colors.white,
-                            size: 20,
+                            size: 18,
                           ),
                         ],
                       ),

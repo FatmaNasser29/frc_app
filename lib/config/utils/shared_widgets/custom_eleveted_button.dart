@@ -22,7 +22,7 @@ class CustomElevatedButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 20, right: 20, left: 20),
+      padding: const EdgeInsetsDirectional.only(top: 20, end: 20, start: 20),
       child: SizedBox(
         height: 76,
         width: double.infinity,
@@ -43,7 +43,7 @@ class CustomElevatedButton extends StatelessWidget {
                 children: [
                   if (icon != null)
                     Padding(
-                      padding: const EdgeInsets.only(right: 38),
+                      padding: const EdgeInsetsDirectional.only(end: 38),
                       child: SizedBox(width: 24, height: 24, child: icon),
                     ),
 

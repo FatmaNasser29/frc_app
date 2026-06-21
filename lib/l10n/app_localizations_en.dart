@@ -76,6 +76,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get login => 'Login';
 
   @override
+  String get skipToLogin => 'Skip to Login';
+
+  @override
   String get loading => 'Loading...';
 
   @override

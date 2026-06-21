@@ -112,6 +112,7 @@ class _ForgetPasswordOtpViewState extends State<ForgetPasswordOtpView> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Row(
+                  textDirection: TextDirection.ltr,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: List.generate(
                     6,
