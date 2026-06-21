@@ -1,4 +1,4 @@
-import 'package:frc_app/features/onboarding/domain/entities/on_boarding_entity.dart';
+import 'package:frc_app/features/onboarding/domain/entities/onboarding_entity.dart';
 
 class OnboardingModel extends OnboardingEntity {
   const OnboardingModel({

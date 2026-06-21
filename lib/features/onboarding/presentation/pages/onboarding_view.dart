@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_theme.dart';
-import 'package:frc_app/features/onboarding/data/data_sources/on_boarding_data.dart';
+import 'package:frc_app/features/onboarding/data/data_sources/onboarding_data.dart';
 import 'package:frc_app/features/onboarding/presentation/widgets/reusable_card_widget.dart';
 
 class OnboardingView extends StatefulWidget {
@@ -39,10 +39,16 @@ class _OnboardingViewState extends State<OnboardingView> {
                   const Spacer(),
                   InkWell(
                     onTap: () {
-                      Navigator.pushReplacementNamed(context, RoutesName.signIn);
+                      Navigator.pushReplacementNamed(
+                        context,
+                        RoutesName.signIn,
+                      );
                     },
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 10,
+                      ),
                       decoration: BoxDecoration(
                         gradient: context.gradients.primaryGradient,
                         borderRadius: BorderRadius.circular(40),
@@ -60,13 +66,11 @@ class _OnboardingViewState extends State<OnboardingView> {
                             ),
                           ),
                           const SizedBox(width: 8),
-                          Transform.flip(
-                            flipX: Directionality.of(context) == TextDirection.rtl,
-                            child: const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 18,
-                            ),
+                          Icon(
+                            Icons.arrow_forward,
+                            size: 18,
+                            color: Colors.white,
+                            textDirection: Directionality.of(context),
                           ),
                         ],
                       ),

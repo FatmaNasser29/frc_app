@@ -47,12 +47,11 @@ class OnboardingCard extends StatelessWidget {
                   ? const SizedBox(width: 48)
                   : IconButton(
                       onPressed: onBack,
-                      icon: Transform.flip(
-                        flipX: Directionality.of(context) == TextDirection.rtl,
-                        child: Icon(
-                          Icons.arrow_back,
-                          color: context.colors.assentsPurple,
-                        ),
+                      icon: Icon(
+                        Icons.arrow_back,
+                        size: 18,
+                        color: context.colors.assentsPurple,
+                        textDirection: Directionality.of(context),
                       ),
                     ),
               const Spacer(),
@@ -73,10 +72,7 @@ class OnboardingCard extends StatelessWidget {
             child: SizedBox(
               height: 164,
               width: 164,
-              child: Image.asset(
-                image,
-                fit: BoxFit.contain,
-              ),
+              child: Image.asset(image, fit: BoxFit.contain),
             ),
           ),
 
@@ -152,7 +148,9 @@ class OnboardingCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(20),
                         color: currentIndex == index
                             ? null
-                            : context.colors.backgroundSecondary.withValues(alpha: .5),
+                            : context.colors.backgroundSecondary.withValues(
+                                alpha: .5,
+                              ),
                         gradient: currentIndex == index
                             ? context.gradients.primaryGradient
                             : null,
@@ -181,13 +179,11 @@ class OnboardingCard extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 4),
-                          Transform.flip(
-                            flipX: Directionality.of(context) == TextDirection.rtl,
-                            child: Icon(
-                              Icons.arrow_forward,
-                              size: 18,
-                              color: context.colors.assentsDark,
-                            ),
+                          Icon(
+                            Icons.arrow_forward,
+                            size: 18,
+                            color: context.colors.assentsDark,
+                            textDirection: Directionality.of(context),
                           ),
                         ],
                       ),

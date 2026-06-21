@@ -1,4 +1,4 @@
-import 'package:frc_app/features/onboarding/data/models/on_boarding_model.dart';
+import 'package:frc_app/features/onboarding/data/models/onboarding_model.dart';
 import 'package:frc_app/l10n/app_localizations.dart';
 
 class OnboardingData {
