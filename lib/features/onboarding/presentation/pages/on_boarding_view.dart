@@ -60,12 +60,13 @@ class _OnboardingViewState extends State<OnboardingView> {
                             ),
                           ),
                           const SizedBox(width: 8),
-                          Icon(
-                            Directionality.of(context) == TextDirection.rtl
-                                ? Icons.arrow_back
-                                : Icons.arrow_forward,
-                            color: Colors.white,
-                            size: 18,
+                          Transform.flip(
+                            flipX: Directionality.of(context) == TextDirection.rtl,
+                            child: const Icon(
+                              Icons.arrow_forward,
+                              color: Colors.white,
+                              size: 18,
+                            ),
                           ),
                         ],
                       ),

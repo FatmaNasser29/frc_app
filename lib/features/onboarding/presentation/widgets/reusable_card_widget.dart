@@ -47,11 +47,12 @@ class OnboardingCard extends StatelessWidget {
                   ? const SizedBox(width: 48)
                   : IconButton(
                       onPressed: onBack,
-                      icon: Icon(
-                        Directionality.of(context) == TextDirection.rtl
-                            ? Icons.arrow_forward
-                            : Icons.arrow_back,
-                        color: context.colors.assentsPurple,
+                      icon: Transform.flip(
+                        flipX: Directionality.of(context) == TextDirection.rtl,
+                        child: Icon(
+                          Icons.arrow_back,
+                          color: context.colors.assentsPurple,
+                        ),
                       ),
                     ),
               const Spacer(),
@@ -180,12 +181,13 @@ class OnboardingCard extends StatelessWidget {
                             ),
                           ),
                           const SizedBox(width: 4),
-                          Icon(
-                            Directionality.of(context) == TextDirection.rtl
-                                ? Icons.arrow_back
-                                : Icons.arrow_forward,
-                            size: 18,
-                            color: context.colors.assentsDark,
+                          Transform.flip(
+                            flipX: Directionality.of(context) == TextDirection.rtl,
+                            child: Icon(
+                              Icons.arrow_forward,
+                              size: 18,
+                              color: context.colors.assentsDark,
+                            ),
                           ),
                         ],
                       ),
