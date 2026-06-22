@@ -15,6 +15,9 @@ class AppLocalizationsAr extends AppLocalizations {
   String get fashionIndustryNetwork => 'شبكة صناعة الأزياء';
 
   @override
+  String get fashionAndBeauty => 'الموضة والجمال';
+
+  @override
   String get connectWithProfessionalsLocally =>
       'تواصل مع أفضل المحترفين محلياً';
 
@@ -253,4 +256,17 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get internalServerError => 'خطأ داخلي في الخادم';
+
+  @override
+  String get stayTuned => 'ترقبوا!';
+
+  @override
+  String get stayTunedDescription =>
+      'المنظومة الرائدة التي تربط المصنّعين وتجار الجملة والعلامات التجارية. أدخل رقم هاتفك أو بريدك الإلكتروني لتكون أول من يعلم وينضم إلى شبكة FRC عند الإطلاق.';
+
+  @override
+  String get stayTunedFooter => 'نصنع مستقبل\nالموضة والجمال';
+
+  @override
+  String get stayTunedSuccess => 'تمت إضافتك إلى قائمة الانتظار!';
 }

@@ -21,6 +21,8 @@ import 'package:frc_app/features/onboarding/presentation/pages/onboarding_view.d
 import 'package:frc_app/features/auth/shared/social_auth_webview.dart';
 import 'package:frc_app/features/setting/setting_view.dart';
 import 'package:frc_app/features/splash/splash_screen_view.dart';
+import 'package:frc_app/features/stay_tuned/presentation/cubit/stay_tuned_cubit.dart';
+import 'package:frc_app/features/stay_tuned/presentation/screens/stay_tuned_view.dart';
 
 class RoutesGenerator {
   static Route<dynamic>? onGenerator(RouteSettings settings) {
@@ -143,6 +145,15 @@ class RoutesGenerator {
           builder: (context) => SocialAuthWebViewPage(
             authUrl: authUrl,
             title: title,
+          ),
+          settings: settings,
+        );
+
+      case RoutesName.stayTuned:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => StayTunedCubit(),
+            child: const StayTunedView(),
           ),
           settings: settings,
         );

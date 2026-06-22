@@ -110,6 +110,12 @@ abstract class AppLocalizations {
   /// **'The Fashion Industry Network'**
   String get fashionIndustryNetwork;
 
+  /// No description provided for @fashionAndBeauty.
+  ///
+  /// In en, this message translates to:
+  /// **'Fashion & Beauty'**
+  String get fashionAndBeauty;
+
   /// No description provided for @connectWithProfessionalsLocally.
   ///
   /// In en, this message translates to:
@@ -565,6 +571,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Internal server error'**
   String get internalServerError;
+
+  /// No description provided for @stayTuned.
+  ///
+  /// In en, this message translates to:
+  /// **'Stay Tuned!'**
+  String get stayTuned;
+
+  /// No description provided for @stayTunedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The premier ecosystem connecting manufacturers, wholesalers, and brands. Enter your phone number or your email and you will be the first to know and Join FRC network when we are live.'**
+  String get stayTunedDescription;
+
+  /// No description provided for @stayTunedFooter.
+  ///
+  /// In en, this message translates to:
+  /// **'Shaping the Future of\nFashion & Beauty'**
+  String get stayTunedFooter;
+
+  /// No description provided for @stayTunedSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'You have been added to our waitlist!'**
+  String get stayTunedSuccess;
 }
 
 class _AppLocalizationsDelegate

@@ -188,7 +188,9 @@ class _SignupViewState extends State<SignupView> {
                   children: [
                     Text(
                       l10n.haveAccount,
-                      style: const TextStyle(color: Colors.white, fontSize: 18),
+                      style: context.textStyle.textStyle16.copyWith(
+                        color: context.colors.white,
+                      ),
                     ),
                     TextButton(
                       onPressed: () {
@@ -199,9 +201,8 @@ class _SignupViewState extends State<SignupView> {
                       },
                       child: Text(
                         l10n.signIn,
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
+                        style: context.textStyle.textStyle16.copyWith(
+                          color: context.colors.white,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

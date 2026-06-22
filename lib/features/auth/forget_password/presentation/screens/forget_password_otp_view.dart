@@ -7,6 +7,7 @@ import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_theme.dart';
 import 'package:frc_app/config/utils/shared_widgets/custom_eleveted_button.dart';
+import 'package:frc_app/config/utils/shared_widgets/custom_snack_bar.dart';
 import 'package:frc_app/config/utils/shared_widgets/shared_gradient_background_widget.dart';
 import 'package:frc_app/features/auth/shared/resend_otp/presentation/cubit/resend_otp_cubit.dart';
 import 'package:frc_app/features/auth/shared/resend_otp/presentation/cubit/resend_otp_state.dart';
@@ -84,20 +85,16 @@ class _ForgetPasswordOtpViewState extends State<ForgetPasswordOtpView> {
     return BlocListener<ResendOtpCubit, ResendOtpState>(
       listener: (context, state) {
         if (state.resendStatus == ResendOtpStatus.success) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(state.message ?? l10n.otpResentSuccessfully),
-            ),
+          CustomSnackBar.showSuccess(
+            context,
+            state.message ?? l10n.otpResentSuccessfully,
           );
         }
 
         if (state.resendStatus == ResendOtpStatus.error) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                FailureLocalizer.localize(l10n, state.errorMessage),
-              ),
-            ),
+          CustomSnackBar.showError(
+            context,
+            FailureLocalizer.localize(l10n, state.errorMessage),
           );
         }
       },
@@ -177,10 +174,9 @@ class _ForgetPasswordOtpViewState extends State<ForgetPasswordOtpView> {
                   final otp = otpCode.trim();
 
                   if (otp.length != 6) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(l10n.pleaseEnterSixDigitOtp),
-                      ),
+                    CustomSnackBar.showError(
+                      context,
+                      l10n.pleaseEnterSixDigitOtp,
                     );
                     return;
                   }

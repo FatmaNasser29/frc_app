@@ -5,6 +5,7 @@
     "description": "Application title shown in the task switcher"
   },
   "fashionIndustryNetwork": "The Fashion Industry Network",
+  "fashionAndBeauty": "Fashion & Beauty",
   "connectWithProfessionalsLocally": "Connect with top professionals locally",
   "chooseSignInOptionTitle": "Choose Your Best\n Sign in Option",
   "signWithGoogle": "Sign With Google",
@@ -87,5 +88,9 @@
   "noInternetConnection": "No internet connection",
   "unexpectedError": "Unexpected error occurred",
   "tooManyRequests": "Too many requests. Please try again later.",
-  "internalServerError": "Internal server error"
+  "internalServerError": "Internal server error",
+  "stayTuned": "Stay Tuned!",
+  "stayTunedDescription": "The premier ecosystem connecting manufacturers, wholesalers, and brands. Enter your phone number or your email and you will be the first to know and Join FRC network when we are live.",
+  "stayTunedFooter": "Shaping the Future of\nFashion & Beauty",
+  "stayTunedSuccess": "You have been added to our waitlist!"
 }

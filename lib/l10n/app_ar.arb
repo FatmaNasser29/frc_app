@@ -2,6 +2,7 @@
   "@@locale": "ar",
   "appTitle": "تطبيق FRC",
   "fashionIndustryNetwork": "شبكة صناعة الأزياء",
+  "fashionAndBeauty": "الموضة والجمال",
   "connectWithProfessionalsLocally": "تواصل مع أفضل المحترفين محلياً",
   "chooseSignInOptionTitle": "اختر أفضل\n طريقة لتسجيل الدخول",
   "signWithGoogle": "التسجيل عبر Google",
@@ -77,5 +78,9 @@
   "noInternetConnection": "لا يوجد اتصال بالإنترنت",
   "unexpectedError": "حدث خطأ غير متوقع",
   "tooManyRequests": "طلبات كثيرة جداً. يرجى المحاولة لاحقاً.",
-  "internalServerError": "خطأ داخلي في الخادم"
+  "internalServerError": "خطأ داخلي في الخادم",
+  "stayTuned": "ترقبوا!",
+  "stayTunedDescription": "المنظومة الرائدة التي تربط المصنّعين وتجار الجملة والعلامات التجارية. أدخل رقم هاتفك أو بريدك الإلكتروني لتكون أول من يعلم وينضم إلى شبكة FRC عند الإطلاق.",
+  "stayTunedFooter": "نصنع مستقبل\nالموضة والجمال",
+  "stayTunedSuccess": "تمت إضافتك إلى قائمة الانتظار!"
 }

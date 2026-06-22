@@ -5,17 +5,31 @@ import 'package:frc_app/config/theme/app_theme.dart';
 class AuthGradientBackground extends StatelessWidget {
   final Widget child;
   final String? title;
+  final TextStyle? titleStyle;
+  final TextAlign titleAlign;
+  final String? subtitle;
+  final TextStyle? subtitleStyle;
+  final TextAlign subtitleAlign;
   final String? description;
   final String? footerText;
   final TextStyle? descriptionStyle;
+  final TextAlign descriptionAlign;
+  final TextStyle? footerStyle;
   final VoidCallback? onBackPressed;
 
   const AuthGradientBackground({
     super.key,
     required this.child,
     this.title,
+    this.titleStyle,
+    this.titleAlign = TextAlign.center,
+    this.subtitle,
+    this.subtitleStyle,
+    this.subtitleAlign = TextAlign.center,
     this.description,
     this.descriptionStyle,
+    this.descriptionAlign = TextAlign.center,
+    this.footerStyle,
     this.footerText,
     this.onBackPressed,
   });
@@ -81,10 +95,12 @@ class AuthGradientBackground extends StatelessWidget {
                         const SizedBox(height: 22),
 
                         Text(
-                          l10n.fashionIndustryNetwork,
-                          style: context.textStyle.textStyle16.copyWith(
-                            color: Colors.white,
-                          ),
+                          subtitle ?? l10n.fashionIndustryNetwork,
+                          textAlign: subtitleAlign,
+                          style: subtitleStyle ??
+                              context.textStyle.textStyle16.copyWith(
+                                color: Colors.white,
+                              ),
                         ),
 
                         if (title != null) ...[
@@ -92,11 +108,12 @@ class AuthGradientBackground extends StatelessWidget {
 
                           Text(
                             title!,
-                            textAlign: TextAlign.center,
-                            style: context.textStyle.textStyle24.copyWith(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            textAlign: titleAlign,
+                            style: titleStyle ??
+                                context.textStyle.textStyle24.copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                ),
                           ),
                         ],
 
@@ -107,7 +124,7 @@ class AuthGradientBackground extends StatelessWidget {
                             padding: const EdgeInsets.symmetric(horizontal: 24),
                             child: Text(
                               description!,
-                              textAlign: TextAlign.center,
+                              textAlign: descriptionAlign,
                               style:
                                   descriptionStyle ??
                                   context.textStyle.textStyle16.copyWith(
@@ -126,9 +143,10 @@ class AuthGradientBackground extends StatelessWidget {
                         Text(
                           footerText ?? l10n.connectWithProfessionalsLocally,
                           textAlign: TextAlign.center,
-                          style: context.textStyle.textStyle16.copyWith(
-                            color: Colors.white,
-                          ),
+                          style: footerStyle ??
+                              context.textStyle.textStyle16.copyWith(
+                                color: Colors.white,
+                              ),
                         ),
 
                         const SizedBox(height: 16),
