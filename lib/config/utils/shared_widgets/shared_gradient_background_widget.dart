@@ -22,6 +22,7 @@ class AuthGradientBackground extends StatelessWidget {
   final double logoWidth;
   final Color? logoColor;
   final bool showLogo;
+  final bool showBackButton;
 
   const AuthGradientBackground({
     super.key,
@@ -44,6 +45,7 @@ class AuthGradientBackground extends StatelessWidget {
     this.logoWidth = 166,
     this.logoColor = Colors.white,
     this.showLogo = true,
+    this.showBackButton = true,
   });
 
   @override
@@ -70,7 +72,7 @@ class AuthGradientBackground extends StatelessWidget {
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
-                              if (Navigator.canPop(context))
+                              if (showBackButton && Navigator.canPop(context))
                                 Align(
                                   alignment: AlignmentDirectional.centerStart,
                                   child: Padding(

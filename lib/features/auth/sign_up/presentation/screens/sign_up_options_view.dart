@@ -19,6 +19,7 @@ class SignUpOptionView extends StatelessWidget {
     return Scaffold(
       body: AuthGradientBackground(
         title: l10n.chooseSignInOptionTitle,
+        showBackButton: false,
         child: Column(
           children: [
             CustomElevatedButton(

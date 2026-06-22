@@ -24,7 +24,7 @@ class FrcApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
+      themeMode: ThemeMode.light,
       localizationsDelegates: const [
         CountryLocalizations.delegate,
         ...AppLocalizations.localizationsDelegates,
