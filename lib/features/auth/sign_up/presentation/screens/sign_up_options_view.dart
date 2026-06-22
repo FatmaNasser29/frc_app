@@ -55,7 +55,7 @@ class SignUpOptionView extends StatelessWidget {
             CustomElevatedButton(
               text: l10n.yourPhoneNumber,
               onPressed: () {
-                Navigator.pushNamed(context, RoutesName.signUp);
+                Navigator.pushNamed(context, RoutesName.signIn);
               },
             ),
           ],
@@ -66,21 +66,24 @@ class SignUpOptionView extends StatelessWidget {
 
   Future<void> loginWithGoogle(BuildContext context) async {
     final redirectUrl = Uri.encodeComponent('https://fashionretailclub.com');
-    
-    final savedEmail = getIt<SigninLocalDataSource>().getLastUsedEmail();
-    final loginHint = savedEmail != null ? '&login_hint=${Uri.encodeComponent(savedEmail)}' : '';
-    final url = 'https://api.fashionretailclub.com/api/v1/auth/google?redirectUrl=$redirectUrl&prompt=select_account$loginHint';
 
-    final isMobile = !kIsWeb && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android);
+    final savedEmail = getIt<SigninLocalDataSource>().getLastUsedEmail();
+    final loginHint = savedEmail != null
+        ? '&login_hint=${Uri.encodeComponent(savedEmail)}'
+        : '';
+    final url =
+        'https://api.fashionretailclub.com/api/v1/auth/google?redirectUrl=$redirectUrl&prompt=select_account$loginHint';
+
+    final isMobile =
+        !kIsWeb &&
+        (defaultTargetPlatform == TargetPlatform.iOS ||
+            defaultTargetPlatform == TargetPlatform.android);
 
     if (isMobile) {
       Navigator.pushNamed(
         context,
         RoutesName.socialAuthWebView,
-        arguments: {
-          'authUrl': url,
-          'title': context.l10n.signWithGoogle,
-        },
+        arguments: {'authUrl': url, 'title': context.l10n.signWithGoogle},
       );
     } else {
       final uri = Uri.parse(url);
@@ -92,21 +95,24 @@ class SignUpOptionView extends StatelessWidget {
 
   Future<void> loginWithLinkedin(BuildContext context) async {
     final redirectUrl = Uri.encodeComponent('https://fashionretailclub.com');
-    
-    final savedEmail = getIt<SigninLocalDataSource>().getLastUsedEmail();
-    final loginHint = savedEmail != null ? '&login_hint=${Uri.encodeComponent(savedEmail)}&username=${Uri.encodeComponent(savedEmail)}' : '';
-    final url = 'https://api.fashionretailclub.com/api/v1/auth/linkedin?redirectUrl=$redirectUrl$loginHint';
 
-    final isMobile = !kIsWeb && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android);
+    final savedEmail = getIt<SigninLocalDataSource>().getLastUsedEmail();
+    final loginHint = savedEmail != null
+        ? '&login_hint=${Uri.encodeComponent(savedEmail)}&username=${Uri.encodeComponent(savedEmail)}'
+        : '';
+    final url =
+        'https://api.fashionretailclub.com/api/v1/auth/linkedin?redirectUrl=$redirectUrl$loginHint';
+
+    final isMobile =
+        !kIsWeb &&
+        (defaultTargetPlatform == TargetPlatform.iOS ||
+            defaultTargetPlatform == TargetPlatform.android);
 
     if (isMobile) {
       Navigator.pushNamed(
         context,
         RoutesName.socialAuthWebView,
-        arguments: {
-          'authUrl': url,
-          'title': context.l10n.signWithLinkedin,
-        },
+        arguments: {'authUrl': url, 'title': context.l10n.signWithLinkedin},
       );
     } else {
       final uri = Uri.parse(url);

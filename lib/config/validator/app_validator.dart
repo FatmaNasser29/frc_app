@@ -13,14 +13,47 @@ class AppValidators {
     return null;
   }
 
-  static String? validatePhone(String? value, AppLocalizations l10n) {
+  /// Strips the trunk prefix `0` from a local number when a country code is
+  /// provided, then returns the full E.164-ready phone string.
+  ///
+  /// Examples:
+  ///   normalizePhone('+20', '01012345678') → '+201012345678'
+  ///   normalizePhone('+20', '1012345678')  → '+201012345678'
+  ///   normalizePhone('',    '01012345678') → '01012345678'
+  static String normalizePhone(String countryCode, String localNumber) {
+    final local = localNumber.trim();
+    final normalized =
+        countryCode.isNotEmpty && local.startsWith('0')
+            ? local.substring(1)
+            : local;
+    return '$countryCode$normalized';
+  }
+
+  static String? validatePhone(
+    String? value,
+    AppLocalizations l10n, {
+    String countryCode = '',
+  }) {
     if (value == null || value.trim().isEmpty) {
       return l10n.phoneRequired;
     }
 
-    final phoneRegex = RegExp(r'^\+?[0-9]{10,15}$');
+    final localNumber = value.trim();
 
-    if (!phoneRegex.hasMatch(value.trim())) {
+    // Local part must be digits only
+    if (!RegExp(r'^[0-9]+$').hasMatch(localNumber)) {
+      return l10n.validPhone;
+    }
+
+    // Strip trunk 0 (e.g. 01012345678 → 1012345678) before length check
+    final stripped =
+        countryCode.isNotEmpty && localNumber.startsWith('0')
+            ? localNumber.substring(1)
+            : localNumber;
+
+    // Combine with country code digits and validate total E.164 length (7–15)
+    final digitsOnly = countryCode.replaceAll(RegExp(r'\D'), '') + stripped;
+    if (digitsOnly.length < 7 || digitsOnly.length > 15) {
       return l10n.validPhone;
     }
 

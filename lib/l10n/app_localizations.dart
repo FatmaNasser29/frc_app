@@ -464,6 +464,12 @@ abstract class AppLocalizations {
   /// **'Enter a valid phone number'**
   String get validPhone;
 
+  /// No description provided for @phoneNoLeadingZero.
+  ///
+  /// In en, this message translates to:
+  /// **'Don\'t include the leading 0 — the country code handles it (e.g. 1012345678 not 01012345678)'**
+  String get phoneNoLeadingZero;
+
   /// No description provided for @passwordRequired.
   ///
   /// In en, this message translates to:

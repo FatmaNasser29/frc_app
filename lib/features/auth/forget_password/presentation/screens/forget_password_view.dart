@@ -45,7 +45,7 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                 label: l10n.phone,
                 hintText: l10n.phoneHint,
                 keyboardType: TextInputType.phone,
-                validator: (value) => AppValidators.validatePhone(value, l10n),
+                validator: (value) => AppValidators.validatePhone(value, l10n, countryCode: selectedCountryCode),
                 prefixIconConstraints: const BoxConstraints(
                   minWidth: 95,
                   minHeight: 24,
@@ -109,8 +109,10 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                     Navigator.pushNamed(
                       context,
                       RoutesName.forgetPasswordOtpView,
-                      arguments:
-                          '$selectedCountryCode${phoneController.text.trim()}',
+                      arguments: AppValidators.normalizePhone(
+                        selectedCountryCode,
+                        phoneController.text,
+                      ),
                     );
                   }
 
@@ -132,8 +134,10 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                       }
 
                       context.read<ForgetPasswordCubit>().sendOtp(
-                        phone:
-                            '$selectedCountryCode${phoneController.text.trim()}',
+                        phone: AppValidators.normalizePhone(
+                          selectedCountryCode,
+                          phoneController.text,
+                        ),
                       );
                     },
                   );

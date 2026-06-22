@@ -40,35 +40,60 @@ class ServerFailure extends Failure {
   }
 
   static String _extractMessage(dynamic response, String fallback) {
-    final message = response?['message'];
+    if (response == null) return fallback;
 
-    if (message is String) {
-      return message;
+    // Check for "errors" object first (standard validation layout)
+    final errors = response['errors'];
+    if (errors != null) {
+      if (errors is String) {
+        return errors;
+      }
+      if (errors is List) {
+        return errors.join(', ');
+      }
+      if (errors is Map) {
+        final allErrors = <String>[];
+        for (final value in errors.values) {
+          if (value is List) {
+            allErrors.add(value.join(', '));
+          } else if (value != null) {
+            allErrors.add(value.toString());
+          }
+        }
+        if (allErrors.isNotEmpty) {
+          return allErrors.join('\n');
+        }
+      }
     }
 
-    if (message is List) {
-      return message.join(', ');
-    }
-
-    if (message is Map) {
-      return message.values.first.toString();
+    final message = response['message'];
+    if (message != null) {
+      if (message is String) {
+        return message;
+      }
+      if (message is List) {
+        return message.join(', ');
+      }
+      if (message is Map) {
+        final allMessages = <String>[];
+        for (final value in message.values) {
+          if (value is List) {
+            allMessages.add(value.join(', '));
+          } else if (value != null) {
+            allMessages.add(value.toString());
+          }
+        }
+        if (allMessages.isNotEmpty) {
+          return allMessages.join('\n');
+        }
+      }
     }
 
     return fallback;
   }
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
-    final message = response?['message'];
-
-    String errorMessage;
-
-    if (message is String) {
-      errorMessage = message;
-    } else if (message is List) {
-      errorMessage = message.join(', ');
-    } else {
-      errorMessage = 'Something went wrong';
-    }
+    final errorMessage = _extractMessage(response, 'Something went wrong');
 
     switch (statusCode) {
       case 400:

@@ -41,7 +41,7 @@ class _OnboardingViewState extends State<OnboardingView> {
                     onTap: () {
                       Navigator.pushReplacementNamed(
                         context,
-                        RoutesName.signIn,
+                        RoutesName.signUpOptions,
                       );
                     },
                     child: Container(

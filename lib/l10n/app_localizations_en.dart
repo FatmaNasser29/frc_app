@@ -202,6 +202,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get validPhone => 'Enter a valid phone number';
 
   @override
+  String get phoneNoLeadingZero =>
+      'Don\'t include the leading 0 — the country code handles it (e.g. 1012345678 not 01012345678)';
+
+  @override
   String get passwordRequired => 'Password is required';
 
   @override

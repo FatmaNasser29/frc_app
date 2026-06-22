@@ -66,7 +66,7 @@ class _SignupViewState extends State<SignupView> {
                 label: l10n.phone,
                 hintText: l10n.phoneHint,
                 keyboardType: TextInputType.phone,
-                validator: (value) => AppValidators.validatePhone(value, l10n),
+                validator: (value) => AppValidators.validatePhone(value, l10n, countryCode: selectedCountryCode),
                 prefixIconConstraints: const BoxConstraints(
                   minWidth: 95,
                   minHeight: 24,
@@ -142,8 +142,10 @@ class _SignupViewState extends State<SignupView> {
                     Navigator.pushNamed(
                       context,
                       RoutesName.signUpOtpView,
-                      arguments:
-                          '$selectedCountryCode${phoneController.text.trim()}',
+                      arguments: AppValidators.normalizePhone(
+                        selectedCountryCode,
+                        phoneController.text,
+                      ),
                     );
                   }
 
@@ -168,8 +170,10 @@ class _SignupViewState extends State<SignupView> {
 
                             context.read<SignupCubit>().register(
                               fullName: nameController.text.trim(),
-                              phone:
-                                  '$selectedCountryCode${phoneController.text.trim()}',
+                              phone: AppValidators.normalizePhone(
+                                selectedCountryCode,
+                                phoneController.text,
+                              ),
                               password: passwordController.text.trim(),
                             );
                           },

@@ -61,6 +61,7 @@
   "validFullName": "أدخل اسماً كاملاً صالحاً",
   "phoneRequired": "رقم الهاتف مطلوب",
   "validPhone": "أدخل رقم هاتف صالحاً",
+  "phoneNoLeadingZero": "لا تُدرج الصفر البادئ — كود الدولة يتولى ذلك (مثال: 1012345678 وليس 01012345678)",
   "passwordRequired": "كلمة المرور مطلوبة",
   "passwordMinLength": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
   "confirmPasswordRequired": "تأكيد كلمة المرور مطلوب",

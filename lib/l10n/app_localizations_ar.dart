@@ -203,6 +203,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get validPhone => 'أدخل رقم هاتف صالحاً';
 
   @override
+  String get phoneNoLeadingZero =>
+      'لا تُدرج الصفر البادئ — كود الدولة يتولى ذلك (مثال: 1012345678 وليس 01012345678)';
+
+  @override
   String get passwordRequired => 'كلمة المرور مطلوبة';
 
   @override

@@ -50,7 +50,7 @@ class _SignInViewState extends State<SignInView> {
                 label: l10n.phone,
                 hintText: l10n.phoneHint,
                 keyboardType: TextInputType.phone,
-                validator: (value) => AppValidators.validatePhone(value, l10n),
+                validator: (value) => AppValidators.validatePhone(value, l10n, countryCode: selectedCountryCode),
                 prefixIconConstraints: const BoxConstraints(
                   minWidth: 95,
                   minHeight: 24,
@@ -172,8 +172,10 @@ class _SignInViewState extends State<SignInView> {
                       }
 
                       context.read<SigninCubit>().signIn(
-                        phone:
-                            '$selectedCountryCode${phoneController.text.trim()}',
+                        phone: AppValidators.normalizePhone(
+                          selectedCountryCode,
+                          phoneController.text,
+                        ),
                         password: passwordController.text.trim(),
                       );
                     },

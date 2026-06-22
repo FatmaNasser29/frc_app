@@ -71,6 +71,7 @@
   "validFullName": "Enter a valid full name",
   "phoneRequired": "Phone number is required",
   "validPhone": "Enter a valid phone number",
+  "phoneNoLeadingZero": "Don't include the leading 0 — the country code handles it (e.g. 1012345678 not 01012345678)",
   "passwordRequired": "Password is required",
   "passwordMinLength": "Password must be at least 8 characters",
   "confirmPasswordRequired": "Confirm password is required",
