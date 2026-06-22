@@ -30,7 +30,7 @@ class FrcApp extends StatelessWidget {
         ...AppLocalizations.localizationsDelegates,
       ],
       supportedLocales: AppLocalizations.supportedLocales,
-      initialRoute: RoutesName.splash,
+      initialRoute: RoutesName.onBoarding,
       onGenerateRoute: RoutesGenerator.onGenerator,
     );
   }

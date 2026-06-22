@@ -52,13 +52,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get password => 'كلمة المرور';
 
   @override
-  String get passwordHint => 'Password123';
+  String get passwordHint => 'أدخل كلمة المرور';
 
   @override
   String get fullName => 'الاسم الكامل';
 
   @override
-  String get fullNameHint => 'Ahmed Aly Najiub';
+  String get fullNameHint => 'أحمد علي نجيب';
 
   @override
   String get rememberMe => 'تذكرني';

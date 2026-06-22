@@ -21,10 +21,14 @@ class CustomElevatedButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
+    final buttonHeight = (screenSize.height * 0.08).clamp(56.0, 76.0);
+    final iconSize = (buttonHeight * 0.35).clamp(20.0, 26.0);
+
     return Padding(
       padding: const EdgeInsetsDirectional.only(top: 20, end: 20, start: 20),
       child: SizedBox(
-        height: 76,
+        height: buttonHeight,
         width: double.infinity,
         child: ElevatedButton(
           onPressed: onPressed,
@@ -44,7 +48,7 @@ class CustomElevatedButton extends StatelessWidget {
                   if (icon != null)
                     Padding(
                       padding: const EdgeInsetsDirectional.only(end: 38),
-                      child: SizedBox(width: 24, height: 24, child: icon),
+                      child: SizedBox(width: iconSize, height: iconSize, child: icon),
                     ),
 
                   Text(
@@ -52,6 +56,7 @@ class CustomElevatedButton extends StatelessWidget {
                     style: context.textStyle.textStyle24.copyWith(
                       color: textColor,
                       fontWeight: FontWeight.bold,
+                      fontSize: (buttonHeight * 0.3).clamp(16.0, 24.0),
                     ),
                   ),
                 ],

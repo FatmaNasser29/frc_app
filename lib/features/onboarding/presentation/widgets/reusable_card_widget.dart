@@ -69,9 +69,11 @@ class OnboardingCard extends StatelessWidget {
 
           Expanded(
             flex: 4,
-            child: SizedBox(
-              height: 164,
-              width: 164,
+            child: Container(
+              constraints: BoxConstraints(
+                maxHeight: MediaQuery.of(context).size.height * 0.25,
+                maxWidth: MediaQuery.of(context).size.width * 0.5,
+              ),
               child: Image.asset(image, fit: BoxFit.contain),
             ),
           ),

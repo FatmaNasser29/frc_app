@@ -26,8 +26,7 @@ class SignUpOptionView extends StatelessWidget {
               textColor: Colors.white,
               icon: Image.asset(
                 'assets/icons/google_icon.png',
-                width: 24,
-                height: 24,
+                fit: BoxFit.contain,
               ),
               backgroundColor: Colors.black,
               onPressed: () => loginWithGoogle(context),
@@ -38,8 +37,7 @@ class SignUpOptionView extends StatelessWidget {
               textColor: Colors.white,
               icon: Image.asset(
                 'assets/icons/linkedin_icon.png',
-                width: 24,
-                height: 24,
+                fit: BoxFit.contain,
               ),
               backgroundColor: const Color(0xff0066D9),
               onPressed: () => loginWithLinkedin(context),

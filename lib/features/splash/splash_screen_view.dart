@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:frc_app/config/l10n/l10n_extension.dart';
 import 'package:frc_app/config/routes/routes_name.dart';
 import 'package:frc_app/config/theme/app_theme.dart';
-import 'package:frc_app/config/l10n/l10n_extension.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({super.key});
@@ -74,12 +74,25 @@ class _SplashScreenViewState extends State<SplashScreenView>
                   opacity: _fadeAnimation,
                   child: Column(
                     children: [
-                      SizedBox(
-                        height: 100,
-                        width: 260,
-                        child: Image.asset(
-                          'assets/images/frc_logo.png',
-                          color: Colors.white,
+                      Container(
+                        constraints: BoxConstraints(
+                          maxHeight: MediaQuery.of(context).size.height * 0.15,
+                          maxWidth: MediaQuery.of(context).size.width * 0.6,
+                        ),
+                        decoration: BoxDecoration(color: Colors.transparent),
+                        child: ClipRect(
+                          clipper: const BottomLogoClipper(),
+                          child: ColorFiltered(
+                            colorFilter: const ColorFilter.mode(
+                              Colors.white,
+                              BlendMode.srcIn,
+                            ),
+                            child: Image.asset(
+                              'assets/images/frc_logo.png',
+                              filterQuality: FilterQuality.high,
+                              fit: BoxFit.contain,
+                            ),
+                          ),
                         ),
                       ),
 
@@ -119,4 +132,17 @@ class _SplashScreenViewState extends State<SplashScreenView>
       ),
     );
   }
+}
+
+class BottomLogoClipper extends CustomClipper<Rect> {
+  const BottomLogoClipper();
+
+  @override
+  Rect getClip(Size size) {
+    // Clip 2 pixels off the bottom edge to clear any sub-pixel rendering line bleed
+    return Rect.fromLTRB(0, 0, size.width, size.height - 2.0);
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Rect> oldClipper) => false;
 }

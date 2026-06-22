@@ -16,6 +16,12 @@ class AuthGradientBackground extends StatelessWidget {
   final TextAlign descriptionAlign;
   final TextStyle? footerStyle;
   final VoidCallback? onBackPressed;
+  final String logoPath;
+  final Widget? logo;
+  final double logoHeight;
+  final double logoWidth;
+  final Color? logoColor;
+  final bool showLogo;
 
   const AuthGradientBackground({
     super.key,
@@ -32,6 +38,12 @@ class AuthGradientBackground extends StatelessWidget {
     this.footerStyle,
     this.footerText,
     this.onBackPressed,
+    this.logoPath = 'assets/images/frc_logo.png',
+    this.logo,
+    this.logoHeight = 64,
+    this.logoWidth = 166,
+    this.logoColor = Colors.white,
+    this.showLogo = true,
   });
 
   @override
@@ -70,7 +82,9 @@ class AuthGradientBackground extends StatelessWidget {
                                         Icons.arrow_back_ios_new,
                                         color: Colors.white,
                                         size: 24,
-                                        textDirection: Directionality.of(context),
+                                        textDirection: Directionality.of(
+                                          context,
+                                        ),
                                       ),
                                       onPressed:
                                           onBackPressed ??
@@ -78,16 +92,41 @@ class AuthGradientBackground extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              Center(
-                                child: SizedBox(
-                                  height: 64,
-                                  width: 166,
-                                  child: Image.asset(
-                                    'assets/images/frc_logo.png',
-                                    color: Colors.white,
-                                  ),
+                              if (showLogo)
+                                Center(
+                                  child:
+                                      logo ??
+                                      Container(
+                                        constraints: BoxConstraints(
+                                          maxHeight: logoHeight == 64
+                                              ? MediaQuery.of(
+                                                      context,
+                                                    ).size.height *
+                                                    0.08
+                                              : logoHeight,
+                                          maxWidth: logoWidth == 166
+                                              ? MediaQuery.of(
+                                                      context,
+                                                    ).size.width *
+                                                    0.45
+                                              : logoWidth,
+                                        ),
+                                        child: ClipRect(
+                                          clipper: const BottomLogoClipper(),
+                                          child: ColorFiltered(
+                                            colorFilter: ColorFilter.mode(
+                                              logoColor ?? Colors.white,
+                                              BlendMode.srcIn,
+                                            ),
+                                            child: Image.asset(
+                                              logoPath,
+                                              filterQuality: FilterQuality.high,
+                                              fit: BoxFit.contain,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                 ),
-                              ),
                             ],
                           ),
                         ),
@@ -97,7 +136,8 @@ class AuthGradientBackground extends StatelessWidget {
                         Text(
                           subtitle ?? l10n.fashionIndustryNetwork,
                           textAlign: subtitleAlign,
-                          style: subtitleStyle ??
+                          style:
+                              subtitleStyle ??
                               context.textStyle.textStyle16.copyWith(
                                 color: Colors.white,
                               ),
@@ -109,7 +149,8 @@ class AuthGradientBackground extends StatelessWidget {
                           Text(
                             title!,
                             textAlign: titleAlign,
-                            style: titleStyle ??
+                            style:
+                                titleStyle ??
                                 context.textStyle.textStyle24.copyWith(
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
@@ -143,7 +184,8 @@ class AuthGradientBackground extends StatelessWidget {
                         Text(
                           footerText ?? l10n.connectWithProfessionalsLocally,
                           textAlign: TextAlign.center,
-                          style: footerStyle ??
+                          style:
+                              footerStyle ??
                               context.textStyle.textStyle16.copyWith(
                                 color: Colors.white,
                               ),
@@ -161,4 +203,17 @@ class AuthGradientBackground extends StatelessWidget {
       ),
     );
   }
+}
+
+class BottomLogoClipper extends CustomClipper<Rect> {
+  const BottomLogoClipper();
+
+  @override
+  Rect getClip(Size size) {
+    // Clip 2 pixels off the bottom edge to clear any sub-pixel rendering line bleed
+    return Rect.fromLTRB(0, 0, size.width, size.height - 2.0);
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Rect> oldClipper) => false;
 }
