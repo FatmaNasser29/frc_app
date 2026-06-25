@@ -1,47 +1,26 @@
-# Root build and compilation artifacts
-build/
 .dart_tool/
-.packages
-.flutter-plugins
-.flutter-plugins-dependencies
+build/
 
-# Melos local overrides (automatically generated during melos bootstrap)
-pubspec_overrides.yaml
-
-# IDE & Editor files
+# IDE
 .idea/
 .vscode/
-*.iml
-*.ipr
-*.iws
 
-# System & OS-specific files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
+# Flutter
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
 
-# Log files and crash dumps
-*.log
-*.log.*
-crashlytics-build.properties
+# Cache
+.pub-cache/
 
-# Android local files
+# Android
 android/.gradle/
 android/local.properties
-android/captures/
-android/*.apk
-android/*.ap_
-android/*.aab
 
-# iOS local files
+# iOS
 ios/Pods/
 ios/.symlinks/
-ios/Flutter/Flutter.podspec
-ios/Flutter/Generated.xcconfig
-ios/Flutter/flutter_export_environment.sh
-ios/Flutter/App.framework
-ios/Flutter/Flutter.framework
+
+# macOS
+.DS_Store
