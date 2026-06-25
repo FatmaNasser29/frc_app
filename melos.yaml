@@ -1,0 +1,5 @@
+name: frc_app_workspace
+
+packages:
+  - apps/**
+  - packages/**

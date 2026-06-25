@@ -1,0 +1,32 @@
+name: auth
+description: "Authentication and Registration screens & logic"
+version: 1.0.0
+publish_to: 'none'
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  core:
+    path: ../../core
+  networking:
+    path: ../../networking
+  design_system:
+    path: ../../design_system
+  localization:
+    path: ../../localization
+  flutter_bloc: ^9.1.1
+  country_code_picker: ^3.4.1
+  url_launcher: ^6.3.0
+  webview_flutter: ^4.14.0
+  get_it: ^8.2.0
+  injectable: ^2.5.1
+  json_annotation: ^4.9.0
+
+dev_dependencies:
+  retrofit_generator: ^10.0.1
+  injectable_generator: ^2.8.1
+  build_runner: ^2.4.15
+  json_serializable: ^6.9.0
