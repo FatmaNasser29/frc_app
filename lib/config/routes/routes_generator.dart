@@ -1,28 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frc_app/config/routes/routes_name.dart';
-import 'package:frc_app/core/di/injection.dart';
-import 'package:frc_app/features/auth/forget_password/presentation/cubit/forget_password_cubit.dart';
-import 'package:frc_app/features/auth/forget_password/presentation/screens/forget_password_otp_view.dart';
-import 'package:frc_app/features/auth/forget_password/presentation/screens/forget_password_view.dart';
-import 'package:frc_app/features/auth/reset_password/presentation/cubit/reset_password_cubit.dart';
-import 'package:frc_app/features/auth/reset_password/presentation/screens/reset_password_view.dart';
-import 'package:frc_app/features/auth/shared/resend_otp/presentation/cubit/resend_otp_cubit.dart';
-import 'package:frc_app/features/auth/sign_in/presentation/cubit/signin_cubit.dart';
-import 'package:frc_app/features/auth/sign_in/presentation/screens/sign_in_otp_view.dart';
-import 'package:frc_app/features/auth/sign_in/presentation/screens/sign_in_view.dart';
-import 'package:frc_app/features/auth/sign_up/presentation/cubit/signup_cubit.dart';
-import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_options_view.dart';
-import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_otp_view.dart';
-import 'package:frc_app/features/auth/sign_up/presentation/screens/sign_up_view.dart';
-import 'package:frc_app/features/home/home_view.dart';
-import 'package:frc_app/features/lay_out/lay_out_view.dart';
-import 'package:frc_app/features/onboarding/presentation/pages/onboarding_view.dart';
-import 'package:frc_app/features/auth/shared/social_auth_webview.dart';
-import 'package:frc_app/features/setting/setting_view.dart';
-import 'package:frc_app/features/splash/splash_screen_view.dart';
-import 'package:frc_app/features/stay_tuned/presentation/cubit/stay_tuned_cubit.dart';
-import 'package:frc_app/features/stay_tuned/presentation/screens/stay_tuned_view.dart';
+import 'routes_name.dart';
+import '../../core/di/injection.dart';
+import 'package:auth/auth.dart';
+import 'package:onboarding/onboarding.dart';
+import 'package:stay_tuned/stay_tuned.dart';
+import '../../features/home/home_view.dart';
+import '../../features/lay_out/lay_out_view.dart';
+import '../../features/setting/setting_view.dart';
+import '../../features/splash/splash_screen_view.dart';
 
 class RoutesGenerator {
   static Route<dynamic>? onGenerator(RouteSettings settings) {
@@ -112,7 +98,12 @@ class RoutesGenerator {
 
       case RoutesName.onBoarding:
         return MaterialPageRoute(
-          builder: (context) => OnboardingView(),
+          builder: (context) => OnboardingView(
+            onSkip: () => Navigator.pushReplacementNamed(
+              context,
+              RoutesName.signUpOptions,
+            ),
+          ),
           settings: settings,
         );
 

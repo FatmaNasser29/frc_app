@@ -41,6 +41,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.13.1"
+  auth:
+    dependency: "direct main"
+    description:
+      path: "packages/features/auth"
+      relative: true
+    source: path
+    version: "1.0.0"
   bloc:
     dependency: transitive
     description:
@@ -161,6 +168,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.2"
+  core:
+    dependency: "direct main"
+    description:
+      path: "packages/core"
+      relative: true
+    source: path
+    version: "1.0.0"
   country_code_picker:
     dependency: "direct main"
     description:
@@ -193,6 +207,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.7"
+  design_system:
+    dependency: "direct main"
+    description:
+      path: "packages/design_system"
+      relative: true
+    source: path
+    version: "1.0.0"
   diacritic:
     dependency: transitive
     description:
@@ -469,6 +490,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.1.0"
+  localization:
+    dependency: "direct main"
+    description:
+      path: "packages/localization"
+      relative: true
+    source: path
+    version: "1.0.0"
   logging:
     dependency: transitive
     description:
@@ -517,6 +545,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.0"
+  networking:
+    dependency: "direct main"
+    description:
+      path: "packages/networking"
+      relative: true
+    source: path
+    version: "1.0.0"
   objective_c:
     dependency: transitive
     description:
@@ -525,6 +560,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "9.4.1"
+  onboarding:
+    dependency: "direct main"
+    description:
+      path: "packages/features/onboarding"
+      relative: true
+    source: path
+    version: "1.0.0"
   package_config:
     dependency: transitive
     description:
@@ -794,6 +836,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.12.1"
+  stay_tuned:
+    dependency: "direct main"
+    description:
+      path: "packages/features/stay_tuned"
+      relative: true
+    source: path
+    version: "1.0.0"
   stream_channel:
     dependency: transitive
     description:

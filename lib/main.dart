@@ -1,10 +1,10 @@
 import 'package:country_code_picker/country_code_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:frc_app/config/routes/routes_generator.dart';
-import 'package:frc_app/config/routes/routes_name.dart';
-import 'package:frc_app/config/theme/app_theme.dart';
-import 'package:frc_app/core/di/injection.dart';
-import 'package:frc_app/l10n/app_localizations.dart';
+import 'config/routes/routes_generator.dart';
+import 'config/routes/routes_name.dart';
+import 'package:design_system/design_system.dart';
+import 'core/di/injection.dart';
+import 'package:localization/localization.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

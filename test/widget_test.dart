@@ -7,6 +7,10 @@ void main() {
     await tester.pumpWidget(const FrcApp());
     await tester.pumpAndSettle();
 
+    // Tap skip to go to sign up options screen
+    await tester.tap(find.text('Skip to Login'));
+    await tester.pumpAndSettle();
+
     expect(find.text('Sign With Google'), findsOneWidget);
     expect(find.text('Your Phone Number'), findsOneWidget);
   });

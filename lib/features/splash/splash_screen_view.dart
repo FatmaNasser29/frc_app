@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:frc_app/config/l10n/l10n_extension.dart';
-import 'package:frc_app/config/routes/routes_name.dart';
-import 'package:frc_app/config/theme/app_theme.dart';
+import 'package:localization/localization.dart';
+import '.././../config/routes/routes_name.dart';
+import 'package:design_system/design_system.dart';
 
 class SplashScreenView extends StatefulWidget {
   const SplashScreenView({super.key});
