@@ -49,19 +49,19 @@ dependencies:
 
   # Local workspace packages
   core:
-    path: packages/core
+    path: ../frc_core
   networking:
-    path: packages/networking
+    path: ../frc_networking
   design_system:
-    path: packages/design_system
+    path: ../frc_design_system
   localization:
-    path: packages/localization
+    path: ../frc_localization
   onboarding:
-    path: packages/features/onboarding
+    path: ../frc_onboarding
   stay_tuned:
-    path: packages/features/stay_tuned
+    path: ../frc_stay_tuned
   auth:
-    path: packages/features/auth
+    path: ../frc_auth
 dev_dependencies:
   flutter_test:
     sdk: flutter

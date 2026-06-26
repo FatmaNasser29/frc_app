@@ -44,7 +44,7 @@ packages:
   auth:
     dependency: "direct main"
     description:
-      path: "packages/features/auth"
+      path: "../frc_auth"
       relative: true
     source: path
     version: "1.0.0"
@@ -171,7 +171,7 @@ packages:
   core:
     dependency: "direct main"
     description:
-      path: "packages/core"
+      path: "../frc_core"
       relative: true
     source: path
     version: "1.0.0"
@@ -210,7 +210,7 @@ packages:
   design_system:
     dependency: "direct main"
     description:
-      path: "packages/design_system"
+      path: "../frc_design_system"
       relative: true
     source: path
     version: "1.0.0"
@@ -493,7 +493,7 @@ packages:
   localization:
     dependency: "direct main"
     description:
-      path: "packages/localization"
+      path: "../frc_localization"
       relative: true
     source: path
     version: "1.0.0"
@@ -548,7 +548,7 @@ packages:
   networking:
     dependency: "direct main"
     description:
-      path: "packages/networking"
+      path: "../frc_networking"
       relative: true
     source: path
     version: "1.0.0"
@@ -563,7 +563,7 @@ packages:
   onboarding:
     dependency: "direct main"
     description:
-      path: "packages/features/onboarding"
+      path: "../frc_onboarding"
       relative: true
     source: path
     version: "1.0.0"
@@ -839,7 +839,7 @@ packages:
   stay_tuned:
     dependency: "direct main"
     description:
-      path: "packages/features/stay_tuned"
+      path: "../frc_stay_tuned"
       relative: true
     source: path
     version: "1.0.0"
