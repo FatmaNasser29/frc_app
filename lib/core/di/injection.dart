@@ -1,9 +1,10 @@
+import 'package:auth/auth.dart';
+import 'package:core/core.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:core/core.dart';
 import 'package:networking/networking.dart';
-import 'package:auth/auth.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import '../../config/app_config_impl.dart';
 import 'injection.config.dart';
 

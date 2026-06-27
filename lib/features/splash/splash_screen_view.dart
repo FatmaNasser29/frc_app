@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:localization/localization.dart';
+import 'package:core/core.dart';
 import '.././../config/routes/routes_name.dart';
 import 'package:design_system/design_system.dart';
 

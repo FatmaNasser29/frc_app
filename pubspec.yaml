@@ -50,12 +50,12 @@ dependencies:
   # Local workspace packages
   core:
     path: ../frc_core
+  community:
+    path: ../frc_community
   networking:
     path: ../frc_networking
   design_system:
     path: ../frc_design_system
-  localization:
-    path: ../frc_localization
   onboarding:
     path: ../frc_onboarding
   stay_tuned:

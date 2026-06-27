@@ -5,6 +5,7 @@ import '../../core/di/injection.dart';
 import 'package:auth/auth.dart';
 import 'package:onboarding/onboarding.dart';
 import 'package:stay_tuned/stay_tuned.dart';
+import 'package:community/community.dart';
 import '../../features/home/home_view.dart';
 import '../../features/lay_out/lay_out_view.dart';
 import '../../features/setting/setting_view.dart';
@@ -145,6 +146,19 @@ class RoutesGenerator {
           builder: (_) => BlocProvider(
             create: (_) => StayTunedCubit(),
             child: const StayTunedView(),
+          ),
+          settings: settings,
+        );
+
+      case RoutesName.community:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => CommunityCubit(
+              GetCommunityPostsUseCase(
+                CommunityRepositoryImpl(),
+              ),
+            ),
+            child: const CommunityView(),
           ),
           settings: settings,
         );

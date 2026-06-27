@@ -19,4 +19,5 @@ class RoutesName {
   static const String resetPassword = 'resetPassword';
   static const String socialAuthWebView = 'socialAuthWebView';
   static const String stayTuned = 'stayTuned';
+  static const String community = 'community';
 }
